@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>T7传统</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../../../t7m/resource/img/peopleagent/favicon.ico">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../t7m/resource/css/bootstrap.min.css">
+    <link rel="styleSheet" href="../../../t7m/resource/css/peopleagent/style.css">
+    <link rel="stylesheet" href="../../../t7m/resource/css/peopleagent/wonder.css" class="wonder-core">
+    <link rel="stylesheet" href="../../../t7m/resource/css/peopleagent/blue-style.css" class="wonder-style">
+    <link rel="stylesheet" href="../../../t7m/resource/css/peopleagent/red-style.css" class="wonder-style">
+    <script type="text/javascript" src="../../../t7m/resource/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../t7m/resource/js/popper.min.js"></script>
+    <script defer="" type="text/javascript" src="../../../t7m/resource/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../t7m/resource/assets/layer/js/layer.js"></script>
+    <link rel="stylesheet" href="http://210.244.18.147/t7m/resource/assets/layer/js/theme/default/layer.css?v=3.1.1" id="layuicss-layer">
+
+    <script type="text/javascript">
+        function iosViewEvent() {
+            document.documentElement.addEventListener('touchstart', function(event) {
+                if (event.touches.length > 1) {
+                    event.preventDefault();
+                }
+            }, false);
+
+            var lastTouchEnd = 0;
+            document.documentElement.addEventListener('touchend', function(event) {
+                var now = Date.now();
+                if (now - lastTouchEnd <= 300) {
+                    event.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
+        }
+
+        window.onload = function() {
+            setTimeout(function() {
+                window.scrollTo(0, 1);
+            }, 100);
+
+            iosViewEvent();
+        }
+    </script>
+    <style>
+        .page_data_list span {
+            width: 6rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap" id="container">
+        <header class="">
+            <div class="go-back-wrap">
+                <a class="go-back" href="javascript:void(0);" onclick="history.go(-1)">
+                    <i class="fas fa-chevron-left" style="margin-right: 3px;"></i>
+                    返回
+                </a>
+            </div>
+            <div class="info-wrap">
+                <div>
+                    <span class="title">个人投注</span>
+                </div>
+            </div>
+            <div>
+                <a class="btn-list" onclick="openElement('#sidebar');">
+                    <i class="fas fa-bars"></i>
+                </a>
+            </div>
+        </header>
+        <input id="contextPath" type="hidden" value="/t7m">
+        <div class="lds-ring" style="display: none;">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <script>
+            gameCode = '';
+            contextPath = $('#contextPath').val();
+
+            $(function() {
+                //   setStyleFromCookie();
+                callHeaderTouch();
+                /*if ("true" !== "false") {
+                  intervalBalance();
+                }*/
+            });
+
+            function callHeaderTouch() {
+                headerTouch();
+            }
+
+            function headerTouch() {
+                $('.account-box').on('touchstart', function() {
+                    $(this).css('background', 'rgb(19, 63, 142)');
+                });
+
+                $('.account-box').on('touchend', function() {
+                    $(this).removeAttr("style");
+                });
+            }
+
+            function intervalBalance() {
+                var balanceIvl = setInterval(function() {
+                    if ("true" !== "true") {
+                        clearInterval(balanceIvl);
+                    }
+                    getJsonData(document.getElementById("contextPath").value + '/Member/GetBalance', null, changeBalance);
+                }, 60000)
+            }
+
+            function changeBalance(response) {
+                $('header .coin').html('<i class="icon-coin"/>' + getCurrency(response) + '元');
+            }
+
+            function changeAfterBetBalance(response) {
+                $('.balance-bar .coin').html(getCurrency(response));
+            }
+        </script>
+        <div class="mainer" style="bottom:91px">
+            <div class="page_ctjl">
+                <div class="d-inline-flex justify-content-between align-items-center w-100 p-1">
+                    <label for="startDate" class="">时间</label>
+                    <input class="" type="date" name="startDate" id="startDate" value="2019-05-27" required="">
+                    <label class="" for="endDate">至</label>
+                    <input class="" type="date" name="endDate" id="endDate" value="2019-05-27" required="">
+                    <button class="btn-search" type="button" onclick="query();">查询</button>
+                </div>
+                <div class="d-flex flex-wrap select-row w-100">
+                    <div class="col-5 item tkgz_list_sel">
+                        <select name="gameCode">
+                            <option value="">所有类型</option>
+                            <option value="xjssc">新疆时时彩</option>
+                            <option value="cqssc">重庆时时彩</option>
+                            <option value="bjssc">北京时时彩</option>
+                            <option value="gxk3">广西快三</option>
+                            <option value="jsk3">江苏快三</option>
+                            <option value="hubk3">湖北快三</option>
+                            <option value="bjk3">北京快三</option>
+                            <option value="shk3">上海快三</option>
+                            <option value="gd11x5">广东11选5</option>
+                            <option value="sh11x5">上海11选5</option>
+                            <option value="ah11x5">安徽11选5</option>
+                            <option value="jx11x5">江西多乐彩</option>
+                            <option value="sd11x5">山东11运夺金</option>
+                            <option value="bjpk10">北京PK拾</option>
+                            <option value="mlaft">幸运飞艇</option>
+                            <option value="fc3d">福彩3D</option>
+                            <option value="pl3">排列三</option>
+                            <option value="shssl">上海时时乐</option>
+                            <option value="hk6">香港⑥合彩</option>
+                            <option value="bjkl8">北京28</option>
+                            <option value="qxc">海南七星彩</option>
+                            <option value="ffc">飞速分分彩</option>
+                            <option value="fsffk3">飞速快三</option>
+                            <option value="fsffpk10">飞速赛车</option>
+                        </select>
+                    </div>
+                    <div class="col-4 item tkgz_list_sel">
+                        <select name="queryType">
+                            <option value="-1">所有投注</option>
+                            <option value="1">一般投注</option>
+                            <option value="2">追单投注</option>
+                        </select>
+                    </div>
+                    <div class="col-3 tkgz_list_sel py-2">
+                        <select name="dateType">
+                            <option value="1">今日</option>
+                            <option value="-1">昨日</option>
+                            <option value="7">本周</option>
+                            <option value="-7">上周</option>
+                            <option value="30">本月</option>
+                            <option value="-30">上月</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="py-1"></div>
+                <div class="jjsm_tab">
+                    <!-- <div class="artive ctjl_list p-2 text-center">查无资料</div> -->
+                    <div class="ctjl_detail">
+                        <p class="ctjl_time">2019-04-13 15:18:26</p>
+                        <div class="ctjl_main">
+                            <div class="ctjl_main_left ">
+                                <span>反水</span><br><b>0.0000元</b>
+                            </div>
+                            <div class="ctjl_main_right ">amos18</div>
+                            <div class="clear"></div>
+                            <ul>
+                                <li><span>收入：</span><b>0.0000元</b></li>
+                                <li><span>支出：</span><b>0.0000元</b></li>
+                                <li><span>备注：</span><b>推广奖金</b></li>
+                            </ul>
+                            <div class="ctjl_main_detail"></div>
+                        </div>
+                    </div>
+                    <div class="ctjl_detail">
+                        <p class="ctjl_lottery_title">
+                            <span>北京PK10</span>
+                            <span>第20190423055期</span>
+                            <!-- <span>amos18</span> -->
+                        </p>
+                        <div class="ctjl_main">
+                            <div class="ctjl_main_left ">
+                                <span>投注：</span><b>0.0000元</b><br>
+                                <span>中奖：</span><b>0.0000元</b>
+                            </div>
+                            <div class="ctjl_main_right" style="background: none;">
+                                <span>赔率：</span><b>0.0000元</b><br>
+                                <span>状态：</span><b>结算</b>
+                            </div>
+                            <div class="clear"></div>
+                            <ul>
+                                <li><span>下注时间：</span><b>2019-02-13 19:20:53</b></li>
+                                <li><span>注单号：</span><b>KHY51454151</b></li>
+                                <li><span>开奖结果：</span><b>2,2,2,2,2</b></li>
+                                <li><span>投注内容：</span><b>1,2,5,4,8</b></li>
+                                <li><span>中奖是否取消追单：</span><b>否</b></li>
+                            </ul>
+                            <div class="ctjl_main_detail"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-wrap w-100 subtotal">
+                    <div class="w-50 p-2">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white p-1">
+                                    <i class="m-icon icon-income-yellow"></i>
+                                </span>
+                            </div>
+                            <div class="form-control p-2">
+                                分页投注金额：
+                                <span class="" id="pageTotalAmt">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-50 p-2">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white p-1">
+                                    <i class="m-icon icon-expend-yellow"></i>
+                                </span>
+                            </div>
+                            <div class="form-control p-2">
+                                分页中奖金额：
+                                <span class="" id="pageResultAmt">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <nav class="pagination-info" aria-label="Page navigation" style="display: none;">
+                    <ul class="pagination justify-content-center my-2" id="pagination"></ul>
+                </nav>
+                <div class="mb-3"></div>
+            </div>
+        </div>
+        <div class="row no-gutters py-2 w-100 sum-info">
+            <div class="col-6 px-2 d-inline-flex justify-content-center">
+                <i class="m-icon icon-income mr-1"></i>
+                <div>
+                    <span class="text-nowrap">总投入：</span>
+                    <span class="money" id="sumTotalAmt">0</span>
+                </div>
+            </div>
+            <div class="col-6 px-2 d-inline-flex justify-content-center">
+                <i class="m-icon icon-expend mr-1"></i>
+                <div>
+                    <span class="text-nowrap">总支出：</span>
+                    <span class="money" id="sumResultAmt">0</span>
+                </div>
+            </div>
+        </div>
+        <div id="sidebar">
+            <div class="header">
+                <div class="mb-2 show-user flex-column">
+                    <img class="rounded-circle" src="../../../t7m/resource/img/peopleagent/icon-user.jpg">
+                    <span>test23</span>
+                </div>
+                <div class="show-coin">
+                    余额：
+                    <span class="points">28,901.445</span>
+                    元
+                </div>
+                <div class="justify-content-between">
+                    <button type="button" class="btn-icon charge-button" onclick="goDeposit();"></button>
+                    <button type="button" class="btn-icon withdraw-button" onclick="goWithdraw();"></button>
+                </div>
+                <div class="justify-content-center">
+                    <a class="d-inline-block transfer-button" href="javascript:void(0);" onclick="goTransfer();"></a>
+                </div>
+            </div>
+            <div class="list-menu-wrap" style="height:609.875px;">
+                <ul class="list-menu">
+                    <li>
+                        <a class="btn-icon" onclick="toggleSubmenu()">
+                            <i class="icon icon-account"></i>
+                            <span>帐户中心</span>
+                            <i class="fas fa-caret-right"></i>
+                        </a>
+                        <ul>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/changeLoginPassword">修改密码</a>
+                            </li>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/changeWithdrawPassword">提款密码</a>
+                            </li>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/bankCardManagement">银行卡管理</a>
+                            </li>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/myReward">个人总览</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="btn-icon" onclick="toggleSubmenu()">
+                            <i class="icon icon-funds"></i>
+                            <span>资金管理</span>
+                            <i class="fas fa-caret-right"></i>
+                        </a>
+                        <ul>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/deposit">充值</a>
+                            </li>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/withdraw">提款</a>
+                            </li>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/transfer">钱包转换</a>
+                            </li>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/dwRecord">充提记录</a>
+                            </li>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/acRecord">帐变记录</a>
+                            </li>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/tRecord">转账记录</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="btn-icon" onclick="toggleSubmenu()">
+                            <i class="icon icon-game-record"></i>
+                            <span>游戏记录</span>
+                            <i class="fas fa-caret-right"></i>
+                        </a>
+                        <ul>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/order_list">个人投注</a>
+                            </li>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/gameWater">游戏流水</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="btn-icon" onclick="toggleSubmenu()">
+                            <i class="icon icon-agent-center"></i>
+                            <span>代理中心</span>
+                            <i class="fas fa-caret-right"></i>
+                        </a>
+                        <ul>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/agentMember">团队管理</a>
+                            </li>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/teamReport">团队报表</a>
+                            </li>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/teamReward">团队总览</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="btn-icon" href="javascript:void(0);" onclick="goRule();">
+                            <i class="icon icon-game-rule"></i>
+                            <span>彩票规则</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn-icon" href="javascript:void(0);" onclick="goPromotion();">
+                            <i class="icon icon-promotion"></i>
+                            <span>优惠活动</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn-icon" href="javascript:void(0);" onclick="goCustomerService();">
+                            <i class="icon icon-customer-service"></i>
+                            <span>客服</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn-icon" href="javascript:void(0);" onclick="goLogout();">
+                            <i class="icon icon-exit"></i>
+                            <span>登出</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="d-flex justify-content-around footer">
+                <div class="d-flex align-items-center">
+                    <i class="d-inline-block s-icon icon-copyright mr-1"></i>
+                    <span>版本号：V1.0</span>
+                </div>
+                <div class="d-flex align-items-center" onclick="clearCache();">
+                    <i class="d-inline-block s-icon icon-clean mr-1"></i>
+                    <span>清除缓存</span>
+                </div>
+            </div>
+        </div>
+        <a class="sidebar-mask" onclick="closeElement('#sidebar')"></a>
+        <!-- message -->
+        <div class="mask" style="display: none;">
+            <div class="message_container flex-column">
+                <div class="message-header text-center">
+                    <span class="mt-2">讯息中心</span>
+                    <div class="close_icon">
+                        <a id="icon_close" href="javascript:void(0);"></a>
+                    </div>
+                </div>
+                <div class="aside item_2">
+                    <div class="message_wrap"></div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(function() {
+                resizeSidebar();
+                messageEvent();
+
+                $('ul.list-menu ul li').click(function() {
+                    location.href = $(this).find('a').first().attr('href');
+                    return false;
+                });
+            });
+            $('.ctjl_detail .ctjl_main_detail').on('touchend',function(){
+                $(this).toggleClass('active');
+                $(this).prev().toggleClass('active');
+            });
+            function resizeSidebar() {
+                var h = $('#sidebar').outerHeight() - ($('#sidebar .header').outerHeight() + $('#sidebar .footer').outerHeight() + 5);
+                $('#sidebar .list-menu-wrap').attr('style', 'height:' + h + 'px;');
+            }
+
+            function messageEvent() {
+                if ("true" === "true") {
+                    getMessageCount();
+                }
+                openMessageBind();
+                closeMessageBind();
+            }
+
+            function getMessageCount() {
+                getJsonData("/t7m/Member/GetUserMessage", null, setMessageCount);
+            }
+
+            function getMessage() {
+                getJsonData("/t7m/Member/GetUserMessage", null, setMessage);
+            }
+
+            function setMessageCount(response) {
+                var count = 0;
+                if (response.data) {
+                    $.each(response.data, function(entryIdx, entry) {
+                        if (entry['msgStatus'] == 1) count++;
+                    });
+                }
+                $('#message_count').text(count);
+            }
+
+            function setMessage(response) {
+                $('.message_wrap').empty();
+                var count = 0;
+                var title = '';
+                var conternt = '尚無訊息';
+                var msgTime = '';
+                if (response.data) {
+                    $.each(response.data, function(entryIdx, entry) {
+                        title = entry['msgTitle'];
+                        conternt = entry['msgContent'];
+                        msgTime = entry['msgTime'];
+                        var target = $('<div />', {
+                                'class': 'outside'
+                            })
+                            .append($('<div />', {
+                                    'class': 'message_list'
+                                })
+                                .append($('<div />', {
+                                    'class': 'message_title text-truncate'
+                                }).text(title))
+                                .append($('<div />', {
+                                    'class': 'message_content'
+                                }).text(conternt))
+                                .append($('<div />', {
+                                    'class': 'message_date sub-title'
+                                }).text(msgTime)));
+                        if (entry['msgStatus'] == 1) {
+                            target.append($('<div />', {
+                                    'class': 'message_status'
+                                })
+                                .append($('<a />', {
+                                    'class': 'unread',
+                                    'href': '#',
+                                    'onClick': 'readMessage(' + entry['msgID'] + ', this)'
+                                }).text('标示为已读')));
+                            count++;
+                        } else {
+                            target.find('.message_list').append($('<div />', {
+                                'class': 'golgol'
+                            }));
+                        }
+                        target.appendTo('.message_wrap');
+                    });
+                    $('#message_count').text(count);
+                } else {
+                    $('.message_count_wrap').remove();
+                }
+                $('.mask').show();
+            }
+
+            function readMessage(id, a) {
+                a.classList.add("marked");
+
+                var map = new Object();
+                map['msgId'] = id;
+                getJsonData("/t7m/Member/UpdateUserMessage", map, updateMessageStatus);
+            }
+
+            function updateMessageStatus() {
+                var mark = document.getElementsByClassName("marked");
+                for (var i = 0; i < mark.length; i++) {
+                    $(mark[i]).parents('.outside').find('.message_list').append($('<div />', {
+                        'class': 'golgol'
+                    }));
+                    mark[i].innerHTML = '';
+                    mark[i].classList.remove("unread");
+                    mark[i].classList.remove("marked");
+                }
+                $('#message_count').html(document.getElementsByClassName("unread").length);
+            }
+
+            function openMessageBind() {
+                $('.trigger_message').click(function() {
+                    if ("true" === "true") {
+                        getMessage();
+                    } else {
+                        layer.open({
+                            title: '警告',
+                            content: '请先登录',
+                            icon: 0,
+                            btnAlign: 'c',
+                            yes: function(index, layero) {
+                                goSignIn(index);
+                            }
+                        });
+                    }
+                });
+            }
+
+            function closeMessageBind() {
+                $('#icon_close').click(function() {
+                    $('.mask').hide();
+                    $('.member_menu').removeClass('member_menu_reduce');
+                });
+            }
+
+            function refreshPoint() {
+                if ("true" === "true") {
+                    getJsonData("/t7m/Member/RefreshUserWallets", null, function(response) {
+                        if (response.result) {
+                            var w = response.data.find(function(item, index, array) {
+                                return item.walletID == 0;
+                            });
+                            $('.points').html(getCurrency(w.balance));
+                        } else {
+                            showErrorResult(response.message);
+                        }
+                    }, null, true);
+                }
+            }
+        </script>
+        <script type="text/javascript" src="../../../t7m/resource/assets/socket.io-client/socket.io.slim.js"></script>
+        <script type="text/javascript" src="../../../t7m/resource/js/moment-with-locales.min.js"></script>
+        <script type="text/javascript" src="../../../t7m/resource/js/swiper.min.js"></script>
+        <script type="text/javascript" src="../../../t7m/resource/js/peopleagent/custom.js" data-url="https://x20.d7601.com"></script>
+
+        <ul class="bottom-menu">
+                <li class="active"><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-hall"></i><span>首页</span></a></li>
+                <li class=""><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-lottery"></i><span>彩票</span></a></li>
+                <li class=""><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-promotion"></i><span>优惠</span></a></li>
+                <li class=""><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-mine"></i><span>我的</span></a></li>
+            <!-- <li class="">
+                <a class="btn-icon" href="javascript:void(0);" onclick="goHall();">
+                    <i class="icon icon-hall"></i>
+                    <span>大厅</span>
+                </a>
+            </li>
+            <li class="">
+                <a class="btn-icon" href="javascript:void(0);" onclick="goCustomerService();">
+                    <i class="icon icon-customer-service"></i>
+                    <span>客服</span>
+                </a>
+            </li>
+            <li class="">
+                <a class="btn-icon" href="javascript:void(0);" onclick="goCenter();">
+                    <i class="icon icon-manage"></i>
+                    <span>管理中心</span>
+                </a>
+            </li>
+            <li class="">
+                <a class="btn-icon" href="javascript:void(0);" onclick="goLotteryRecord();">
+                    <i class="icon icon-nav-game-result"></i>
+                    <span>开奖结果</span>
+                </a>
+            </li>
+            <li class="">
+                <a class="btn-icon " href="javascript:void(0);" onclick="goPromotion();">
+                    <i class="icon icon-nav-promotion"></i>
+                    <span>活动</span>
+                </a>
+            </li> -->
+        </ul>
+
+        <script>
+            $(function() {
+                wsClient();
+                callFooterTouch();
+            });
+
+            function wsClient() {
+                initialWS();
+
+                var interval = setInterval(function() {
+                    if (ws.connected) {
+                        clearInterval(interval);
+                        if ("true" === "true") {
+                            joinWS('23', 'test23', '0y6qr733adcf5fb444000a83b1c989901a70a0y6qr');
+                        } else {
+                            joinWS('23');
+                        }
+                    }
+                }, 1000);
+            }
+
+            function callFooterTouch() {
+                footerTouch();
+            }
+
+            function footerTouch() {
+                $('.bottom-menu li').on('touchstart', function() {
+                    $(this).css('background', 'rgba(78, 78, 76, 0.7)');
+                    $(this).addClass('active').siblings().removeClass('active');
+                });
+
+                $('.bottom-menu li').on('touchend', function() {
+                    $(this).removeAttr("style");
+                });
+            }
+        </script>
+    </div>
+
+    <script type="text/javascript" src="../../../t7m/resource/js/jquery.twbsPagination.min.js"></script>
+    <script>
+        var conditions = null;
+        var position = $('.jjsm_tab').position().top;
+
+        function query() {
+            map = new Object();
+            map['gameCode'] = $('select[name=gameCode]').val();
+            map['sDate'] = $('#startDate').val();
+            map['eDate'] = $('#endDate').val();
+            map['status'] = $('select[name=status]').val();
+            map['queryType'] = $('select[name=queryType]').val();
+            map['pageIndex'] = 1;
+            conditions = map;
+            getJsonData("/t7m/Record/BetRecordRange", conditions, betRecordCallBack, null, true);
+        }
+
+        function getPage() {
+            conditions['pageIndex'] = $('#pagination').twbsPagination('getCurrentPage');
+            getJsonData("/t7m/Record/BetRecordRange", conditions, betRecordCallBack, null, true);
+            $('.mainer').scrollTop(position);
+        }
+
+        $(function() {
+            $('select[name=gameCode], select[name=queryType]').on('change', function() {
+                query();
+            });
+
+            $('select[name=dateType]').on('change', function() {
+                getDataByDay(Number(this.value), query);
+            });
+
+            getJsonData("/t7m/GameInfo/GetAllStatus", null, statusCallBack);
+            query();
+
+            /* $('<div />', {'class': 'btns cancel'}).append($('<a />').text('取消')).appendTo($('.main_modal'));
+            $('.btns').css('float', 'right').css('margin-right', '1.5rem');
+            $('.cancel').css('float', 'left').css('margin-left', '1.5rem').css('margin-right', '0rem');
+            $('.main_modal .cancel').click(function() {
+              hideModal();
+            }); */
+        });
+
+        function showOrderList(response) {
+            var arr = response.data.data;
+            if (arr.length == 0) {
+                var div = $('<div />', {
+                    'class': 'artive ctjl_list p-2 text-center'
+                }).html(traditional_chinese_datatables.emptyTable);
+                div.appendTo($('.jjsm_tab'));
+                $('#pageTotalAmt').html(0);
+                $('#pageResultAmt').html(0);
+                $('#sumTotalAmt').html(0);
+                $('#sumResultAmt').html(0);
+            } else {
+                $.each(arr, function(entryIdx, entry) {
+                    if (entry['status'] == '待开奖') {
+                        var div = $('<div />', {
+                            'class': 'artive ctjl_list mb-3'
+                        });
+                        $('<h4 />', {
+                                'class': 'p-2'
+                            })
+                            .append($('<label />', {
+                                'class': 'normal-text'
+                            }).text(entry['gameName']))
+                            .append($('<label />', {
+                                'class': 'sub-title ml-3'
+                            }).html('第 ' + entry['issueNo'] + ' 期'))
+                            .append($('<a />', {
+                                'class': 'retrace ml-1',
+                                'id': entry['betNo'] + '_' + entry['gameCode']
+                            }).text('撤单'))
+                            .appendTo(div);
+
+                        $('<div />').append($('<div />', {
+                                'class': 'p-2'
+                            })
+                            .append($('<div />', {
+                                'class': 'py-1'
+                            }).append($('<span />', {
+                                'class': 'sub-title'
+                            }).html('投注：<em>' + getCurrency(entry['totalAmt']) + '&nbsp;元</em>')).append($('<span />', {
+                                'class': 'sub-title float-right'
+                            }).html('赔率 ：<em>' + getCurrency(entry['payRate']) + '</em>')))
+                            .append($('<div />', {
+                                'class': 'py-1'
+                            }).append($('<span />', {
+                                'class': 'sub-title'
+                            }).html('中奖：<em>' + getCurrency(entry['resultAmt']) + '&nbsp;元</em>')).append($('<span />', {
+                                'class': 'sub-title float-right order-status'
+                            }).html('状态：<em>' + entry['status'] + '</em>')))
+                        ).appendTo(div);
+
+                        $('<div />', {
+                                'class': 'bet-detail p-2'
+                            })
+                            .append($('<p />', {
+                                'class': 'py-1'
+                            }).append($('<span />', {
+                                'class': 'sub-title'
+                            }).html('下注时间：')).append('<span class="normal-text">' + entry['betTime'] + '</sapn>'))
+                            .append($('<p />', {
+                                'class': 'py-1'
+                            }).append($('<span />', {
+                                'class': 'sub-title'
+                            }).html('注单号：')).append('<span class="normal-text">' + entry['betNo'] + '</sapn>'))
+                            .append($('<p />', {
+                                'class': 'py-1'
+                            }).append($('<span />', {
+                                'class': 'sub-title'
+                            }).html('开奖结果：')).append($('<span />', {
+                                'class': 'normal-text'
+                            }).html(entry['gameRsl'])))
+                            .append($('<p />', {
+                                'class': 'py-1'
+                            }).append($('<span />', {
+                                'class': 'sub-title'
+                            }).html('投注內容：')).append($('<font />', {
+                                'class': 'px-2'
+                            }).html(entry['playType'])))
+                            .append((orderContent(entry).length == 0) ? '' : $('<p />', {
+                                'class': 'py-1'
+                            }).append($('<span />', {
+                                'class': 'sub-title'
+                            }).html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')).append($('<span />', {
+                                'class': 'normal-text'
+                            }).html(orderContent(entry).join(','))))
+                            .append($('<p />', {
+                                'class': 'py-1'
+                            }).append($('<span />', {
+                                'class': 'sub-title'
+                            }).html('中奖是否取消追单：')).append($('<span />', {
+                                'class': 'normal-text'
+                            }).html(entry['autoCancel'] == 2 ? (entry['aclSign'] == 1 ? '赢' : '输') + entry['acLimit'] + '停止追号' : (entry['autoCancel'] == 1 ? '是' : '否'))))
+                            .appendTo(div);
+                        $('.jjsm_tab').append(div.append($('<p />', {
+                            'class': 'arrow-btn'
+                        }).append('明细').append($('<i />', {
+                            'class': 'fas ml-2 fa-chevron-down'
+                        }))));
+                    } else {
+                        var div = $('<div />', {
+                            'class': 'artive ctjl_list mb-3'
+                        });
+                        $('<h4 />', {
+                                'class': 'p-2'
+                            })
+                            .append($('<label />', {
+                                'class': 'normal-text'
+                            }).text(entry['gameName']))
+                            .append($('<label />', {
+                                'class': 'sub-title ml-3'
+                            }).html('第 ' + entry['issueNo'] + ' 期'))
+                            .appendTo(div);
+
+                        $('<div />').append($('<div />', {
+                                'class': 'p-2'
+                            })
+                            .append($('<div />', {
+                                'class': 'py-1'
+                            }).append($('<span />', {
+                                'class': 'sub-title'
+                            }).html('投注：<em>' + getCurrency(entry['totalAmt']) + '&nbsp;元</em>')).append($('<span />', {
+                                'class': 'sub-title float-right'
+                            }).html('赔率 ：<em>' + getCurrency(entry['payRate']) + '</em>')))
+                            .append($('<div />', {
+                                'class': 'py-1'
+                            }).append($('<span />', {
+                                'class': 'sub-title'
+                            }).html('中奖：<em>' + getCurrency(entry['resultAmt']) + '&nbsp;元</em>')).append($('<span />', {
+                                'class': 'sub-title float-right'
+                            }).html('状态：<em>' + entry['status'] + '</em>')))
+                        ).appendTo(div);
+
+                        $('<div />', {
+                                'class': 'bet-detail p-2'
+                            })
+                            .append($('<p />', {
+                                'class': 'py-1'
+                            }).append($('<span />', {
+                                'class': 'sub-title'
+                            }).html('下注时间：')).append('<span class="normal-text">' + entry['betTime'] + '</sapn>'))
+                            .append($('<p />', {
+                                'class': 'py-1'
+                            }).append($('<span />', {
+                                'class': 'sub-title'
+                            }).html('注单号：')).append('<span class="normal-text">' + entry['betNo'] + '</sapn>'))
+                            .append($('<p />', {
+                                'class': 'py-1'
+                            }).append($('<span />', {
+                                'class': 'sub-title'
+                            }).html('开奖结果：')).append($('<span />', {
+                                'class': 'normal-text'
+                            }).html(entry['gameRsl'])))
+                            .append($('<p />', {
+                                'class': 'py-1'
+                            }).append($('<span />', {
+                                'class': 'sub-title'
+                            }).html('投注內容：')).append($('<font />', {
+                                'class': 'px-2'
+                            }).html(entry['playType'])))
+                            .append((orderContent(entry).length == 0) ? '' : $('<p />', {
+                                'class': 'py-1'
+                            }).append($('<span />', {
+                                'class': 'sub-title'
+                            }).html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')).append($('<span />', {
+                                'class': 'normal-text'
+                            }).html(orderContent(entry).join(','))))
+                            .append($('<p />', {
+                                'class': 'py-1'
+                            }).append($('<span />', {
+                                'class': 'sub-title'
+                            }).html('中奖是否取消追单：')).append($('<span />', {
+                                'class': 'normal-text'
+                            }).html(entry['autoCancel'] == 2 ? (entry['aclSign'] == 1 ? '赢' : '输') + entry['acLimit'] + '停止追号' : (entry['autoCancel'] == 1 ? '是' : '否'))))
+                            .appendTo(div);
+                        $('.jjsm_tab').append(div.append($('<p />', {
+                            'class': 'arrow-btn'
+                        }).append('明细').append($('<i />', {
+                            'class': 'fas ml-2 fa-chevron-down'
+                        }))));
+                    }
+                });
+
+                $('#sumTotalAmt').html(getCurrency(response.data.info.sumTotalAmt));
+                $('#sumResultAmt').html(getCurrency(response.data.info.sumResultAmt));
+                $('#pageTotalAmt').html(getCurrency(response.data.info.pageTotalAmt));
+                $('#pageResultAmt').html(getCurrency(response.data.info.pageResultAmt));
+                $('#infoTable').show();
+
+                $('.retrace').click(function() {
+                    var tmp = $(this).attr('id');
+                    var tmp2 = tmp.split('_');
+
+                    layer.open({
+                        title: '提示',
+                        content: '注单号：' + tmp2[0] + '<br>是否撤单?',
+                        icon: 0,
+                        btnAlign: 'c',
+                        yes: function(index, layero) {
+                            var map = new Object();
+                            map['betNo'] = tmp2[0];
+                            map['gameCode'] = tmp2[1];
+                            getJsonData('/t7m/Lottery/RetraceLotteryBet', map, function(response) {
+                                if (response.result) {
+                                    $('#' + tmp).parent().parents('.artive').find('.order-status').html('状态：<em>取消</em>');
+                                    $('#' + tmp).remove();
+                                    layer.close(index);
+                                    showSuccessResult(response.message);
+                                } else {
+                                    showErrorResult(response.message);
+                                }
+                            }, null, true);
+                        },
+                        btn2: function() {
+                            layer.closeAll();
+                        },
+                        scrollbar: false
+                    });
+
+                    /*
+                    var x = document.querySelectorAll(".main_modal .cont .p1");
+                    x[0].innerHTML = '注单号：' + tmp2[0] + '<br>是否撤单?';
+
+                    showModal();
+
+                    var y = document.querySelectorAll(".main_modal .btns a");
+                    y[0].onclick = function() {
+                      var map = new Object();
+                      map['betNo'] = tmp2[0];
+                      map['gameCode'] = tmp2[1];
+
+                      $.ajax({
+                        url : '/t7m/Lottery/RetraceLotteryBet',
+                        data: map,
+                        type : 'POST',
+                        async: false,
+                        success: function(result) {
+                          if (result.result) {
+                            $('#' + tmp).parent().parent().find('em:eq(1)').text('取消');
+                            $('#' + tmp).remove();
+                          } 
+                          hideModal();
+                          $('.main_modal .cancel').remove();
+                          $('.main_modal .btns').css('float', 'inherit').css('margin-right', '0');
+                          showResult(false, result.message);
+                        },
+                        error: function(result) {
+                          alert(result);
+                        }
+                      });
+                    };*/
+                });
+            }
+            showDataTable(response.data.info.pages, getPage, null, response.data.info.pageIndex);
+            toggleDetail();
+            $('.mainer').attr('style', 'bottom:' + ($('.sum-info').outerHeight() + 50) + 'px');
+        }
+
+        function betRecordCallBack(response) {
+            if (response.result) {
+                $('.jjsm_tab').empty();
+                if ($.isEmptyObject(response.data.info)) {
+                    window.location.href = "/t7m/mobile/signIn";
+                }
+
+                showOrderList(response);
+            } else {
+                //window.location.href = "/t7m/mobile/signIn";
+            }
+        }
+
+        function statusCallBack(response) {
+            if (response.result == true) {
+                $.each(response.data, function(entryIdx, entry) {
+                    if (entry['gameStatus'] != 0) {
+                        $('<option />', {
+                            'value': entry['gameCode']
+                        }).text(entry['gameName']).appendTo($('select[name="gameCode"]'));
+                    }
+                });
+            }
+        }
+
+        function toggleDetail() {
+            $('.jjsm_tab .ctjl_list .arrow-btn').on('click', function(e) {
+                $(this).parent('.artive').find('.bet-detail').slideToggle();
+                if ($(this).parents(".artive").hasClass("active")) {
+                    $(this).parents(".artive").removeClass("active");
+                    $(this).find("i.fas").removeClass("fa-chevron-up");
+                    $(this).find("i.fas").addClass("fa-chevron-down");
+                } else {
+                    $(this).parents(".artive").addClass("active");
+                    $(this).find("i.fas").removeClass("fa-chevron-down");
+                    $(this).find("i.fas").addClass("fa-chevron-up");
+                }
+            });
+        }
+    </script>
+</body>
+</html>

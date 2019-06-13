@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>T7传统</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../../t7m/resource/img/peopleagent/favicon.ico">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../t7m/resource/css/bootstrap.min.css">
+    <link rel="styleSheet" href="../../../t7m/resource/css/peopleagent/style.css">
+    <link rel="stylesheet" href="../../../t7m/resource/css/peopleagent/wonder.css" class="wonder-core">
+    <link rel="stylesheet" href="../../../t7m/resource/css/peopleagent/blue-style.css" class="wonder-style">
+    <link rel="stylesheet" href="../../../t7m/resource/css/peopleagent/red-style.css" class="wonder-style">
+
+    <script type="text/javascript" src="../../../t7m/resource/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../t7m/resource/js/popper.min.js"></script>
+    <script defer="" type="text/javascript" src="../../../t7m/resource/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../t7m/resource/assets/layer/js/layer.js"></script>
+    <link rel="stylesheet" href="http://210.244.18.147/t7m/resource/assets/layer/js/theme/default/layer.css?v=3.1.1" id="layuicss-layer">
+
+    <script type="text/javascript">
+        function iosViewEvent() {
+            document.documentElement.addEventListener('touchstart', function(event) {
+                if (event.touches.length > 1) {
+                    event.preventDefault();
+                }
+            }, false);
+
+            var lastTouchEnd = 0;
+            document.documentElement.addEventListener('touchend', function(event) {
+                var now = Date.now();
+                if (now - lastTouchEnd <= 300) {
+                    event.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
+        }
+
+        window.onload = function() {
+            setTimeout(function() {
+                window.scrollTo(0, 1);
+            }, 100);
+
+            iosViewEvent();
+        }
+    </script>
+</head>
+
+<body>
+    <div class="wrap" id="container">
+        <header class="">
+            <div class="go-back-wrap">
+                <a class="go-back" href="javascript:void(0);" onclick="history.go(-1)"><i class="fas fa-chevron-left" style="margin-right: 3px;"></i>返回</a>
+            </div>
+            <div class="info-wrap">
+                <div>
+                    <span class="title">银行卡管理</span>
+                </div>
+            </div>
+            <div>
+                <a class="btn-list" onclick="openElement('#sidebar');"><i class="fas fa-bars"></i></a>
+            </div>
+        </header>
+        <input id="contextPath" type="hidden" value="/t7m">
+        <div class="lds-ring" style="display: none;">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <script>
+            gameCode = '';
+            contextPath = $('#contextPath').val();
+
+            $(function() {
+                //   setStyleFromCookie();
+                callHeaderTouch();
+                /*if ("true" !== "false") {
+                  intervalBalance();
+                }*/
+            });
+
+            function callHeaderTouch() {
+                headerTouch();
+            }
+
+            function headerTouch() {
+                $('.account-box').on('touchstart', function() {
+                    $(this).css('background', 'rgb(19, 63, 142)');
+                });
+
+                $('.account-box').on('touchend', function() {
+                    $(this).removeAttr("style");
+                });
+            }
+
+            function intervalBalance() {
+                var balanceIvl = setInterval(function() {
+                    if ("true" !== "true") {
+                        clearInterval(balanceIvl);
+                    }
+                    getJsonData(document.getElementById("contextPath").value + '/Member/GetBalance', null, changeBalance);
+                }, 60000)
+            }
+
+            function changeBalance(response) {
+                $('header .coin').html('<i class="icon-coin"/>' + getCurrency(response) + '元');
+            }
+
+            function changeAfterBetBalance(response) {
+                $('.balance-bar .coin').html(getCurrency(response));
+            }
+        </script>
+        <div class="mainer">
+            <form id="bindBankCard" action="/t7m/mobile/personal/bankCardManagement" method="post" enctype="utf8" novalidate="novalidate">
+                <div class="tkgz_tab">
+                    <div class="mange_bank">
+                        <div class="tit">
+                            <!-- <i class="fas fa-exclamation-circle mr-1"></i> -->
+                            <span class="font-weight-bold">注意事项</span>
+                        </div>
+                        <div class="notice">
+                            <p>银行卡只能添加同一个开户人姓名的银行卡
+                                <br>银行卡绑定后将无法申请删除该张银行卡！</p>
+                        </div>
+                    </div>
+                    <div class="tkgz_list p-2">
+                        <span>提款人姓名</span>
+                        <div class="tkgz_list_web">
+                            <div class="tkgz_list_inp">
+                                <input type="text" name="accName" placeholder="请输入开户人姓名" required="">
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="tkgz_list p-2">
+                        <span>提款银行</span>
+                        <div class="tkgz_list_web">
+                            <div class="tkgz_list_sel">
+                                <select name="bankID">
+                                    <option value="1">中国农业银行</option>
+                                    <option value="4">交通银行</option>
+                                    <option value="5">中国银行</option>
+                                    <option value="7">中国建设银行</option>
+                                    <option value="12">招商银行</option>
+                                    <option value="22">中国工商银行</option>
+                                    <option value="30">上海浦东发展银行</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="tkgz_list p-2" style="margin-bottom:1.5vh;">
+                        <span>银行卡号</span>
+                        <div class="tkgz_list_web">
+                            <div class="tkgz_list_inp">
+                                <input type="text" name="accID" placeholder="请输入银行卡号（16-19位）" required="">
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="tkgz_list p-2 hidden" style="display: block;">
+                        <span>开户银行省份</span>
+                        <div class="tkgz_list_web">
+                            <div class="tkgz_list_sel">
+                                <select name="accProvince" id="accProvince">
+                                    <option value="">请选择省份</option>
+                                    <option value="北京">北京</option>
+                                    <option value="上海">上海</option>
+                                    <option value="天津">天津</option>
+                                    <option value="重庆">重庆</option>
+                                    <option value="河北">河北</option>
+                                    <option value="山西">山西</option>
+                                    <option value="内蒙古">内蒙古</option>
+                                    <option value="辽宁">辽宁</option>
+                                    <option value="吉林">吉林</option>
+                                    <option value="黑龙江">黑龙江</option>
+                                    <option value="江苏">江苏</option>
+                                    <option value="浙江">浙江</option>
+                                    <option value="安徽">安徽</option>
+                                    <option value="福建">福建</option>
+                                    <option value="江西">江西</option>
+                                    <option value="山东">山东</option>
+                                    <option value="河南">河南</option>
+                                    <option value="湖北">湖北</option>
+                                    <option value="湖南">湖南</option>
+                                    <option value="广东">广东</option>
+                                    <option value="广西">广西</option>
+                                    <option value="海南">海南</option>
+                                    <option value="四川">四川</option>
+                                    <option value="贵州">贵州</option>
+                                    <option value="云南">云南</option>
+                                    <option value="西藏">西藏</option>
+                                    <option value="陕西">陕西</option>
+                                    <option value="甘肃">甘肃</option>
+                                    <option value="宁夏">宁夏</option>
+                                    <option value="青海">青海</option>
+                                    <option value="新疆">新疆</option>
+                                    <option value="香港">香港</option>
+                                    <option value="澳门">澳门</option>
+                                    <option value="台湾">台湾</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="tkgz_list p-2 hidden" style="display: block;">
+                        <span>开户银行县市</span>
+                        <div class="tkgz_list_web">
+                            <div class="tkgz_list_sel">
+                                <select name="accCity" id="accCity">
+                                    <option value="">请选择县市</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="tkgz_list p-2 hidden" style="display: block;">
+                        <span>开户支行名称</span>
+                        <div class="tkgz_list_web">
+                            <div class="tkgz_list_inp">
+                                <input type="text" name="accBank" placeholder="请输入支行名称" required="">
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="tkgz_list p-2">
+                        <span>提款密码</span>
+                        <div class="tkgz_list_web">
+                            <div class="tkgz_list_inp">
+                                <input type="password" id="accPassword" name="accPassword" pattern="\d{4}" placeholder="请输入提款密码" required="">
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="tkgz_list p-2">
+                        <span>确认提款密码</span>
+                        <div class="tkgz_list_web">
+                            <div class="tkgz_list_inp">
+                                <input type="password" name="confirmAccountPassword" placeholder="请再次输入提款密码" required="">
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                   
+                    <div class="row">
+                        <button type="button" class="btn-submit my-2 w-75" onclick="submitBindBankCard()">提交</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="sidebar">
+            <div class="header">
+                <div class="mb-2 show-user flex-column">
+                    <img class="rounded-circle" src="../../../t7m/resource/img/peopleagent/icon-user.jpg">
+                    <span>test23</span>
+                </div>
+                <div class="show-coin">
+                    余额：
+                    <span class="points">28,901.445</span>
+                    元
+                </div>
+                <div class="justify-content-between">
+                    <button type="button" class="btn-icon charge-button" onclick="goDeposit();"></button>
+                    <button type="button" class="btn-icon withdraw-button" onclick="goWithdraw();"></button>
+                </div>
+                <div class="justify-content-center">
+                    <a class="d-inline-block transfer-button" href="javascript:void(0);" onclick="goTransfer();"></a>
+                </div>
+            </div>
+            <div class="list-menu-wrap" style="height:577.344px;">
+                <ul class="list-menu">
+                    <li>
+                        <a class="btn-icon" onclick="toggleSubmenu()">
+                            <i class="icon icon-account"></i>
+                            <span>帐户中心</span>
+                            <i class="fas fa-caret-right"></i>
+                        </a>
+                        <ul>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/changeLoginPassword">修改密码</a>
+                            </li>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/changeWithdrawPassword">提款密码</a>
+                            </li>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/bankCardManagement">银行卡管理</a>
+                            </li>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/myReward">个人总览</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="btn-icon" onclick="toggleSubmenu()">
+                            <i class="icon icon-funds"></i>
+                            <span>资金管理</span>
+                            <i class="fas fa-caret-right"></i>
+                        </a>
+                        <ul>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/deposit">充值</a>
+                            </li>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/withdraw">提款</a>
+                            </li>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/transfer">钱包转换</a>
+                            </li>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/dwRecord">充提记录</a>
+                            </li>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/acRecord">帐变记录</a>
+                            </li>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/tRecord">转账记录</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="btn-icon" onclick="toggleSubmenu()">
+                            <i class="icon icon-game-record"></i>
+                            <span>游戏记录</span>
+                            <i class="fas fa-caret-right"></i>
+                        </a>
+                        <ul>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/order_list">个人投注</a>
+                            </li>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/gameWater">游戏流水</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="btn-icon" onclick="toggleSubmenu()">
+                            <i class="icon icon-agent-center"></i>
+                            <span>代理中心</span>
+                            <i class="fas fa-caret-right"></i>
+                        </a>
+                        <ul>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/agentMember">团队管理</a>
+                            </li>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/teamReport">团队报表</a>
+                            </li>
+                            <li>
+                                <a class="obstruct" href="/t7m/mobile/personal/teamReward">团队总览</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="btn-icon" href="javascript:void(0);" onclick="goRule();">
+                            <i class="icon icon-game-rule"></i>
+                            <span>彩票规则</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn-icon" href="javascript:void(0);" onclick="goPromotion();">
+                            <i class="icon icon-promotion"></i>
+                            <span>优惠活动</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn-icon" href="javascript:void(0);" onclick="goCustomerService();">
+                            <i class="icon icon-customer-service"></i>
+                            <span>客服</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn-icon" href="javascript:void(0);" onclick="goLogout();">
+                            <i class="icon icon-exit"></i>
+                            <span>登出</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="d-flex justify-content-around footer">
+                <div class="d-flex align-items-center">
+                    <i class="d-inline-block s-icon icon-copyright mr-1"></i>
+                    <span>版本号：V1.0</span>
+                </div>
+                <div class="d-flex align-items-center" onclick="clearCache();">
+                    <i class="d-inline-block s-icon icon-clean mr-1"></i>
+                    <span>清除缓存</span>
+                </div>
+            </div>
+        </div>
+        <a class="sidebar-mask" onclick="closeElement('#sidebar')"></a>
+        <!-- message -->
+        <div class="mask" style="display: none;">
+            <div class="message_container flex-column">
+                <div class="message-header text-center"><span class="mt-2">讯息中心</span>
+                    <div class="close_icon">
+                        <a id="icon_close" href="javascript:void(0);"></a>
+                    </div>
+                </div>
+                <div class="aside item_2">
+                    <div class="message_wrap"></div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(function() {
+                resizeSidebar();
+                messageEvent();
+
+                $('ul.list-menu ul li').click(function() {
+                    location.href = $(this).find('a').first().attr('href');
+                    return false;
+                });
+            });
+
+            function resizeSidebar() {
+                var h = $('#sidebar').outerHeight() - ($('#sidebar .header').outerHeight() + $('#sidebar .footer').outerHeight() + 5);
+                $('#sidebar .list-menu-wrap').attr('style', 'height:' + h + 'px;');
+            }
+
+            function messageEvent() {
+                if ("true" === "true") {
+                    getMessageCount();
+                }
+                openMessageBind();
+                closeMessageBind();
+            }
+
+            function getMessageCount() {
+                getJsonData("/t7m/Member/GetUserMessage", null, setMessageCount);
+            }
+
+            function getMessage() {
+                getJsonData("/t7m/Member/GetUserMessage", null, setMessage);
+            }
+
+            function setMessageCount(response) {
+                var count = 0;
+                if (response.data) {
+                    $.each(response.data, function(entryIdx, entry) {
+                        if (entry['msgStatus'] == 1) count++;
+                    });
+                }
+                $('#message_count').text(count);
+            }
+
+            function setMessage(response) {
+                $('.message_wrap').empty();
+                var count = 0;
+                var title = '';
+                var conternt = '尚無訊息';
+                var msgTime = '';
+                if (response.data) {
+                    $.each(response.data, function(entryIdx, entry) {
+                        title = entry['msgTitle'];
+                        conternt = entry['msgContent'];
+                        msgTime = entry['msgTime'];
+                        var target = $('<div />', {
+                                'class': 'outside'
+                            })
+                            .append($('<div />', {
+                                    'class': 'message_list'
+                                })
+                                .append($('<div />', {
+                                    'class': 'message_title text-truncate'
+                                }).text(title))
+                                .append($('<div />', {
+                                    'class': 'message_content'
+                                }).text(conternt))
+                                .append($('<div />', {
+                                    'class': 'message_date sub-title'
+                                }).text(msgTime)));
+                        if (entry['msgStatus'] == 1) {
+                            target.append($('<div />', {
+                                    'class': 'message_status'
+                                })
+                                .append($('<a />', {
+                                    'class': 'unread',
+                                    'href': '#',
+                                    'onClick': 'readMessage(' + entry['msgID'] + ', this)'
+                                }).text('标示为已读')));
+                            count++;
+                        } else {
+                            target.find('.message_list').append($('<div />', {
+                                'class': 'golgol'
+                            }));
+                        }
+                        target.appendTo('.message_wrap');
+                    });
+                    $('#message_count').text(count);
+                } else {
+                    $('.message_count_wrap').remove();
+                }
+                $('.mask').show();
+            }
+
+            function readMessage(id, a) {
+                a.classList.add("marked");
+
+                var map = new Object();
+                map['msgId'] = id;
+                getJsonData("/t7m/Member/UpdateUserMessage", map, updateMessageStatus);
+            }
+
+            function updateMessageStatus() {
+                var mark = document.getElementsByClassName("marked");
+                for (var i = 0; i < mark.length; i++) {
+                    $(mark[i]).parents('.outside').find('.message_list').append($('<div />', {
+                        'class': 'golgol'
+                    }));
+                    mark[i].innerHTML = '';
+                    mark[i].classList.remove("unread");
+                    mark[i].classList.remove("marked");
+                }
+                $('#message_count').html(document.getElementsByClassName("unread").length);
+            }
+
+            function openMessageBind() {
+                $('.trigger_message').click(function() {
+                    if ("true" === "true") {
+                        getMessage();
+                    } else {
+                        layer.open({
+                            title: '警告',
+                            content: '请先登录',
+                            icon: 0,
+                            btnAlign: 'c',
+                            yes: function(index, layero) {
+                                goSignIn(index);
+                            }
+                        });
+                    }
+                });
+            }
+
+            function closeMessageBind() {
+                $('#icon_close').click(function() {
+                    $('.mask').hide();
+                    $('.member_menu').removeClass('member_menu_reduce');
+                });
+            }
+
+            function refreshPoint() {
+                if ("true" === "true") {
+                    getJsonData("/t7m/Member/RefreshUserWallets", null, function(response) {
+                        if (response.result) {
+                            var w = response.data.find(function(item, index, array) {
+                                return item.walletID == 0;
+                            });
+                            $('.points').html(getCurrency(w.balance));
+                        } else {
+                            showErrorResult(response.message);
+                        }
+                    }, null, true);
+                }
+            }
+        </script>
+        <script type="text/javascript" src="../../../t7m/resource/assets/socket.io-client/socket.io.slim.js"></script>
+        <script type="text/javascript" src="../../../t7m/resource/js/moment-with-locales.min.js"></script>
+        <script type="text/javascript" src="../../../t7m/resource/js/swiper.min.js"></script>
+        <script type="text/javascript" src="../../../t7m/resource/js/peopleagent/custom.js" data-url="https://x20.d7601.com"></script>
+
+        <ul class="bottom-menu">
+                <li class="active"><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-hall"></i><span>首页</span></a></li>
+                <li class=""><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-lottery"></i><span>彩票</span></a></li>
+                <li class=""><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-quanzi"></i><span>圈子</span></a></li>
+                <li class=""><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-mine"></i><span>我的</span></a></li>
+            <!-- <li class="">
+                <a class="btn-icon" href="javascript:void(0);" onclick="goHall();">
+                    <i class="icon icon-hall"></i>
+                    <span>大厅</span>
+                </a>
+            </li>
+            <li class="">
+                <a class="btn-icon" href="javascript:void(0);" onclick="goCustomerService();">
+                    <i class="icon icon-customer-service"></i>
+                    <span>客服</span>
+                </a>
+            </li>
+            <li class="">
+                <a class="btn-icon" href="javascript:void(0);" onclick="goCenter();">
+                    <i class="icon icon-manage"></i>
+                    <span>管理中心</span>
+                </a>
+            </li>
+            <li class="">
+                <a class="btn-icon" href="javascript:void(0);" onclick="goLotteryRecord();">
+                    <i class="icon icon-nav-game-result"></i>
+                    <span>开奖结果</span>
+                </a>
+            </li>
+            <li class="">
+                <a class="btn-icon " href="javascript:void(0);" onclick="goPromotion();">
+                    <i class="icon icon-nav-promotion"></i>
+                    <span>活动</span>
+                </a>
+            </li> -->
+        </ul>
+
+        <script>
+            $(function() {
+                wsClient();
+                callFooterTouch();
+            });
+
+            function wsClient() {
+                initialWS();
+
+                var interval = setInterval(function() {
+                    if (ws.connected) {
+                        clearInterval(interval);
+                        if ("true" === "true") {
+                            joinWS('23', 'test23', '0y6qr733adcf5fb444000a83b1c989901a70a0y6qr');
+                        } else {
+                            joinWS('23');
+                        }
+                    }
+                }, 1000);
+            }
+
+            function callFooterTouch() {
+                footerTouch();
+            }
+
+            function footerTouch() {
+                $('.bottom-menu li').on('touchstart', function() {
+                    $(this).css('background', 'rgba(78, 78, 76, 0.7)');
+                    $(this).addClass('active').siblings().removeClass('active');
+                });
+
+                $('.bottom-menu li').on('touchend', function() {
+                    $(this).removeAttr("style");
+                });
+            }
+        </script>
+    </div>
+
+    <script type="text/javascript" src="../../../t7m/resource/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="../../../t7m/resource/js/messages_zh.js"></script>
+    <script>
+        var citys = JSON.parse('[{"province":"北京","county":"东城|西城|崇文|宣武|朝阳|丰台|石景山|海淀|门头沟|房山|通州|顺义|昌平|大兴|平谷|怀柔|密云|延庆"},{"province":"上海","county":"黄浦|卢湾|徐汇|长宁|静安|普陀|闸北|虹口|杨浦|闵行|宝山|嘉定|浦东|金山|松江|青浦|南汇|奉贤|崇明"},{"province":"天津","county":"和平|东丽|河东|西青|河西|津南|南开|北辰|河北|武清|红挢|塘沽|汉沽|大港|宁河|静海|宝坻|蓟县"},{"province":"重庆","county":"万州|涪陵|渝中|大渡口|江北|沙坪坝|九龙坡|南岸|北碚|万盛|双挢|渝北|巴南|黔江|长寿|綦江|潼南|铜梁|大足|荣昌|壁山|梁平|城口|丰都|垫江|武隆|忠县|开县|云阳|奉节|巫山|巫溪|石柱|秀山|酉阳|彭水|江津|合川|永川|南川"},{"province":"河北","county":"石家庄|邯郸|邢台|保定|张家口|承德|廊坊|唐山|秦皇岛|沧州|衡水"},{"province":"山西","county":"太原|大同|阳泉|长治|晋城|朔州|吕梁|忻州|晋中|临汾|运城"},{"province":"内蒙古","county":"呼和浩特|包头|乌海|赤峰|呼伦贝尔盟|阿拉善盟|哲里木盟|兴安盟|乌兰察布盟|锡林郭勒盟|巴彦淖尔盟|伊克昭盟|鄂尔多斯"},{"province":"辽宁","county":"沈阳|大连|鞍山|抚顺|本溪|丹东|锦州|营口|阜新|辽阳|盘锦|铁岭|朝阳|葫芦岛"},{"province":"吉林","county":"长春|吉林|四平|辽源|通化|白山|松原|白城|延边"},{"province":"黑龙江","county":"哈尔滨|齐齐哈尔|牡丹江|佳木斯|大庆|绥化|鹤岗|鸡西|黑河|双鸭山|伊春|七台河|大兴安岭"},{"province":"江苏","county":"南京|镇江|苏州|南通|扬州|盐城|徐州|连云港|常州|无锡|宿迁|泰州|淮安"},{"province":"浙江","county":"杭州|宁波|温州|嘉兴|湖州|绍兴|金华|衢州|舟山|台州|丽水"},{"province":"安徽","county":"合肥|芜湖|蚌埠|马鞍山|淮北|铜陵|安庆|黄山|滁州|宿州|池州|淮南|巢湖|阜阳|六安|宣城|亳州"},{"province":"福建","county":"福州|厦门|莆田|三明|泉州|漳州|南平|龙岩|宁德"},{"province":"江西","county":"南昌市|景德镇|九江|鹰潭|萍乡|新馀|赣州|吉安|宜春|抚州|上饶"},{"province":"山东","county":"济南|青岛|淄博|枣庄|东营|烟台|潍坊|济宁|泰安|威海|日照|莱芜|临沂|德州|聊城|滨州|菏泽"},{"province":"河南","county":"郑州|开封|洛阳|平顶山|安阳|鹤壁|新乡|焦作|濮阳|许昌|漯河|三门峡|南阳|商丘|信阳|周口|驻马店|济源"},{"province":"湖北","county":"武汉|宜昌|荆州|襄樊|黄石|荆门|黄冈|十堰|恩施|潜江|天门|仙桃|随州|咸宁|孝感|鄂州"},{"province":"湖南","county":"长沙|常德|株洲|湘潭|衡阳|岳阳|邵阳|益阳|娄底|怀化|郴州|永州|湘西|张家界"},{"province":"广东","county":"广州|深圳|珠海|汕头|东莞|中山|佛山|韶关|江门|湛江|茂名|肇庆|惠州|梅州|汕尾|河源|阳江|清远|潮州|揭阳|云浮"},{"province":"广西","county":"南宁|柳州|桂林|梧州|北海|防城港|钦州|贵港|玉林|南宁地区|柳州地区|贺州|百色|河池|来宾市|崇左市"},{"province":"海南","county":"海口|三亚"},{"province":"四川","county":"成都|巴中市|绵阳|德阳|自贡|攀枝花|广元|内江|乐山|南充|宜宾|广安|达川|雅安|眉山|甘孜|凉山|泸州|遂宁市|资阳市|阿坝市"},{"province":"贵州","county":"贵阳|六盘水|遵义|安顺|铜仁|黔西南|毕节|黔东南|黔南"},{"province":"云南","county":"昆明|大理|曲靖|玉溪|昭通|楚雄|红河|文山|思茅|西双版纳|保山|德宏|丽江|怒江|迪庆|临沧"},{"province":"西藏","county":"拉萨|日喀则|山南|林芝|昌都|阿里|那曲"},{"province":"陕西","county":"西安|宝鸡|咸阳|铜川|渭南|延安|榆林|汉中|安康|商洛"},{"province":"甘肃","county":"兰州|嘉峪关|金昌|白银|天水|酒泉|张掖|武威|定西|陇南|平凉|庆阳|临夏|甘南"},{"province":"宁夏","county":"银川|石嘴山|吴忠|固原"},{"province":"青海","county":"西宁|海东|海南|海北|黄南|玉树|果洛|海西"},{"province":"新疆","county":"乌鲁木齐|石河子|克拉玛依|伊犁|巴音郭勒|昌吉|克孜勒苏柯尔克孜|博尔塔拉|吐鲁番|哈密|喀什|和田|阿克苏"},{"province":"香港","county":"港岛|九龙|新界|離島"},{"province":"澳门","county":"澳门市|海岛市"},{"province":"台湾","county":"台北|高雄|台中|台南|屏东|南投|云林|新竹|彰化|苗栗|嘉义|花莲|桃园|宜兰|基隆|台东|金门|马祖|澎湖"}]');
+
+        function updateCounty() {
+            $("#accCity").append($('<option />', {
+                'value': ''
+            }).text('请选择县市'));
+
+            var p = $("#accProvince").val();
+            if (p != '') {
+                for (var i = 0; i < citys.length; i++) {
+                    if (citys[i].province === p) {
+                        for (var c = citys[i].county.split("|"), j = 0; j < c.length; j++) {
+                            $("#accCity").append($('<option />', {
+                                'value': c[j]
+                            }).text(c[j]));
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+
+        function initProvince() {
+            $("#accProvince").append($('<option />', {
+                'value': ''
+            }).text('请选择省份'));
+
+            for (var i = 0; i < citys.length; i++) {
+                $("#accProvince").append($('<option />', {
+                    'value': citys[i].province
+                }).text(citys[i].province));
+            }
+
+            updateCounty();
+        }
+
+        function checkResult(data) {
+            if (data.result) {
+                showSuccessResult(data.message, goBankCardManagement);
+            } else {
+                showErrorResult(data.message);
+            }
+        }
+
+        function submitBindBankCard() {
+            $("#bindBankCard").submit();
+        }
+
+        $(function() {
+            if ("false" === "true") {
+                $('input[name=accPassword]').parents('div.tkgz_list').hide();
+                $('input[name=confirmAccountPassword]').parents('div.tkgz_list').hide();
+            }
+
+            initProvince();
+
+            $('#accProvince').change(function() {
+                $('#accCity').empty();
+                updateCounty();
+            });
+
+            $.validator.addMethod("selectRequired", function(value, element, arg) {
+                return arg !== value;
+            }, "Please select an item.");
+
+            $.validator.addMethod('fourDigitsPassword', function(value, element, arg) {
+                return this.optional(element) || /^\d{4}$/.test(value);
+            }, "请输入一个4位数的密码");
+
+            $('#bindBankCard').validate({
+                errorClass: 'err_msg',
+                errorPlacement: function(error, element) {
+                    element.parent().append(error);
+                },
+                rules: {
+                    accID: {
+                        minlength: 16,
+                        maxlength: 19
+                    },
+                    accProvince: {
+                        selectRequired: ""
+                    },
+                    accCity: {
+                        selectRequired: ""
+                    },
+                    accPassword: {
+                        fourDigitsPassword: 4
+                    },
+                    confirmAccountPassword: {
+                        fourDigitsPassword: 4,
+                        equalTo: '#accPassword'
+                    }
+                },
+                messages: {
+                    accProvince: {
+                        selectRequired: "请选择省份"
+                    },
+                    accCity: {
+                        selectRequired: "请选择县市"
+                    }
+                },
+                submitHandler: function(form) {
+                    getJsonData("/t7m/Member/UpdateUserBankInfo", $(form).serialize(), checkResult, null, true);
+                }
+            });
+
+            getJsonData("/t7m/Site/SiteInfo", null, function(response) {
+                var obj = JSON.parse(response.data);
+                obj.bkRegOption.forEach(function(element, index) {
+                    if (element.isOpen) {
+                        $('#bindBankCard input[name=' + element.codeID + '], select[name=' + element.codeID + ']').parents('div.tkgz_list').show();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

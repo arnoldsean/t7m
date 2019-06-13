@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+  <meta name="viewport"
+    content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="format-detection" content="email=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>T7传统</title>
+
+  <link rel="shortcut icon" type="image/x-icon" href="../../t7m/resource/img/peopleagent/favicon.ico">
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+    integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../t7m/resource/css/bootstrap.min.css">
+  <link rel="styleSheet" href="../../t7m/resource/css/peopleagent/style.css">
+  <link rel="stylesheet" href="../../t7m/resource/css/peopleagent/wonder.css" class="wonder-core">
+  <link rel="stylesheet" href="../../t7m/resource/css/peopleagent/blue-style.css" class="wonder-style">
+  <link rel="stylesheet" href="../../t7m/resource/css/peopleagent/red-style.css" class="wonder-style">
+
+  <script type="text/javascript" src="../../t7m/resource/js/jquery.min.js"></script>
+  <script type="text/javascript" src="../../t7m/resource/js/popper.min.js"></script>
+  <script defer="" type="text/javascript" src="../../t7m/resource/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../../t7m/resource/assets/layer/js/layer.js"></script>
+  <link rel="stylesheet" href="http://210.244.18.147/t7m/resource/assets/layer/js/theme/default/layer.css?v=3.1.1"
+    id="layuicss-layer">
+
+
+  <script type="text/javascript">
+    function iosViewEvent() {
+      document.documentElement.addEventListener('touchstart', function (event) {
+        if (event.touches.length > 1) {
+          event.preventDefault();
+        }
+      }, false);
+
+      var lastTouchEnd = 0;
+      document.documentElement.addEventListener('touchend', function (event) {
+        var now = Date.now();
+        if (now - lastTouchEnd <= 300) {
+          event.preventDefault();
+        }
+        lastTouchEnd = now;
+      }, false);
+    }
+
+    window.onload = function () {
+      setTimeout(function () {
+        window.scrollTo(0, 1);
+      }, 100);
+
+      iosViewEvent();
+    }
+
+  </script>
+  <script type="text/javascript" src="../../t7m/resource/assets/socket.io-client/socket.io.slim.js"></script>
+  <script type="text/javascript" src="../../t7m/resource/js/peopleagent/custom.js"
+    data-url="https://x20.d7601.com"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <div class="login-bg">
+    <section class="text-center"
+      style="height: 33.2113vh; display: flex; align-items: flex-end; justify-content: center;position: relative;">
+      <a href="/t7m/"><img style="position: absolute;top: 0;left: 0;"
+          src="../../t7m/resource/images/login/tag_top_banner.png"></a>
+    </section>
+    <section class="login-bottom">
+      <div class="login-bottom-title"></div>
+      <form id="loginForm" method="post" class="w-100">
+        <div class="login-form-group">
+          <div class="login-input-group">
+            <i class="s-icon icon-login-user mr-2"></i>
+            <input type="text" name="aaa" placeholder="用户名称">
+          </div>
+          <div class="login-input-group">
+            <i class="s-icon icon-login-password mr-2"></i>
+            <input type="password" name="bbb" placeholder="会员密码">
+          </div>
+          <!-- <div class="login-input-group">
+                        <i class="s-icon icon-login-code mr-2"></i>
+                        <input type="text" pattern="\d*" name="code" id="code" placeholder="验证码">
+                        <img class="codeImage" id="codeImage" onclick="javascript:refreshValidateCode();" src="/t7m/code?time=1558941609596">
+          </div> -->
+        </div>
+        <button type="button" class="login-button mt-4" onclick="submitLogin()"></button>
+        <button type="button" class="customer-service-button mt-2" onclick="goCustomerService()"></button>
+        <input type="submit" style="display: none;">
+      </form>
+      <input id="contextPath" type="hidden" value="/t7m">
+    </section>
+  </div>
+
+  <script src="../../t7m/resource/assets/js-cookie/js.cookie.min.js"></script>
+  <script>
+    $(function () {
+      var ac = Cookies.get('ac');
+      if (ac == undefined || ac == "") {
+        if (typeof (Storage) !== "undefined") $('input[name=aaa]').val(localStorage.getItem('ac'));
+      } else {
+        $('input[name=aaa]').val(ac);
+      }
+
+      // refreshValidateCode();
+      $('.showpassword').click(function () {
+        if ($(this).hasClass('fa-eye')) {
+          $(this).removeClass('fa-eye');
+          $(this).addClass('fa-eye-slash');
+          $('.password').attr('type', 'text');
+        } else {
+          $(this).removeClass('fa-eye-slash');
+          $(this).addClass('fa-eye');
+          $('.password').attr('type', 'password');
+        }
+      });
+    });
+
+    function getCFS(codeStr) {
+      function CfsCode(nWord) {
+        var result = "";
+        for (var cc = 1; cc <= nWord.length; cc++) { result += nWord.charAt(cc - 1).charCodeAt(0); }
+        var DecimalValue = new Number(result);
+        result = DecimalValue.toString(16);
+        return result;
+      };
+
+      var CodeLen = 30, CodeSpace, Been;
+      CodeSpace = CodeLen - codeStr.length;
+      if (CodeSpace > 1) { for (var cecr = 1; cecr <= CodeSpace; cecr++) { codeStr = codeStr + String.fromCharCode(21); } }
+      var NewCode = new Number(1);
+
+      for (var cecb = 1; cecb <= CodeLen; cecb++) { Been = CodeLen + codeStr.charAt(cecb - 1).charCodeAt(0) * cecb; NewCode = NewCode * Been; }
+
+      var tmpNewCode = new Number(NewCode.toPrecision(15)); //to convert to the same precision as c# code
+      codeStr = tmpNewCode.toString().toUpperCase();
+      var NewCode2 = "";
+
+      for (var cec = 1; cec <= codeStr.length; cec++) { NewCode2 = NewCode2 + CfsCode(codeStr.substring(cec - 1, cec + 2)); }
+
+      var CfsEncodeStr = "";
+      for (var cec = 20; cec <= NewCode2.length - 18; cec += 2) { CfsEncodeStr = CfsEncodeStr + NewCode2.charAt(cec - 1); }
+      return CfsEncodeStr.toUpperCase();
+    }
+    function submitLogin() {
+      Cookies.set('ac', $('input[name=aaa]').val(), { expires: 60 });
+      if (typeof (Storage) !== "undefined") localStorage.setItem('ac', $('input[name=aaa]').val());
+      axios.post('http://gw.aliapple.net/api/Member/Login', {
+        siteID: '23',
+        loginID: $('input[name=aaa]').val(),
+        loginPw: getCFS($('input[name=bbb]').val())
+      })
+        .then(function (response) {
+          console.log(response.data);
+          if(true){
+            window.reload
+          }
+          // 根據回傳資料做下一步判斷，範例如下
+          //       {
+          //     "message": "",
+          //     "error":{},
+          //     "info":
+          //     {
+          //         "memberID": 1125 (int) - 會員代碼,
+          //         "token": "tkccmj1gy0353fgukv02e1dy" (string) - token,
+          //         "passwordExpire": false (bool) - 密碼是否逾期,
+          //         "isTrial": false (bool) - 是否為試用帳號,
+          //         "isMember": true (bool) - 是否為會員身份
+          //     },
+          //     "data":[]
+          // }
+        })
+        .catch(function (error) {
+          console.log(1,error);
+        });
+    }
+  </script>
+
+</body>
+
+</html>

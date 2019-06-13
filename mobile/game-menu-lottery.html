@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no">
+<meta name="msapplication-tap-highlight" content="no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="mobile-web-app-capable" content="yes">
+<title>T7传统</title>
+
+<link rel="shortcut icon" type="image/x-icon" href="../../t7m/resource/img/peopleagent/favicon.ico">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<link rel="stylesheet" href="../../t7m/resource/css/bootstrap.min.css">
+<link rel="styleSheet" href="../../t7m/resource/css/peopleagent/style.css">
+<link rel="stylesheet" href="../../t7m/resource/css/peopleagent/wonder.css" class="wonder-core">
+<link rel="stylesheet" href="../../t7m/resource/css/peopleagent/blue-style.css" class="wonder-style">
+<link rel="stylesheet" href="../../t7m/resource/css/peopleagent/red-style.css" class="wonder-style">
+
+<script type="text/javascript" src="../../t7m/resource/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../t7m/resource/js/popper.min.js"></script>
+<script defer="" type="text/javascript" src="../../t7m/resource/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../t7m/resource/assets/layer/js/layer.js"></script><link rel="stylesheet" href="http://210.244.18.147/t7m/resource/assets/layer/js/theme/default/layer.css?v=3.1.1" id="layuicss-layer">
+
+<script type="text/javascript">
+function iosViewEvent() {
+  document.documentElement.addEventListener('touchstart', function (event) {
+    if (event.touches.length > 1) {
+      event.preventDefault();   
+    } 
+  }, false);
+  
+  var lastTouchEnd = 0; 
+  document.documentElement.addEventListener('touchend', function (event) {
+    var now = Date.now();
+    if (now - lastTouchEnd <= 300) {
+        event.preventDefault();   
+    }
+    lastTouchEnd = now;
+  }, false);
+}
+
+window.onload = function() {
+  setTimeout(function() {
+      window.scrollTo(0, 1);
+  }, 100);
+  
+  iosViewEvent();
+}
+</script></head>
+<body class="betting_view">
+    <header class="">
+<div class="go-back-wrap">
+        <a class="go-back" href="javascript:void(0);" onclick="history.go(-1)"><i class="fas fa-chevron-left" style="margin-right: 3px;"></i>返回</a>
+    </div>    
+    <div class="info-wrap">
+      <div>
+        <span class="coin"><i class="icon-coin"></i><span class="points">28,901.445</span>元</span>
+            </div>
+    </div>
+    <div>
+        <a class="btn-list" onclick="openElement('#sidebar');"><i class="fas fa-bars"></i></a>
+    </div>
+</header>
+<input id="contextPath" type="hidden" value="/t7m">
+<div class="lds-ring" style="display: none;"><div></div><div></div><div></div><div></div></div>
+<script>
+gameCode = '';
+contextPath = $('#contextPath').val();
+
+$(function() {
+//   setStyleFromCookie();
+  callHeaderTouch();
+  /*if ("true" !== "false") {
+    intervalBalance();
+  }*/
+});
+
+function callHeaderTouch() {
+  headerTouch();
+}
+
+function headerTouch() {
+  $('.account-box').on('touchstart', function() {
+    $(this).css('background','rgb(19, 63, 142)');
+  });
+        
+  $('.account-box').on('touchend', function() {
+    $(this).removeAttr("style");
+  });
+}
+
+function intervalBalance(){
+  var balanceIvl = setInterval(function() {
+    if ("true" !== "true") {
+      clearInterval(balanceIvl);
+    }
+    getJsonData(document.getElementById("contextPath").value + '/Member/GetBalance', null, changeBalance);
+  }, 60000)
+}
+
+function changeBalance(response) {
+  $('header .coin').html('<i class="icon-coin"/>' + getCurrency(response) + '元');
+}
+
+function changeAfterBetBalance(response) {
+	$('.balance-bar .coin').html(getCurrency(response));
+}
+
+</script>
+<div class="h-100">
+        <section id="game-section" class="h-100">
+            <div class="container h-100">
+                <div class="mx-2 h-100">
+                    <div class="row text-white mode-list font-weight-bold">
+                        <div class="col-6 text-center p-1 mode-option lottery_method_official active" data-mode="official"><a class=" active"></a></div>
+                        <div class="col-6 text-center p-1 mode-option lottery_method_credit" data-mode="credit"><a class=""></a></div>
+                    </div>
+                    
+                    <div class="row game-container py-2 open" data-mode="official" style="height:calc(100% - 45.6px)"><div class="col-6 col-6-fixed p-0"><div class="box-chip" onclick="toggleGameDetail(this)" data-id="722"><div class="game-group"><img src="../../t7m/resource/images/method/icon_lottery_racing.png"><span>赛车</span></div><span>标</span></div></div><div class="col-6 col-6-fixed p-0"><div class="box-chip" onclick="toggleGameDetail(this)" data-id="728"><div class="game-group"><img src="../../t7m/resource/images/method/icon_lottery_ssc.png"><span>时时彩</span></div><span>标</span></div></div><div class="col-12 game-detail" data-parent="722"><div class="row"><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="726" href="javascript:void(0);" onclick="goLottery(&quot;official&quot;, &quot;bjpk10&quot;)"><span>北京PK拾</span></a></div><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="727" href="javascript:void(0);" onclick="goLottery(&quot;official&quot;, &quot;mlaft&quot;)"><span>幸运飞艇</span></a></div></div></div><div class="col-12 game-detail" data-parent="728"><div class="row"><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="729" href="javascript:void(0);" onclick="goLottery(&quot;official&quot;, &quot;cqssc&quot;)"><span>重庆时时彩</span></a></div><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="731" href="javascript:void(0);" onclick="goLottery(&quot;official&quot;, &quot;xjssc&quot;)"><span>新疆时时彩</span></a></div></div></div><div class="col-6 col-6-fixed p-0"><div class="box-chip" onclick="toggleGameDetail(this)" data-id="735"><div class="game-group"><img src="../../t7m/resource/images/method/icon_lottery_egg.png"><span>PC蛋蛋</span></div><span>标</span></div></div><div class="col-6 col-6-fixed p-0"><div class="box-chip" onclick="toggleGameDetail(this)" data-id="737"><div class="game-group"><img src="../../t7m/resource/images/method/icon_lottery_dice.png"><span>快三骰宝</span></div><span>标</span></div></div><div class="col-12 game-detail" data-parent="735"><div class="row"><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="736" href="javascript:void(0);" onclick="goLottery(&quot;official&quot;, &quot;bjkl8&quot;)"><span>北京28</span></a></div></div></div><div class="col-12 game-detail" data-parent="737"><div class="row"><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="745" href="javascript:void(0);" onclick="goLottery(&quot;official&quot;, &quot;bjk3&quot;)"><span>北京快三</span></a></div><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="743" href="javascript:void(0);" onclick="goLottery(&quot;official&quot;, &quot;shk3&quot;)"><span>上海快三</span></a></div><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="744" href="javascript:void(0);" onclick="goLottery(&quot;official&quot;, &quot;gxk3&quot;)"><span>广西快三</span></a></div><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="746" href="javascript:void(0);" onclick="goLottery(&quot;official&quot;, &quot;hubk3&quot;)"><span>湖北快三</span></a></div><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="742" href="javascript:void(0);" onclick="goLottery(&quot;official&quot;, &quot;jsk3&quot;)"><span>江苏快三</span></a></div></div></div><div class="col-6 col-6-fixed p-0"><div class="box-chip" onclick="toggleGameDetail(this)" data-id="747"><div class="game-group"><img src="../../t7m/resource/images/method/icon_lottery_fen.png"><span>分分彩</span></div><span>标</span></div></div><div class="col-6 col-6-fixed p-0"><div class="box-chip" onclick="toggleGameDetail(this)" data-id="753"><div class="game-group"><img src="../../t7m/resource/images/method/icon_lottery_low.png"><span>低频彩</span></div><span>标</span></div></div><div class="col-12 game-detail" data-parent="747"><div class="row"><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="748" href="javascript:void(0);" onclick="goLottery(&quot;official&quot;, &quot;gd11x5&quot;)"><span>广东11选5</span></a></div><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="749" href="javascript:void(0);" onclick="goLottery(&quot;official&quot;, &quot;sh11x5&quot;)"><span>上海11选5</span></a></div><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="750" href="javascript:void(0);" onclick="goLottery(&quot;official&quot;, &quot;jx11x5&quot;)"><span>江西多乐彩</span></a></div><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="751" href="javascript:void(0);" onclick="goLottery(&quot;official&quot;, &quot;sd11x5&quot;)"><span>山东11运夺金</span></a></div><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="752" href="javascript:void(0);" onclick="goLottery(&quot;official&quot;, &quot;ah11x5&quot;)"><span>安徽11选5</span></a></div></div></div><div class="col-12 game-detail" data-parent="753"><div class="row"><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="754" href="javascript:void(0);" onclick="goLottery(&quot;official&quot;, &quot;hk6&quot;)"><span>香港⑥合彩</span></a></div><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="755" href="javascript:void(0);" onclick="goLottery(&quot;official&quot;, &quot;fc3d&quot;)"><span>福彩3D</span></a></div><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="756" href="javascript:void(0);" onclick="goLottery(&quot;official&quot;, &quot;pl3&quot;)"><span>排列三</span></a></div><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="757" href="javascript:void(0);" onclick="goLottery(&quot;official&quot;, &quot;shssl&quot;)"><span>上海时时乐</span></a></div><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="758" href="javascript:void(0);" onclick="goLottery(&quot;official&quot;, &quot;qxc&quot;)"><span>海南七星彩</span></a></div></div></div></div>
+                    <div class="row game-container py-2" data-mode="credit" style="height:calc(100% - 45.6px)"><div class="col-6 col-6-fixed p-0"><div class="box-chip" onclick="toggleGameDetail(this)" data-id="722"><div class="game-group"><img src="../../t7m/resource/images/method/icon_lottery_racing.png"><span>赛车</span></div><span>双</span></div></div><div class="col-6 col-6-fixed p-0"><div class="box-chip" onclick="toggleGameDetail(this)" data-id="728"><div class="game-group"><img src="../../t7m/resource/images/method/icon_lottery_ssc.png"><span>时时彩</span></div><span>双</span></div></div><div class="col-12 game-detail" data-parent="722"><div class="row"><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="726" href="javascript:void(0);" onclick="goLottery(&quot;credit&quot;, &quot;bjpk10&quot;)"><span>北京PK拾</span></a></div><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="727" href="javascript:void(0);" onclick="goLottery(&quot;credit&quot;, &quot;mlaft&quot;)"><span>幸运飞艇</span></a></div></div></div><div class="col-12 game-detail" data-parent="728"><div class="row"><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="729" href="javascript:void(0);" onclick="goLottery(&quot;credit&quot;, &quot;cqssc&quot;)"><span>重庆时时彩</span></a></div><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="731" href="javascript:void(0);" onclick="goLottery(&quot;credit&quot;, &quot;xjssc&quot;)"><span>新疆时时彩</span></a></div></div></div><div class="col-6 col-6-fixed p-0"><div class="box-chip" onclick="toggleGameDetail(this)" data-id="735"><div class="game-group"><img src="../../t7m/resource/images/method/icon_lottery_egg.png"><span>PC蛋蛋</span></div><span>双</span></div></div><div class="col-6 col-6-fixed p-0"><div class="box-chip" onclick="toggleGameDetail(this)" data-id="737"><div class="game-group"><img src="../../t7m/resource/images/method/icon_lottery_dice.png"><span>快三骰宝</span></div><span>双</span></div></div><div class="col-12 game-detail" data-parent="735"><div class="row"><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="736" href="javascript:void(0);" onclick="goLottery(&quot;credit&quot;, &quot;bjkl8&quot;)"><span>北京28</span></a></div></div></div><div class="col-12 game-detail" data-parent="737"><div class="row"><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="745" href="javascript:void(0);" onclick="goLottery(&quot;credit&quot;, &quot;bjk3&quot;)"><span>北京快三</span></a></div><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="743" href="javascript:void(0);" onclick="goLottery(&quot;credit&quot;, &quot;shk3&quot;)"><span>上海快三</span></a></div><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="744" href="javascript:void(0);" onclick="goLottery(&quot;credit&quot;, &quot;gxk3&quot;)"><span>广西快三</span></a></div><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="746" href="javascript:void(0);" onclick="goLottery(&quot;credit&quot;, &quot;hubk3&quot;)"><span>湖北快三</span></a></div><div class="col-6 col-6-fixed p-0 box-game-wrap"><a class="box-game" data-id="742" href="javascript:void(0);" onclick="goLottery(&quot;credit&quot;, &quot;jsk3&quot;)"><span>江苏快三</span></a></div></div></div></div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+      $('.mode-list div').on('touchstart', function() {
+        var _index = $(this).index();
+        $(this).addClass('active').siblings().removeClass('active');
+        $('.lottery .lottery_detail').hide();
+        $('.lottery .lottery_detail').eq(_index).show();
+      });
+    </script>
+    <div id="sidebar">
+    <div class="header">
+        <div class="mb-2 show-user flex-column">
+            <img class="rounded-circle" src="../../t7m/resource/img/peopleagent/icon-user.jpg">
+            <span>test23</span>
+                </div>
+        <div class="show-coin">余额：<span class="points">28,901.445</span>元</div>
+        <div class="justify-content-between">
+            <button type="button" class="btn-icon charge-button" onclick="goDeposit();"></button>
+            <button type="button" class="btn-icon withdraw-button" onclick="goWithdraw();"></button>
+        </div>
+        <div class="justify-content-center">
+            <a class="d-inline-block transfer-button" href="javascript:void(0);" onclick="goTransfer();"></a>
+        </div>
+    </div>
+    <div class="list-menu-wrap" style="height:626.133px;">
+        <ul class="list-menu">
+            <li>
+                <a class="btn-icon" onclick="toggleSubmenu()">
+                    <i class="icon icon-account"></i>
+                    <span>帐户中心</span>
+                    <i class="fas fa-caret-right"></i>
+                </a>
+                <ul>
+                    <li><a class="obstruct" href="/t7m/mobile/personal/changeLoginPassword">修改密码</a></li>
+                    <li><a class="obstruct" href="/t7m/mobile/personal/changeWithdrawPassword">提款密码</a></li>
+                    <li><a class="obstruct" href="/t7m/mobile/personal/bankCardManagement">银行卡管理</a></li>
+                    <li><a class="obstruct" href="/t7m/mobile/personal/myReward">个人总览</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="btn-icon" onclick="toggleSubmenu()">
+                    <i class="icon icon-funds"></i>
+                    <span>资金管理</span>
+                    <i class="fas fa-caret-right"></i>
+                </a>
+                <ul>
+                    <li><a class="obstruct" href="/t7m/mobile/personal/deposit">充值</a></li>
+                    <li><a class="obstruct" href="/t7m/mobile/personal/withdraw">提款</a></li>
+                    <li><a class="obstruct" href="/t7m/mobile/personal/transfer">钱包转换</a></li>
+                    <li><a class="obstruct" href="/t7m/mobile/personal/dwRecord">充提记录</a></li>
+                    <li><a class="obstruct" href="/t7m/mobile/personal/acRecord">帐变记录</a></li>
+                    <li><a class="obstruct" href="/t7m/mobile/personal/tRecord">转账记录</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="btn-icon" onclick="toggleSubmenu()">
+                    <i class="icon icon-game-record"></i>
+                    <span>游戏记录</span>
+                    <i class="fas fa-caret-right"></i>
+                </a>
+                <ul>
+                    <li><a class="obstruct" href="/t7m/mobile/order_list">个人投注</a></li>
+                    <li><a class="obstruct" href="/t7m/mobile/personal/gameWater">游戏流水</a></li>
+                </ul>
+            </li>
+            <li>
+                    <a class="btn-icon" onclick="toggleSubmenu()"><i class="icon icon-agent-center">
+                        </i><span>代理中心</span><i class="fas fa-caret-right"></i>
+                    </a>
+                    <ul>
+                        <li><a class="obstruct" href="/t7m/mobile/personal/agentMember">团队管理</a></li>
+                        <li><a class="obstruct" href="/t7m/mobile/personal/teamReport">团队报表</a></li>
+                        <li><a class="obstruct" href="/t7m/mobile/personal/teamReward">团队总览</a></li>
+                    </ul>
+                </li>
+            <li><a class="btn-icon" href="javascript:void(0);" onclick="goRule();"><i class="icon icon-game-rule"></i><span>彩票规则</span></a></li>
+            <li><a class="btn-icon" href="javascript:void(0);" onclick="goPromotion();"><i class="icon icon-promotion"></i><span>优惠活动</span></a></li>
+            <li><a class="btn-icon" href="javascript:void(0);" onclick="goCustomerService();"><i class="icon icon-customer-service"></i><span>客服</span></a></li>
+            <li><a class="btn-icon" href="javascript:void(0);" onclick="goLogout();"><i class="icon icon-exit"></i><span>登出</span></a></li>
+        </ul>
+    </div>
+    <div class="d-flex justify-content-around footer">
+        <div class="d-flex align-items-center"><i class="d-inline-block s-icon icon-copyright mr-1"></i><span>版本号：V1.0</span></div>
+        <div class="d-flex align-items-center" onclick="clearCache();"><i class="d-inline-block s-icon icon-clean mr-1"></i><span>清除缓存</span></div>
+    </div>
+</div>
+<a class="sidebar-mask" onclick="closeElement('#sidebar')"></a>
+<!-- message -->
+<div class="mask" style="display: none;">
+    <div class="message_container flex-column">
+        <div class="message-header text-center"><span class="mt-2">讯息中心</span><div class="close_icon"><a id="icon_close" href="javascript:void(0);"></a></div></div>
+        <div class="aside item_2">
+            <div class="message_wrap"></div>
+        </div>
+    </div>
+</div>
+<script>
+$(function() {
+  resizeSidebar();
+  messageEvent();
+  
+  $('ul.list-menu ul li').click(function() {
+    location.href = $(this).find('a').first().attr('href');
+    return false;
+  });
+});
+
+function resizeSidebar() {
+  var h = $('#sidebar').outerHeight() - ($('#sidebar .header').outerHeight() + $('#sidebar .footer').outerHeight() + 5);
+  $('#sidebar .list-menu-wrap').attr('style', 'height:' + h  + 'px;');
+}
+
+function messageEvent() {
+  if ("true" === "true") {
+    getMessageCount();
+  }
+  openMessageBind();
+  closeMessageBind();
+}
+
+function getMessageCount() {
+  getJsonData("/t7m/Member/GetUserMessage", null, setMessageCount);
+}
+
+function getMessage() {
+  getJsonData("/t7m/Member/GetUserMessage", null, setMessage);
+}
+
+function setMessageCount(response) {
+  var count = 0;
+  if (response.data) {
+    $.each(response.data, function(entryIdx, entry) {
+      if (entry['msgStatus'] == 1) count++;
+    });
+  }
+  $('#message_count').text(count);
+}
+
+function setMessage(response) {
+  $('.message_wrap').empty();
+  var count = 0;
+  var title = '';
+  var conternt = '尚無訊息';
+  var msgTime = '';
+  if (response.data) {
+    $.each(response.data, function(entryIdx, entry) {
+      title = entry['msgTitle'];
+      conternt = entry['msgContent'];
+      msgTime = entry['msgTime'];
+      var target = $('<div />', {'class': 'outside'})
+        .append($('<div />', {'class': 'message_list'})
+        .append($('<div />', {'class': 'message_title text-truncate'}).text(title))
+        .append($('<div />', {'class': 'message_content'}).text(conternt))
+        .append($('<div />', {'class': 'message_date sub-title'}).text(msgTime)));
+      if (entry['msgStatus'] == 1) {
+        target.append($('<div />', {'class': 'message_status'})
+          .append($('<a />', {'class': 'unread', 'href': '#', 'onClick': 'readMessage('+ entry['msgID'] +', this)'}).text('标示为已读')));
+        count++;
+      } else {
+        target.find('.message_list').append($('<div />', {'class': 'golgol'}));
+      }
+      target.appendTo('.message_wrap');
+    });
+    $('#message_count').text(count);
+  } else {
+    $('.message_count_wrap').remove();
+  }
+  $('.mask').show();
+}
+
+function readMessage(id, a) {
+  a.classList.add("marked");
+  
+  var map = new Object();
+  map['msgId'] = id;
+  getJsonData("/t7m/Member/UpdateUserMessage", map, updateMessageStatus);
+}
+
+function updateMessageStatus() {
+  var mark = document.getElementsByClassName("marked");
+  for (var i = 0; i < mark.length; i++) {
+    $(mark[i]).parents('.outside').find('.message_list').append($('<div />', {'class': 'golgol'}));
+    mark[i].innerHTML = '';
+    mark[i].classList.remove("unread");
+    mark[i].classList.remove("marked");
+  }
+  $('#message_count').html(document.getElementsByClassName("unread").length);
+}
+
+function openMessageBind() {
+  $('.trigger_message').click(function() {
+    if ("true" === "true") {
+      getMessage();
+    } else {
+      layer.open({
+        title: '警告',
+        content: '请先登录',
+        icon: 0,
+        btnAlign: 'c',
+        yes: function(index, layero) {
+          goSignIn(index);
+        }
+      });
+    }
+  });
+}
+
+function closeMessageBind() {
+  $('#icon_close').click(function() {
+    $('.mask').hide();
+    $('.member_menu').removeClass('member_menu_reduce');
+  });
+}
+
+function refreshPoint() {
+  if ("true" === "true") {
+    getJsonData("/t7m/Member/RefreshUserWallets", null, function(response) {
+      if (response.result) {
+        var w = response.data.find(function(item, index, array) {
+          return item.walletID == 0;
+        });
+        $('.points').html(getCurrency(w.balance));
+      } else {
+        showErrorResult(response.message);
+      }
+    }, null, true);
+  }
+}
+</script><script type="text/javascript" src="../../t7m/resource/assets/socket.io-client/socket.io.slim.js"></script>
+<script type="text/javascript" src="../../t7m/resource/js/moment-with-locales.min.js"></script>
+<script type="text/javascript" src="../../t7m/resource/js/swiper.min.js"></script>
+<script type="text/javascript" src="../../t7m/resource/js/peopleagent/custom.js" data-url="https://x20.d7601.com"></script>
+
+<ul class="bottom-menu">
+    <li class="active"><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-hall"></i><span>首页</span></a></li>
+    <li class=""><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-lottery"></i><span>彩票</span></a></li>
+    <li class=""><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-promotion"></i><span>优惠</span></a></li>
+    <li class=""><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-mine"></i><span>我的</span></a></li>
+    <!-- <li class="active"><a class="btn-icon" href="javascript:void(0);" onclick="goHall();"><i class="icon icon-hall"></i><span>大厅</span></a></li>
+    <li class=""><a class="btn-icon" href="javascript:void(0);" onclick="goCustomerService();"><i class="icon icon-customer-service"></i><span>客服</span></a></li>
+    <li class=""><a class="btn-icon" href="javascript:void(0);" onclick="goCenter();"><i class="icon icon-manage"></i><span>管理中心</span></a></li>
+    <li class=""><a class="btn-icon" href="javascript:void(0);" onclick="goLotteryRecord();"><i class="icon icon-nav-game-result"></i><span>开奖结果</span></a></li>
+    <li class=""><a class="btn-icon " href="javascript:void(0);" onclick="goPromotion();"><i class="icon icon-nav-promotion"></i><span>活动</span></a></li> -->
+</ul>
+
+<script>
+  $(function() {
+    wsClient();
+    callFooterTouch();
+  });
+  
+  function wsClient() {
+    initialWS();
+    
+    var interval = setInterval(function() {
+      if (ws.connected) {
+        clearInterval(interval);
+        if ("true" === "true") {
+          joinWS('23', 'test23', 'dddmf3009e3c52bdd404db26361fd41f0a9d4dddmf');
+        } else {
+          joinWS('23');
+        }
+      }
+    }, 1000);
+  }
+
+  function callFooterTouch() {
+    footerTouch();
+  }
+  
+  function footerTouch() {
+    $('.bottom-menu li').on('touchstart', function() {
+      $(this).css('background','rgba(78, 78, 76, 0.7)');
+      $(this).addClass('active').siblings().removeClass('active');
+    });
+        
+    $('.bottom-menu li').on('touchend', function() {
+      $(this).removeAttr("style");
+    });
+  }
+</script><script>
+    $(function(){
+        lotteryMenu();
+        changeMode();
+        var h = $('.mode-list').outerHeight();;
+        $('.game-container').attr('style', 'height:calc(100% - ' + h  + 'px)');
+    })
+    
+    function lotteryMenu() {
+      // $('.game-container').empty();
+        getJsonData("/t7m/GameInfo/Menu", null, menuCallBack);
+    }
+    
+    function menuCallBack(response){
+        if (response.result) {
+            
+              var finalMenu = [];
+                getJsonData("/t7m/GameInfo/GetAllStatus", null, function(statResp){
+                    var filterStatus = statResp.data.filter(sItem => sItem.gameStatus == 1);
+                    
+                    const set = new Set();
+                    var filterMenu = response.data.filter(ob => ob.gameID != 0 && !set.has(ob.gameCode) ? set.add(ob.gameCode) : false);
+                    
+                    $.each(filterMenu, function(menuIdx, menuEl){
+                        $.each(filterStatus, function(statusIdx, statusEl){
+                            if(menuEl.gameCode == statusEl.gameCode){
+                                finalMenu.push(menuEl);
+                            }
+                        })
+                    })
+                    
+                })
+              
+                //過濾熱門系列彩種      /*要改*/
+                finalMenu = response.data.filter(ob => ob.gameCode != 'hot');
+                
+                var offCount = finalMenu.filter(ob => ( ob.playMode == 1 || ob.playMode == 3) && ob.gameID == 0).length;
+                
+                var credCount = finalMenu.filter(ob => ( ob.playMode == 2 || ob.playMode == 3) && ob.gameID == 0).length;
+                
+                //六大彩種的圖片名稱
+                var type = '';
+                
+                //子彩種的圖片名稱
+                var gameCode = '';
+                
+                //判斷game-detail 對應哪個父區塊
+                var parentId = 0;
+                
+                //每個entry的id
+                var entryId = 0;
+                
+                //計算六大彩種的串接次數, 每串兩次歸零
+                var offBoxChipCount = 0;
+                var credBoxChipCount = 0;
+                
+                //記錄前兩個已串接的六大彩種Id
+                var offIdArForGameDetail = [];
+                var credIdArForGameDetail = [];
+                
+                //entryName
+                var entryName = '';
+                
+                //玩法識別
+                var playMode = '';
+                $.each(finalMenu, function(entryIdx, entry){
+                    entryId = entry.id;
+                    entryName = entry.gameName;
+                    playMode = entry.playMode;
+                    
+                    gameCode = entry.gameCode;
+                    if(entry.gameID == 0){
+                        
+                        if(gameCode.indexOf('ssc') > -1){
+                            type = 'ssc';
+                        }
+                        
+                        if(gameCode.indexOf('k3') > -1){
+                            type = 'k3';
+                        }
+                        
+                        if(gameCode.indexOf('11x5') > -1){
+                            type = '11x5'
+                        }
+                        
+                        if(gameCode.indexOf('low') > -1){
+                            type = 'low';
+                        }
+                        
+                        if(gameCode.indexOf('ffc') > -1){
+                            type = 'ffc';
+                        }
+                        
+                        if(gameCode.indexOf('pk10') > -1){
+                            type = 'bjpk10';
+                        }
+                        
+                        if(gameCode.indexOf('bjkl8') > -1){
+                            type = 'bjkl8';
+                        }
+                        
+                        var modeMark = '';
+                        var modeTarget = '';
+                        if(playMode == 1 || playMode == 3){
+                            modeMark = '标';
+                            modeTarget = 'official';
+                            $('<div />', {'class':'col-6 col-6-fixed p-0'})
+                            .append($('<div />', {'class':'box-chip', 'onClick':'toggleGameDetail(this)', 'data-id': entry.id})
+                                    .append($('<div />', {'class':'game-group'})
+                                            .append($('<img />', {'src':'/t7m/resource/img/peopleagent/chip-' + type + '.png'}))
+                                            .append($('<span />').html(entryName)))
+                                    .append($('<span />').html(modeMark)))
+                            .appendTo('.game-container[data-mode="' + modeTarget + '"]');
+                            
+                            //每接兩個遊戲類別, 就在之後接上兩個對應的子區塊
+                            offBoxChipCount++;
+                            offIdArForGameDetail.push(entryId);
+                            if(offBoxChipCount % 2 == 0 || offBoxChipCount == offCount){
+                                for(var i = 0; i < offIdArForGameDetail.length; i++){
+                                    $('<div />', {'class':'col-12 game-detail', 'data-parent': offIdArForGameDetail[i]})
+                                        .append($('<div />', {'class':'row'}))
+                                        .appendTo('.game-container[data-mode="' + modeTarget + '"]');
+                                }
+                                offIdArForGameDetail = [];
+                            }
+                            
+                        }
+                        
+                        if(playMode == 2 || playMode == 3){
+                            modeMark = '双';
+                            modeTarget = 'credit';
+                            $('<div />', {'class':'col-6 col-6-fixed p-0'})
+                            .append($('<div />', {'class':'box-chip', 'onClick':'toggleGameDetail(this)', 'data-id': entry.id})
+                                    .append($('<div />', {'class':'game-group'})
+                                            .append($('<img />', {'src':'/t7m/resource/img/peopleagent/chip-' + type + '.png'}))
+                                            .append($('<span />').html(entryName)))
+                                    .append($('<span />').html(modeMark)))
+                            .appendTo('.game-container[data-mode="' + modeTarget + '"]');
+                            
+                            //每接兩個遊戲類別, 就在之後接上兩個對應的子區塊
+                            credBoxChipCount++;
+                            credIdArForGameDetail.push(entryId);
+                            if(credBoxChipCount % 2 == 0 || credBoxChipCount == credCount){
+                                for(var i = 0; i < credIdArForGameDetail.length; i++){
+                                    $('<div />', {'class':'col-12 game-detail', 'data-parent': credIdArForGameDetail[i]})
+                                        .append($('<div />', {'class':'row'}))
+                                        .appendTo('.game-container[data-mode="' + modeTarget + '"]');
+                                }
+                                credIdArForGameDetail = [];
+                            }
+                        }
+
+                    } else {
+                        gameCode = entry.gameCode;
+                        parentId = entry.parent;
+                        
+                        if(playMode == 1 || playMode == 3){
+                            var gameUrl = 'official/' + entry.gameCode;
+                            modeTarget = 'official'
+                            $('<div />', {'class':'col-6 col-6-fixed p-0 box-game-wrap'})
+                            .append($('<a />', {'class':'box-game', 'data-id': entry.id, 'href':'javascript:void(0);', 'onclick':'goLottery("official", "' + entry.gameCode + '")'})
+                                    .append($('<span />').html(entryName)))
+                            .appendTo(".game-container[data-mode='" + modeTarget + "'] [data-parent='" + parentId + "'] .row");
+                        }
+                        
+                        if(playMode == 2 || playMode == 3){
+                            var gameUrl = 'credit/' + entry.gameCode;
+                            modeTarget = 'credit';
+                            $('<div />', {'class':'col-6 col-6-fixed p-0 box-game-wrap'})
+                            .append($('<a />', {'class':'box-game', 'data-id': entry.id, 'href':'javascript:void(0);', 'onclick':'goLottery("credit", "' + entry.gameCode + '")'})
+                                    .append($('<span />').html(entryName)))
+                            .appendTo(".game-container[data-mode='" + modeTarget + "'] [data-parent='" + parentId + "'] .row");
+                        }
+                        
+                    }
+                })
+        }
+        
+        $('.menu_item').on('click', function(){
+            $('.menu_item').children().css('display','none');
+            $(this).children().toggle();
+        })
+        
+        
+        callTouch();
+    }
+    
+    function changeMode(){
+        $('.mode-option').on('click', function(){
+            var mode = $(this).data('mode');
+            
+            $('.mode-option').find('a').removeClass('active');
+            $(this).find('a').addClass('active');
+            
+            $('.game-container[data-mode="' + mode + '"]').addClass('open').siblings().removeClass('open');
+            
+            //initial
+            $('.box-chip').add('.game-detail').removeClass('active');
+            $('.game-container[data-mode="' + mode + '"]').scrollTop(0);
+        })
+    }
+    
+    function callTouch(){
+        gameTouch();
+    }
+    function gameTouch(){
+        $('.box-chip').on('touchstart', function(){
+            $(this).css({
+                'background':'rgba(252, 254, 255, 0.2)'
+            });
+        })
+        
+        $('.box-chip').on('touchend', function(){
+            $(this).removeAttr("style");
+        })
+        
+        $('.box-game-wrap').on('touchstart', function(){
+            $(this).css({
+                'background':'#a9080d'
+            });
+        })
+        
+        $('.box-game-wrap').on('touchend', function(){
+            $(this).removeAttr("style");
+        })
+    }
+</script>
+
+</body></html>

@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no">
+<meta name="msapplication-tap-highlight" content="no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="mobile-web-app-capable" content="yes">
+<title>T7传统</title>
+
+<link rel="shortcut icon" type="image/x-icon" href="../../t7m/resource/img/peopleagent/favicon.ico">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<link rel="stylesheet" href="../../t7m/resource/css/bootstrap.min.css">
+<link rel="styleSheet" href="../../t7m/resource/css/peopleagent/style.css">
+<link rel="stylesheet" href="../../t7m/resource/css/peopleagent/wonder.css" class="wonder-core">
+<link rel="stylesheet" href="../../t7m/resource/css/peopleagent/blue-style.css" class="wonder-style">
+<link rel="stylesheet" href="../../t7m/resource/css/peopleagent/red-style.css" class="wonder-style">
+
+<script type="text/javascript" src="../../t7m/resource/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../t7m/resource/js/popper.min.js"></script>
+<script defer="" type="text/javascript" src="../../t7m/resource/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../t7m/resource/assets/layer/js/layer.js"></script><link rel="stylesheet" href="http://210.244.18.147/t7m/resource/assets/layer/js/theme/default/layer.css?v=3.1.1" id="layuicss-layer">
+
+<script type="text/javascript">
+function iosViewEvent() {
+  document.documentElement.addEventListener('touchstart', function (event) {
+    if (event.touches.length > 1) {
+      event.preventDefault();   
+    } 
+  }, false);
+  
+  var lastTouchEnd = 0; 
+  document.documentElement.addEventListener('touchend', function (event) {
+    var now = Date.now();
+    if (now - lastTouchEnd <= 300) {
+        event.preventDefault();   
+    }
+    lastTouchEnd = now;
+  }, false);
+}
+
+window.onload = function() {
+  setTimeout(function() {
+      window.scrollTo(0, 1);
+  }, 100);
+  
+  iosViewEvent();
+}
+</script></head>
+<body class="betting_view">
+    <header class="">
+<div class="go-back-wrap">
+        <a class="go-back" href="javascript:void(0);" onclick="history.go(-1)"><i class="fas fa-chevron-left" style="margin-right: 3px;"></i>返回</a>
+    </div>    
+    <div class="info-wrap">
+      <div>
+        <span class="title"> </span>
+	                </div>
+    </div>
+    <div>
+        <a class="btn-list" onclick="openElement('#sidebar');"><i class="fas fa-bars"></i></a>
+    </div>
+</header>
+<input id="contextPath" type="hidden" value="/t7m">
+<div class="lds-ring" style="display: none;"><div></div><div></div><div></div><div></div></div>
+<script>
+gameCode = '';
+contextPath = $('#contextPath').val();
+
+$(function() {
+//   setStyleFromCookie();
+  callHeaderTouch();
+  /*if ("true" !== "false") {
+    intervalBalance();
+  }*/
+});
+
+function callHeaderTouch() {
+  headerTouch();
+}
+
+function headerTouch() {
+  $('.account-box').on('touchstart', function() {
+    $(this).css('background','rgb(19, 63, 142)');
+  });
+        
+  $('.account-box').on('touchend', function() {
+    $(this).removeAttr("style");
+  });
+}
+
+function intervalBalance(){
+  var balanceIvl = setInterval(function() {
+    if ("true" !== "true") {
+      clearInterval(balanceIvl);
+    }
+    getJsonData(document.getElementById("contextPath").value + '/Member/GetBalance', null, changeBalance);
+  }, 60000)
+}
+
+function changeBalance(response) {
+  $('header .coin').html('<i class="icon-coin"/>' + getCurrency(response) + '元');
+}
+
+function changeAfterBetBalance(response) {
+	$('.balance-bar .coin').html(getCurrency(response));
+}
+
+</script>
+<div id="sidebar">
+    <div class="header">
+        <div class="mb-2 show-user flex-column">
+            <img class="rounded-circle" src="../../t7m/resource/img/peopleagent/icon-user.jpg">
+            <span>test23</span>
+                </div>
+        <div class="show-coin">余额：<span class="points">28,901.445</span>元</div>
+        <div class="justify-content-between">
+            <button type="button" class="btn-icon charge-button" onclick="goDeposit();"></button>
+            <button type="button" class="btn-icon withdraw-button" onclick="goWithdraw();"></button>
+        </div>
+        <div class="justify-content-center">
+            <a class="d-inline-block transfer-button" href="javascript:void(0);" onclick="goTransfer();"></a>
+        </div>
+    </div>
+    <div class="list-menu-wrap" style="height:577.344px;">
+        <ul class="list-menu">
+            <li>
+                <a class="btn-icon" onclick="toggleSubmenu()">
+                    <i class="icon icon-account"></i>
+                    <span>帐户中心</span>
+                    <i class="fas fa-caret-right"></i>
+                </a>
+                <ul>
+                    <li><a class="obstruct" href="/t7m/mobile/personal/changeLoginPassword">修改密码</a></li>
+                    <li><a class="obstruct" href="/t7m/mobile/personal/changeWithdrawPassword">提款密码</a></li>
+                    <li><a class="obstruct" href="/t7m/mobile/personal/bankCardManagement">银行卡管理</a></li>
+                    <li><a class="obstruct" href="/t7m/mobile/personal/myReward">个人总览</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="btn-icon" onclick="toggleSubmenu()">
+                    <i class="icon icon-funds"></i>
+                    <span>资金管理</span>
+                    <i class="fas fa-caret-right"></i>
+                </a>
+                <ul>
+                    <li><a class="obstruct" href="/t7m/mobile/personal/deposit">充值</a></li>
+                    <li><a class="obstruct" href="/t7m/mobile/personal/withdraw">提款</a></li>
+                    <li><a class="obstruct" href="/t7m/mobile/personal/transfer">钱包转换</a></li>
+                    <li><a class="obstruct" href="/t7m/mobile/personal/dwRecord">充提记录</a></li>
+                    <li><a class="obstruct" href="/t7m/mobile/personal/acRecord">帐变记录</a></li>
+                    <li><a class="obstruct" href="/t7m/mobile/personal/tRecord">转账记录</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="btn-icon" onclick="toggleSubmenu()">
+                    <i class="icon icon-game-record"></i>
+                    <span>游戏记录</span>
+                    <i class="fas fa-caret-right"></i>
+                </a>
+                <ul>
+                    <li><a class="obstruct" href="/t7m/mobile/order_list">个人投注</a></li>
+                    <li><a class="obstruct" href="/t7m/mobile/personal/gameWater">游戏流水</a></li>
+                </ul>
+            </li>
+            <li>
+                    <a class="btn-icon" onclick="toggleSubmenu()"><i class="icon icon-agent-center">
+                        </i><span>代理中心</span><i class="fas fa-caret-right"></i>
+                    </a>
+                    <ul>
+                        <li><a class="obstruct" href="/t7m/mobile/personal/agentMember">团队管理</a></li>
+                        <li><a class="obstruct" href="/t7m/mobile/personal/teamReport">团队报表</a></li>
+                        <li><a class="obstruct" href="/t7m/mobile/personal/teamReward">团队总览</a></li>
+                    </ul>
+                </li>
+            <li><a class="btn-icon" href="javascript:void(0);" onclick="goRule();"><i class="icon icon-game-rule"></i><span>彩票规则</span></a></li>
+            <li><a class="btn-icon" href="javascript:void(0);" onclick="goPromotion();"><i class="icon icon-promotion"></i><span>优惠活动</span></a></li>
+            <li><a class="btn-icon" href="javascript:void(0);" onclick="goCustomerService();"><i class="icon icon-customer-service"></i><span>客服</span></a></li>
+            <li><a class="btn-icon" href="javascript:void(0);" onclick="goLogout();"><i class="icon icon-exit"></i><span>登出</span></a></li>
+        </ul>
+    </div>
+    <div class="d-flex justify-content-around footer">
+        <div class="d-flex align-items-center"><i class="d-inline-block s-icon icon-copyright mr-1"></i><span>版本号：V1.0</span></div>
+        <div class="d-flex align-items-center" onclick="clearCache();"><i class="d-inline-block s-icon icon-clean mr-1"></i><span>清除缓存</span></div>
+    </div>
+</div>
+<a class="sidebar-mask" onclick="closeElement('#sidebar')"></a>
+<!-- message -->
+<div class="mask" style="display: none;">
+    <div class="message_container flex-column">
+        <div class="message-header text-center"><span class="mt-2">讯息中心</span><div class="close_icon"><a id="icon_close" href="javascript:void(0);"></a></div></div>
+        <div class="aside item_2">
+            <div class="message_wrap"></div>
+        </div>
+    </div>
+</div>
+<script>
+$(function() {
+  resizeSidebar();
+  messageEvent();
+  
+  $('ul.list-menu ul li').click(function() {
+    location.href = $(this).find('a').first().attr('href');
+    return false;
+  });
+});
+
+function resizeSidebar() {
+  var h = $('#sidebar').outerHeight() - ($('#sidebar .header').outerHeight() + $('#sidebar .footer').outerHeight() + 5);
+  $('#sidebar .list-menu-wrap').attr('style', 'height:' + h  + 'px;');
+}
+
+function messageEvent() {
+  if ("true" === "true") {
+    getMessageCount();
+  }
+  openMessageBind();
+  closeMessageBind();
+}
+
+function getMessageCount() {
+  getJsonData("/t7m/Member/GetUserMessage", null, setMessageCount);
+}
+
+function getMessage() {
+  getJsonData("/t7m/Member/GetUserMessage", null, setMessage);
+}
+
+function setMessageCount(response) {
+  var count = 0;
+  if (response.data) {
+    $.each(response.data, function(entryIdx, entry) {
+      if (entry['msgStatus'] == 1) count++;
+    });
+  }
+  $('#message_count').text(count);
+}
+
+function setMessage(response) {
+  $('.message_wrap').empty();
+  var count = 0;
+  var title = '';
+  var conternt = '尚無訊息';
+  var msgTime = '';
+  if (response.data) {
+    $.each(response.data, function(entryIdx, entry) {
+      title = entry['msgTitle'];
+      conternt = entry['msgContent'];
+      msgTime = entry['msgTime'];
+      var target = $('<div />', {'class': 'outside'})
+        .append($('<div />', {'class': 'message_list'})
+        .append($('<div />', {'class': 'message_title text-truncate'}).text(title))
+        .append($('<div />', {'class': 'message_content'}).text(conternt))
+        .append($('<div />', {'class': 'message_date sub-title'}).text(msgTime)));
+      if (entry['msgStatus'] == 1) {
+        target.append($('<div />', {'class': 'message_status'})
+          .append($('<a />', {'class': 'unread', 'href': '#', 'onClick': 'readMessage('+ entry['msgID'] +', this)'}).text('标示为已读')));
+        count++;
+      } else {
+        target.find('.message_list').append($('<div />', {'class': 'golgol'}));
+      }
+      target.appendTo('.message_wrap');
+    });
+    $('#message_count').text(count);
+  } else {
+    $('.message_count_wrap').remove();
+  }
+  $('.mask').show();
+}
+
+function readMessage(id, a) {
+  a.classList.add("marked");
+  
+  var map = new Object();
+  map['msgId'] = id;
+  getJsonData("/t7m/Member/UpdateUserMessage", map, updateMessageStatus);
+}
+
+function updateMessageStatus() {
+  var mark = document.getElementsByClassName("marked");
+  for (var i = 0; i < mark.length; i++) {
+    $(mark[i]).parents('.outside').find('.message_list').append($('<div />', {'class': 'golgol'}));
+    mark[i].innerHTML = '';
+    mark[i].classList.remove("unread");
+    mark[i].classList.remove("marked");
+  }
+  $('#message_count').html(document.getElementsByClassName("unread").length);
+}
+
+function openMessageBind() {
+  $('.trigger_message').click(function() {
+    if ("true" === "true") {
+      getMessage();
+    } else {
+      layer.open({
+        title: '警告',
+        content: '请先登录',
+        icon: 0,
+        btnAlign: 'c',
+        yes: function(index, layero) {
+          goSignIn(index);
+        }
+      });
+    }
+  });
+}
+
+function closeMessageBind() {
+  $('#icon_close').click(function() {
+    $('.mask').hide();
+    $('.member_menu').removeClass('member_menu_reduce');
+  });
+}
+
+function refreshPoint() {
+  if ("true" === "true") {
+    getJsonData("/t7m/Member/RefreshUserWallets", null, function(response) {
+      if (response.result) {
+        var w = response.data.find(function(item, index, array) {
+          return item.walletID == 0;
+        });
+        $('.points').html(getCurrency(w.balance));
+      } else {
+        showErrorResult(response.message);
+      }
+    }, null, true);
+  }
+}
+</script><div class="menu_mask"></div>
+	<div class="rule_name">
+		<div class="r_menu">
+			<div class="menu-container">
+				<font class="option">
+					其他彩种
+				</font>
+				<div class="lottery"><span id="709" class="menu_item">☼推荐☼<span class="menu_item_arrow"></span><div class="list_wrap"><ul><li class="rule_link bjpk10"><a href="#">北京PK拾</a></li><li class="rule_link mlaft"><a href="#">幸运飞艇</a></li><li class="rule_link cqssc"><a href="#">重庆时时彩</a></li><li class="rule_link hk6"><a href="#">香港⑥合彩</a></li></ul></div></span><span id="722" class="menu_item">赛车<span class="menu_item_arrow"></span><div class="list_wrap"><ul><li class="rule_link bjpk10"><a href="#">北京PK拾</a></li><li class="rule_link mlaft"><a href="#">幸运飞艇</a></li></ul></div></span><span id="728" class="menu_item">时时彩<span class="menu_item_arrow"></span><div class="list_wrap"><ul><li class="rule_link cqssc"><a href="#">重庆时时彩</a></li><li class="rule_link xjssc"><a href="#">新疆时时彩</a></li></ul></div></span><span id="735" class="menu_item">PC蛋蛋<span class="menu_item_arrow"></span><div class="list_wrap"><ul><li class="rule_link bjkl8"><a href="#">北京28</a></li></ul></div></span><span id="737" class="menu_item">快三骰宝<span class="menu_item_arrow"></span><div class="list_wrap"><ul><li class="rule_link bjk3"><a href="#">北京快三</a></li><li class="rule_link shk3"><a href="#">上海快三</a></li><li class="rule_link gxk3"><a href="#">广西快三</a></li><li class="rule_link hubk3"><a href="#">湖北快三</a></li><li class="rule_link jsk3"><a href="#">江苏快三</a></li></ul></div></span><span id="747" class="menu_item">11选五<span class="menu_item_arrow"></span><div class="list_wrap"><ul><li class="rule_link gd11x5"><a href="#">广东11选5</a></li><li class="rule_link sh11x5"><a href="#">上海11选5</a></li><li class="rule_link jx11x5"><a href="#">江西多乐彩</a></li><li class="rule_link sd11x5"><a href="#">山东11运夺金</a></li><li class="rule_link ah11x5"><a href="#">安徽11选5</a></li></ul></div></span><span id="753" class="menu_item">低频彩<span class="menu_item_arrow"></span><div class="list_wrap"><ul><li class="rule_link hk6"><a href="#">香港⑥合彩</a></li><li class="rule_link fc3d"><a href="#">福彩3D</a></li><li class="rule_link pl3"><a href="#">排列三</a></li><li class="rule_link shssl"><a href="#">上海时时乐</a></li><li class="rule_link qxc"><a href="#">海南七星彩</a></li></ul></div></span></div>
+			</div>
+		</div>
+		<span class="name_text">重庆时时彩</span>
+	</div>
+	<div class="rule_wrap"></div>
+	<input type="hidden" id="field">
+	<script type="text/javascript" src="../../t7m/resource/assets/socket.io-client/socket.io.slim.js"></script>
+<script type="text/javascript" src="../../t7m/resource/js/moment-with-locales.min.js"></script>
+<script type="text/javascript" src="../../t7m/resource/js/swiper.min.js"></script>
+<script type="text/javascript" src="../../t7m/resource/js/peopleagent/custom.js" data-url="https://x20.d7601.com"></script>
+
+<ul class="bottom-menu">
+    <li class="active"><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-hall"></i><span>首页</span></a></li>
+    <li class=""><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-lottery"></i><span>彩票</span></a></li>
+    <li class=""><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-promotion"></i><span>优惠</span></a></li>
+    <li class=""><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-mine"></i><span>我的</span></a></li>
+    <!-- <li class=""><a class="btn-icon" href="javascript:void(0);" onclick="goHall();"><i class="icon icon-hall"></i><span>大厅</span></a></li>
+    <li class=""><a class="btn-icon" href="javascript:void(0);" onclick="goCustomerService();"><i class="icon icon-customer-service"></i><span>客服</span></a></li>
+    <li class=""><a class="btn-icon" href="javascript:void(0);" onclick="goCenter();"><i class="icon icon-manage"></i><span>管理中心</span></a></li>
+    <li class=""><a class="btn-icon" href="javascript:void(0);" onclick="goLotteryRecord();"><i class="icon icon-nav-game-result"></i><span>开奖结果</span></a></li>
+    <li class=""><a class="btn-icon " href="javascript:void(0);" onclick="goPromotion();"><i class="icon icon-nav-promotion"></i><span>活动</span></a></li> -->
+</ul>
+
+<script>
+  $(function() {
+    wsClient();
+    callFooterTouch();
+  });
+  
+  function wsClient() {
+    initialWS();
+    
+    var interval = setInterval(function() {
+      if (ws.connected) {
+        clearInterval(interval);
+        if ("true" === "true") {
+          joinWS('23', 'test23', '0y6qr733adcf5fb444000a83b1c989901a70a0y6qr');
+        } else {
+          joinWS('23');
+        }
+      }
+    }, 1000);
+  }
+
+  function callFooterTouch() {
+    footerTouch();
+  }
+  
+  function footerTouch() {
+    $('.bottom-menu li').on('touchstart', function() {
+      $(this).css('background','rgba(78, 78, 76, 0.7)');
+      $(this).addClass('active').siblings().removeClass('active');
+    });
+        
+    $('.bottom-menu li').on('touchend', function() {
+      $(this).removeAttr("style");
+    });
+  }
+</script>
+<style>
+	.modal.fade{
+		position:absolute;
+		left:0px; 
+		right:0px; 
+		top:30%;
+	}
+	
+	.modal-content{
+    width: 75%;
+    background: #bc1015;
+    margin: 5vh auto;
+    border: 0;
+    border-radius: 0;
+	}
+	
+	.modal-header{
+    border: 0;
+    padding: 0 15px;
+    height: 50px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+	}
+	
+	.modal-body{
+    display: flex;
+    flex-direction: column;
+    border: 0;
+    padding: 5px;
+    background: #ffffff;
+    min-height: 6rem;
+   	justify-content: center;
+	}
+	
+	.modal .issue{
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 650;
+    color: #ffffff;
+	}
+	
+	.modal .issue font{
+		margin: 0 5px;
+		color: red;
+	}
+	
+	.modal-body .message {
+    display: flex;
+    padding: 15px 0px;
+    justify-content: center;
+    align-items: center;
+	}
+	
+	.modal-body .message.warning .text_ico{
+    flex: 0 0 30px;
+   	height: 30px;
+   	border: 2px solid #c77500;
+   	border-radius: 50%;
+  	position: relative;
+   	margin: 0 10px;
+	}
+	
+	.modal-body .message.warning .text_ico div:nth-child(1){
+    width: 3px;
+    height: 10px;
+    background: #c77500;
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 4px;
+	}
+	
+	.modal-body .message.warning .text_ico div:nth-child(2){
+    width: 3px;
+    height: 4px;
+    background: #c77500;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 4px;
+    margin: 0 auto;
+	}
+	
+	.modal-body .message.warning #modal_text{
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #080808;
+	}
+	
+	.modal-body .message.success .text_ico{
+   	background: url(/t7m/resource/img/peopleagent/uq_icon.png) no-repeat center center;
+   	flex: 0 0 30px;
+   	height: 30px;
+ 	 	margin: 0 10px;
+ 	 	border-radius: 50%;
+ 	 	position: relative;
+   	background-size: 220px 70px;
+  	background-position: -148px -32px;
+	}
+	
+	.modal-body .message.success #modal_text{
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #080808;
+	}
+	
+	.modal-body .message.fail .text_ico{
+    background: url(/t7m/resource/img/peopleagent/uq_icon.png) no-repeat center center;
+   	flex: 0 0 30px;
+    height: 30px;
+    margin: 0 10px;
+    border-radius: 50%;
+    position: relative;
+    background-size: 220px 70px;
+    background-position: -187px -32px;
+	}
+	
+	.modal-body .message.fail #modal_text{
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #080808;
+	}
+	
+	.modal-footer{
+		padding: 0.6rem;
+	}
+	
+	.modal-footer button{
+		color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 3px 30px;
+    font-size: 0.75rem;
+    background: background: linear-gradient(to bottom, #af5b1deb 50%, #b75909f5 50%);
+    border-radius: 3px;
+	}
+	
+	
+</style>
+
+<div class="modal fade" data-easein="slideUpBigIn" data-backdrop="static" style="position:absolute;left:0px; right:0px; top:30%; " id="bet_btn" tabindex="-1" role="dialog" aria-labelledby="bet_btn" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+	<div class="modal-content">
+	  <div class="modal-header">
+	  	<font class="game-name">
+	  		北京28
+	  	</font>
+	  </div>
+	  <div class="modal-body">
+		<div class="message">
+			<div class="text_ico">
+				<div></div>
+				<div></div>
+			</div>
+			<p id="modal_text" style="text-align: center;"></p>
+		</div>
+	  </div>
+	  <div class="modal-footer" style="border:0; display: flex; justify-content:center;">
+		<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="">
+			确定
+		</button>
+	  </div>
+	</div>
+  </div>
+ </div>
+<script type="text/javascript">
+$(function(){
+
+	
+	$('.modal_trans_btn').click(function(){
+		if(typeof modalInterval !== 'undefined') clearInterval(modalInterval);
+		if(!$('.bet_btn').hasClass("bet_page_transform")){
+			transBetPage();
+		}
+	})
+	$('.modal').off();
+})
+
+function countdownModal(time, callModal, title, issueNo, content, callback) {
+    var seconds = time;
+	var target = $('#bet_btn');
+	if(typeof modalInterval !== 'undefined') clearInterval(modalInterval);
+	target.find('button').text("确认 (" + (seconds / 1000) + ")");
+	  
+	callModal(title, issueNo, content, callback); //open modal
+	modalInterval = setInterval(function() {
+		seconds -= 1000;
+		    
+		target.find('button').text("确认 (" + (seconds / 1000) + ")");
+		    
+		if (seconds <= 0) {
+		  //initial
+		  clearInterval(modalInterval);
+		  target.find('button').text("确认");
+		      
+		  if(!$('.bet_page').hasClass("bet_page_transform")){
+	    	 target.modal('hide'); //close modal
+			    transBetPage();
+			} else {
+					target.modal('hide');
+			}
+		}
+	}, 1000);
+}
+	
+function normalModal(callModal, title, issueNo, content, callback){
+    var target = $('#bet_btn');
+	if(typeof modalInterval !== 'undefined') clearInterval(modalInterval);
+	  target.find('button').text("确认 ");
+	  callModal(title, issueNo, content, callback);
+}
+
+function successModal(title, issueNo, content, callback){
+	$('.modal-header .game-name').text(title);
+	$('.modal-body .issue font').text(issueNo);
+	$('#modal_text').text(content)
+	
+	$('.modal-body .message').removeClass().addClass('message success');
+	$('.modal-footer button').removeClass().addClass('btn btn-secondary modal_trans_btn');
+	
+	$('#bet_btn').modal('show');
+	$('.modal button').unbind().click(callback);
+	$('.modal_trans_btn').click(function(){
+		if(typeof modalInterval !== 'undefined') clearInterval(modalInterval);
+		if(!$('.bet_btn').hasClass("bet_page_transform")){
+			transBetPage();
+		}
+	})
+}
+
+function failModal(title, issueNo, content, callback){
+	$('.modal-header .game-name').text(title);
+	$('.modal-body .issue font').text(issueNo);
+	$('#modal_text').text(content)
+	
+	$('.modal-body .message').removeClass().addClass('message fail');
+	$('.modal-footer button').removeClass().addClass('btn btn-secondary modal_trans_btn');
+	
+	$('#bet_btn').modal('show');
+	$('.modal button').unbind().click(callback);
+	$('.modal_trans_btn').click(function(){
+		if(typeof modalInterval !== 'undefined') clearInterval(modalInterval);
+		if(!$('.bet_btn').hasClass("bet_page_transform")){
+			transBetPage();
+		}
+	})
+}
+
+function warningModal(title, issueNo, content, callback){
+	$('.modal-header .game-name').text(title);
+	$('.modal-body .issue font').text(issueNo);
+	$('#modal_text').text(content)
+	
+	$('.modal-body .message').removeClass().addClass('message warning');
+	$('.modal-footer button').removeClass().addClass('btn btn-secondary');
+	
+	$('#bet_btn').modal('show');
+	$('.modal button').unbind().click(callback);
+	$('.modal_trans_btn').click(function(){
+		if(typeof modalInterval !== 'undefined') clearInterval(modalInterval);
+		if(!$('.bet_btn').hasClass("bet_page_transform")){
+			transBetPage();
+		}
+	})
+}
+
+function toggleLoader(){
+	$('.loader').toggle();
+}
+
+function goLogin(){
+	var path = document.getElementById("contextPath").value + '/mobile/signIn';
+	window.location.href = path;
+}
+	
+</script><div class="loader" style="display:none;">
+  <div class="ring">
+    載入中
+    <span></span>
+  </div>
+</div><script type="text/javascript" src="../../t7m/resource/js/peopleagent/wonder2.js"></script>	
+<script>
+$(function(){
+	var map = new Object();
+	if('' == ''){
+		map['gameCode']  = 'cqssc';
+	} else {
+		map['gameCode'] = '';
+	}
+	
+	gameCode = map['gameCode'];
+	$('.rule_name span').text(gameCode_gameName[map['gameCode']]);
+	getJsonData("/t7m/GameInfo/GetPlayType", map, playTypeCallBack);
+	getJsonData("/t7m/GameInfo/Menu", null, menuCallBack);
+	$('.title-text').append($('<span />',{'class':'type-menu-toggle'}));
+	
+	clickEvent();
+	
+})
+
+function menuCallBack(response){
+	if (response.result == true) {
+		$.each(response.data, function(entryIdx, entry) {
+			var element = '';
+			if (entry['gameID'] == 0) {
+				$('.lottery').append($('<span />',{'id':entry['id'],'class':'menu_item'}).text(entry['gameName'])
+								.append($('<span />',{'class':'menu_item_arrow'}))
+									.append($('<div />',{'class':'list_wrap'})
+									.append($('<ul />'))));
+			} else {
+				var li = $('<li />', {'class':'rule_link ' + entry['gameCode']}).html($('<a />', {'href': '#'}).text(entry['gameName']));
+				li.appendTo($('#' + entry['parent'] + ' ul'));
+			}
+		});
+	}
+	
+	
+	$('.menu_item').click(function(){
+		if($(this).hasClass('active')){
+			$(this).removeClass('active');
+			$(this).children().toggle();
+		} else {
+			$(this).addClass('active').siblings().removeClass('active');
+			$('.menu_item').children().css('display','none');
+			$(this).children().toggle();
+		}
+	})
+	
+	$('.rule_link').click(function(){
+		gameCode = $(this).attr('class').split(' ')[1];
+		var map = new Object();
+		map['gameCode'] = gameCode;
+		getJsonData("/t7m/GameInfo/GetPlayType", map, playTypeCallBack);
+		$('.rule_name .name_text').text(gameCode_gameName[gameCode]);
+		$('.lottery').toggle();
+		$('.menu_mask').toggle();
+	})
+}
+
+function playTypeCallBack(response) {
+	$('.rule_wrap').empty();
+	typeAr = [17];
+	for(var i = 35; i <= 54; i++){
+		typeAr.push(i);
+	}
+	$.each(response.data,function(entryIdx,entry){
+		var playTypeM = entry['playTypeM'];
+		var text = entry['playNameM'];
+		var div = $('<div />', {'class':'rule ' + playTypeM})
+						.append($('<div />', {'class':'rule_head'})
+								.append($('<div />', {'class':'arrow_rule'}))
+								.append($('<div />', {'class':'rule_title'}).text(text)))
+		var div2 = $('<div />', {'class':'content_wrap artive'}).appendTo(div);
+								
+		if($.inArray(playTypeM, typeAr) > -1) {
+			var playTypeS = entry.datas[0]['playTypeS'];
+			div2.append($('<div />', {'class':'rule_content ' + playTypeS})
+					.append($('<ul />')
+							.append($('<li />'))
+							.append($('<li />',{'class':'sample'})
+									.html('<span>范例</span><br/><p/>'))))
+			} else {
+				for(var i = 0; i < entry.datas.length; i++){
+					var tmp = entry.datas[i]['playCodeS'];
+					if(tmp.indexOf('Keyin') == -1 && tmp.indexOf('Sum2') == -1 && tmp.indexOf('Correct2') == -1){
+						var playTypeS = entry.datas[i]['playTypeS'];
+						div2.append($('<div />', {'class':'rule_content ' + playTypeS})
+								.append($('<ul />')
+										.append($('<li />'))
+										.append($('<li />',{'class':'sample'})
+												.html('<span>范例</span><br/><p/>'))))
+//		 				getExamAndDesc("/t7m/Lottery", playTypeM, playTypeS);							
+					}
+				}
+			}
+		
+// 			.append($('<div />', {'class':'rule_content'})
+// 					.append($('<ul />')
+// 							.append($('<li />'))
+// 							.append($('<li />',{'class':'sample'})
+// 									.html('<span>範例</span><br/>'))))
+		div.appendTo($('.rule_wrap'));
+	})
+	
+	$('.rule_head').click(function(){
+		var playTypeM = $(this).parents('.rule').attr('class').split(' ')[1];
+		var contentLen = $(this).parents('.rule').find('.rule_content').length;
+		for(var i = 0; i < contentLen; i++){
+			var playTypeS =  $(this).parents('.rule').find('.rule_content').eq(i).attr('class').split(' ')[1];
+			getExamAndDesc("/t7m/Lottery", playTypeM, playTypeS);
+		}
+		
+// 		if($(this).parents('.rule').find('.rule_content').hasClass('rule_slide')){
+// 			$(this).parent().parent().find('.rule_content').removeClass('rule_slide');
+// 		} else {
+// 			$(this).parent().parent().find('.rule_content').addClass('rule_slide');
+// 		}
+		
+		$(this).parents('.rule').find('.content_wrap').slideToggle();
+		
+		if($(this).find('.arrow_rule').hasClass('arrow_rotata')){
+			$(this).find('.arrow_rule').removeClass('arrow_rotata');
+		} else {
+			$(this).find('.arrow_rule').addClass('arrow_rotata');
+		}
+	})
+	
+}
+
+function clickEvent(){
+	$('.option').add('.menu_mask').click(function(){
+		$('.lottery').toggle();
+		$('.menu_mask').toggle();
+		$('.menu_item').removeClass('active').children().css('display','none');
+		if($('.type-menu-toggle').hasClass('title_arrow_transform')){
+			$('.type-menu-toggle').removeClass('title_arrow_transform');
+		} else {
+			$('.type-menu-toggle').addClass('title_arrow_transform');
+		}
+	})
+	
+	$('.menu').click(function(){
+			$('.disable_block').addClass('show_disable_block');
+			setTimeout(function(){
+				$('.member_menu').addClass('show_member_menu');
+			},5);
+		})
+	
+	
+}
+</script>		
+
+</body></html>

@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>T7传统</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="../t7m/resource/img/peopleagent/favicon.ico">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="../t7m/resource/css/bootstrap.min.css">
+    <link rel="styleSheet" href="../t7m/resource/css/peopleagent/style.css">
+    <link rel="stylesheet" href="../t7m/resource/css/peopleagent/wonder.css" class="wonder-core">
+    <link rel="stylesheet" href="../t7m/resource/css/peopleagent/blue-style.css" class="wonder-style">
+    <link rel="stylesheet" href="../t7m/resource/css/peopleagent/red-style.css" class="wonder-style">
+
+    <script type="text/javascript" src="../t7m/resource/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../t7m/resource/js/popper.min.js"></script>
+    <script defer="" type="text/javascript" src="../t7m/resource/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../t7m/resource/assets/layer/js/layer.js"></script>
+    <link rel="stylesheet" href="http://210.244.18.147/t7m/resource/assets/layer/js/theme/default/layer.css?v=3.1.1" id="layuicss-layer">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+      function iosViewEvent() {
+        document.documentElement.addEventListener('touchstart', function (event) {
+          if (event.touches.length > 1) {
+            event.preventDefault();
+          }
+        }, false);
+
+        var lastTouchEnd = 0;
+        document.documentElement.addEventListener('touchend', function (event) {
+          var now = Date.now();
+          if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+          }
+          lastTouchEnd = now;
+        }, false);
+      }
+
+      window.onload = function () {
+        setTimeout(function () {
+          window.scrollTo(0, 1);
+        }, 100);
+
+        iosViewEvent();
+      }
+    </script>
+  </head>
+
+<body class="betting_view">
+  <header class="">
+    <div class="logo-wrap">
+      <a href="javascript:void(0);"><span class="logo ml-2"></span></a>
+    </div>
+    <!-- <div class="info-wrap">
+      <div>
+        <span class="coin"><i class="icon-coin"></i><span class="points">28,901.445</span>元</span>
+            </div>
+    </div> -->
+    <div>
+      <a class="header-login" href="javascript:void(0);" style="width: 30%;" onclick="goSignIn();"></a>
+      <a class="header-register" href="javascript:void(0);" style="width: 30%;" onclick="goRegisterIn();"></a>
+      <a class="btn-list" onclick="openElement('#sidebar');"><i class="fas fa-bars"></i></a>
+    </div>
+  </header>
+  <input id="contextPath" type="hidden" value=".">
+  <div class="lds-ring" style="display: none;">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <script>
+    gameCode = '';
+    contextPath = $('#contextPath').val();
+
+    $(function () {
+      //   setStyleFromCookie();
+      callHeaderTouch();
+      /*if ("false" !== "false") {
+        intervalBalance();
+      }*/
+    });
+
+    function callHeaderTouch() {
+      headerTouch();
+    }
+
+    function headerTouch() {
+      $('.account-box').on('touchstart', function () {
+        $(this).css('background', 'rgb(19, 63, 142)');
+      });
+
+      $('.account-box').on('touchend', function () {
+        $(this).removeAttr("style");
+      });
+    }
+
+    function intervalBalance() {
+      var balanceIvl = setInterval(function () {
+        if ("false" !== "true") {
+          clearInterval(balanceIvl);
+        }
+        getJsonData(document.getElementById("contextPath").value + '/Member/GetBalance', null, changeBalance);
+      }, 60000)
+    }
+
+    function changeBalance(response) {
+      $('header .coin').html('<i class="icon-coin"/>' + getCurrency(response) + '元');
+    }
+
+    function changeAfterBetBalance(response) {
+      $('.balance-bar .coin').html(getCurrency(response));
+    }
+
+  </script>
+  <div id="main-body" class="hall-body">
+
+
+
+    <style>
+      #news .collapse {
+        max-height: 100% !important;
+        opacity: 100 !important;
+      }
+
+      .slideshow-wrapper,
+      .slideshow {
+        height: 42vw;
+      }
+
+      .slideshow {
+        background-image: none;
+      }
+    </style>
+    <section class="slideshow-container swiper-container-horizontal">
+      <div class="slideshow-wrapper" style="transform: translate3d(-5760px, 0px, 0px); transition-duration: 0ms;">
+        <div class="slideshow swiper-slide swiper-slide-duplicate swiper-slide-next swiper-slide-duplicate-prev"
+          data-swiper-slide-index="1" style="width: 1920px;">
+          <img class="img-fluid" src="resource/images/index/tag_banner.png">
+        </div>
+
+
+
+        <div class="slideshow swiper-slide swiper-slide-duplicate-active" data-swiper-slide-index="0"
+          style="width: 1920px;">
+          <img class="img-fluid" src="resource/images/index/tag_banner.png">
+        </div>
+
+        <div class="slideshow swiper-slide swiper-slide-prev swiper-slide-duplicate-next" data-swiper-slide-index="1"
+          style="width: 1920px;">
+          <img class="img-fluid" src="resource/images/index/tag_banner.png">
+        </div>
+
+
+
+
+        <div class="slideshow swiper-slide swiper-slide-duplicate swiper-slide-active" data-swiper-slide-index="0"
+          style="width: 1920px;">
+          <img class="img-fluid" src="resource/images/index/tag_banner.png">
+        </div>
+      </div>
+      <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+    </section>
+    <div class="bar-news p-0"><i class="icon-news"></i><span class="marquee-wrap">
+        <marquee direction="left" align="midden">这是传统彩票-奖金组模式 T7站台：&nbsp;[这是传统彩票-奖金组模式 T7站台] [这是传统彩票-奖金组模式
+          T7站台]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</marquee>
+      </span></div>
+    <!-- news -->
+    <div class="mask" style="display: none;" id="news">
+      <div class="message_container flex-column">
+        <div class="message-header text-center"><span class="mt-2">最新公告</span>
+          <div class="close_icon"><a id="news_close" href="javascript:void(0);"></a></div>
+        </div>
+        <div class="aside item_2">
+          <div class="message_wrap"></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function marquee() {
+        $('.marquee-wrap').empty();
+        getJsonData2("http://gw.aliapple.net/api/Site/Marquee", {site:'23'}, function(response) {
+          if (response) {
+            var m = "";
+            $.each(response.data, function (i, v) {
+              m += v.title + '：&nbsp;' + v.content + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+            });
+            $('.marquee-wrap').append($('<marquee />', {'direction': 'left', 'align': 'midden'}).html(m));
+          }
+        });
+      }
+
+      $(function () {
+        marquee();
+
+        var mySwiper = new Swiper('.slideshow-container', {
+          init: true,
+          wrapperClass: 'slideshow-wrapper',
+          //allowTouchMove: false, 禁止互動事件
+          loop: ($('.swiper-slide').length > 1) ? true : false,
+          autoplay: {
+            speed: 2000,
+            delay: 6000,
+            disableOnInteraction: false
+          }
+        });
+
+        $('div.bar-news').click(function () {
+          getJsonData2("http://gw.aliapple.net/api/Site/Marquee", {siteID:'23'}, process);
+        });
+
+        $(window).resize(function () {
+          getGameSectionHei();
+        })
+      });
+
+      function getGameSectionHei() {
+        var one_h = $('.slideshow-wrapper').outerHeight();
+        var two_h = $('.menu-list').outerHeight();
+        var mar_h = $('.bar-news').outerHeight();
+        var other_h_one = one_h + two_h + mar_h;
+        $('#game-section').attr('style', 'height:' + 'calc(100% - ' + other_h_one + 'px)');
+        var three_h = $('.mode-list').outerHeight();
+        var other_h_two = three_h;
+        $('.game-container').attr('style', 'height:' + 'calc(100% - ' + other_h_two + 'px)');
+      }
+
+      function process(response) {
+        if (response.result) {
+          $('.message_wrap').empty();
+          $.each(response.data, function (i, v) {
+            $('.message_wrap').append($('<div />', { 'class': 'outside message_list text-center py-2' })
+              .append($('<a />', { 'class': 'message_title', 'data-toggle': 'collapse', 'href': '#news' + i }).append(v.title))
+              .append($('<div />', { 'class': 'text-left collapse', 'id': 'news' + i }).append($('<div />', { 'class': 'p-2' }).html(v.content.replace(/(?:\r\n|\r|\n)/g, '<br>').replace(/ /g, "&nbsp;")).append($('<div />', { 'class': 'message_date sub-title' }).html(moment(v.msgTime).format("YYYY-MM-DD HH:mm:ss")))))
+            );
+          });
+          $('#news').show();
+        }
+        $("#news_close").click(function () {
+          $('#news').hide();
+        });
+      }
+    </script>
+    <section class="menu-list">
+      <ul class="middle-menu">
+        <li><a class="btn-icon" href="javascript:void(0);" onclick="goDeposit();"><i class="icon icon-deposit"></i>快速充值</a></li>
+
+        <li><a class="btn-icon" href="javascript:void(0);" onclick="goDeposit();"><i class="icon icon-phone"></i>手机绑定</a></li>
+        <li><a class="btn-icon" href="javascript:void(0);" onclick="goDeposit();"><i class="icon icon-bet"></i>最近投注</a></li>
+        <li><a class="btn-icon" href="javascript:void(0);" onclick="goDeposit();"><i class="icon icon-prize"></i>开奖历史</a></li>
+        <!-- <li><a class="btn-icon" href="javascript:void(0);" onclick="goDeposit();"><i class="icon icon-deposit"></i></a>
+        </li>
+        <li><a class="btn-icon" href="javascript:void(0);" onclick="goWithdraw();"><i
+              class="icon icon-withdraw"></i></a></li>
+        <li><a class="btn-icon" href="javascript:void(0);" onclick="goGameWater();"><i
+              class="icon icon-game-water"></i></a></li>
+        <li><a class="btn-icon" href="javascript:void(0);" onclick="goTransfer();"><i
+              class="icon icon-rechange"></i></a></li> -->
+      </ul>
+    </section>
+    <div class="d-flex flex-wrap game-container" style="height:auto !important;">
+        <div class="game-container-title">推荐游戏</div>
+        <div class="col-4 game-option">
+          <a class="" href="javascript:void(0);" onclick="goGameMenuLottery();">
+            <img src="resource/images/index/banner_game_lottery.png">
+          </a>
+        </div>
+        <div class="col-4 game-option">
+          <a class="" href="javascript:void(0);">
+            <img src="resource/images/index/banner_game_live.png">
+          </a>
+        </div>
+        <div class="col-4 game-option">
+          <a class="" href="javascript:void(0);">
+            <img src="resource/images/index/banner_game_lottery.png">
+          </a>
+        </div>
+      <!-- <div class="col-6 game-option chess-option"><a class="" href="javascript:void(0);"
+          onclick="getGameList(54, 55, '乐游棋牌')"><img src="../t7m/resource/img/t3/game_lobby_poker.png"></a>
+      </div>
+      <div class="col-6 game-option"><a class="" href="javascript:void(0);" onclick="goGameMenuLottery();"><img
+            src="../t7m/resource/img/t3/game_lobby_lottery.png"></a></div>
+      <div class="col-6 game-option games-option"><a class="" href="javascript:void(0);"
+          onclick="getGameList(43, 44, 'CQ9电子')"><img src="../t7m/resource/img/t3/game_lobby_game.png"></a>
+      </div>
+      <div class="col-6 game-option"><a class="" href="javascript:void(0);"><img
+            src="../t7m/resource/img/t3/game_lobby_egame.png"></a></div> -->
+      <div class="col-12 pb-2"></div>
+    </div>
+    <section class="index_cqssc">
+      <div class="title"></div>
+      <div class="currment">
+        <span>20190527-066</span>
+        <br>
+        <b>重庆时时彩</b>
+      </div>
+      <div class="number">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+      </div>
+      <div class="next_cqssc">
+        距<span>20190527-067</span>截止<span>00:17:59</span>
+      </divc>
+    </section>
+    <section class="lottery">
+        <div class="lottery_title">传统彩票</div>
+        <div class="lottery_box">
+          <ul class="lottery_tab">
+            <li class="active"></li>
+            <li></li>
+          </ul>
+          <ul class="lottery_list tradition clear">
+            <li>
+              <a href="javascript:void(0);"><i></i><span>时时彩</span></a>
+            </li>
+            <li class="hot">
+              <a href="javascript:void(0);"><i></i><span>11选5</span></a>
+            </li>
+            <li class="hot">
+              <a href="javascript:void(0);"><i></i><span>赛车</span></a>
+            </li>
+            <li>
+              <a href="javascript:void(0);"><i></i><span>快三</span></a>
+            </li>
+            <li>
+              <a href="javascript:void(0);"><i></i><span>PC蛋蛋</span></a>
+            </li>
+            <li>
+              <a href="javascript:void(0);"><i></i><span>分分彩</span></a>
+            </li>
+            <li>
+              <a href="javascript:void(0);"><i></i><span>时时乐</span></a>
+            </li>
+            <li>
+              <a href="javascript:void(0);"><i></i><span>更多游戏</span></a>
+            </li>
+          </ul>
+          <ul class="lottery_list double clear">
+            <li class="hot">
+              <a href="javascript:void(0);"><i></i><span>赛车</span></a>
+            </li>
+            <li class="hot">
+              <a href="javascript:void(0);"><i></i><span>11选5</span></a>
+            </li>
+            <li>
+                <a href="javascript:void(0);"><i></i><span>时时彩</span></a>
+              </li>
+            <li>
+              <a href="javascript:void(0);"><i></i><span>快三</span></a>
+            </li>
+            <li>
+              <a href="javascript:void(0);"><i></i><span>PC蛋蛋</span></a>
+            </li>
+            <li>
+              <a href="javascript:void(0);"><i></i><span>分分彩</span></a>
+            </li>
+            <li>
+              <a href="javascript:void(0);"><i></i><span>时时乐</span></a>
+            </li>
+            <li>
+              <a href="javascript:void(0);"><i></i><span>更多游戏</span></a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <ul class="lottery_detail lottery_detail_cqssc">
+            <li><a href="javascript:void(0);"><i></i><span>重庆时时彩</span></a></li>
+            <li><a href="javascript:void(0);"><i></i><span>新疆时时彩</span></a></li>
+            <li><a href="javascript:void(0);"><i></i><span>腾讯分分彩</span></a></li>
+            <li><a href="javascript:void(0);"><i></i><span>腾讯分彩</span></a></li>
+          </ul>
+          <ul class="lottery_detail lottery_detail_11y5">
+            <li><a href="javascript:void(0);"><i></i><span>11选5</span></a></li>
+            <li><a href="javascript:void(0);"><i></i><span>新疆时时彩</span></a></li>
+            <li><a href="javascript:void(0);"><i></i><span>腾讯分分彩</span></a></li>
+            <li><a href="javascript:void(0);"><i></i><span>腾讯分彩</span></a></li>
+          </ul>
+          <ul class="lottery_detail lottery_detail_11y5">
+            <li><a href="javascript:void(0);"><i></i><span>北京赛车</span></a></li>
+            <li><a href="javascript:void(0);"><i></i><span>新疆时时彩</span></a></li>
+            <li><a href="javascript:void(0);"><i></i><span>腾讯分分彩</span></a></li>
+            <li><a href="javascript:void(0);"><i></i><span>腾讯分彩</span></a></li>
+          </ul>
+          <ul class="lottery_detail lottery_detail_11y5">
+            <li><a href="javascript:void(0);"><i></i><span>北京快三</span></a></li>
+            <li><a href="javascript:void(0);"><i></i><span>新疆时时彩</span></a></li>
+            <li><a href="javascript:void(0);"><i></i><span>腾讯分分彩</span></a></li>
+            <li><a href="javascript:void(0);"><i></i><span>腾讯分彩</span></a></li>
+          </ul>
+          <ul class="lottery_detail lottery_detail_11y5">
+            <li><a href="javascript:void(0);"><i></i><span>PC蛋蛋</span></a></li>
+            <li><a href="javascript:void(0);"><i></i><span>新疆时时彩</span></a></li>
+            <li><a href="javascript:void(0);"><i></i><span>腾讯分分彩</span></a></li>
+            <li><a href="javascript:void(0);"><i></i><span>腾讯分彩</span></a></li>
+          </ul>
+          <ul class="lottery_detail lottery_detail_11y5">
+            <li><a href="javascript:void(0);"><i></i><span>腾讯分分彩</span></a></li>
+            <li><a href="javascript:void(0);"><i></i><span>新疆时时彩</span></a></li>
+            <li><a href="javascript:void(0);"><i></i><span>腾讯分分彩</span></a></li>
+            <li><a href="javascript:void(0);"><i></i><span>腾讯分彩</span></a></li>
+          </ul>
+          <ul class="lottery_detail lottery_detail_11y5">
+            <li><a href="javascript:void(0);"><i></i><span>上海时时乐</span></a></li>
+            <li><a href="javascript:void(0);"><i></i><span>新疆时时彩</span></a></li>
+            <li><a href="javascript:void(0);"><i></i><span>腾讯分分彩</span></a></li>
+            <li><a href="javascript:void(0);"><i></i><span>腾讯分彩</span></a></li>
+          </ul>
+          <ul class="lottery_detail lottery_detail_11y5">
+            <li><a href="javascript:void(0);"><i></i><span>更多彩种</span></a></li>
+            <li><a href="javascript:void(0);"><i></i><span>新疆时时彩</span></a></li>
+            <li><a href="javascript:void(0);"><i></i><span>腾讯分分彩</span></a></li>
+            <li><a href="javascript:void(0);"><i></i><span>腾讯分彩</span></a></li>
+          </ul>
+        </div>
+    </section>
+    <script>
+      // 传统双面玩法切换
+      $('.lottery .lottery_tab li').click(function () {
+        var _index = $(this).index();
+        $(this).addClass('active').siblings().removeClass('active');
+        $('.lottery .lottery_list').hide();
+        $('.lottery .lottery_list').eq(_index).show();
+      });
+      //详细彩种切换显示
+      $('.lottery .lottery_list li').on('touchstart', function() {
+        var _index = $(this).index();
+        $('.lottery .lottery_list li').css('background','#404040')
+        $(this).css('background','#2B2B2B');
+        $('.lottery .lottery_detail').hide();
+        $('.lottery .lottery_detail').eq(_index).show();
+      });
+     
+    </script>
+    <!-- 电子游戏 -->
+<section class="egame clear">
+    <div class="egame_title">电子游戏</div>
+    <ul class="egame_list">
+      <li>
+        <a href="javascript:void(0);"><i></i><span>罗马竞技场</span></a>
+      </li>
+      <li>
+        <a href="javascript:void(0);"><i></i><span>金银岛</span></a>
+      </li>
+      <li>
+        <a href="javascript:void(0);"><i></i><span>开心农场</span></a>
+      </li>
+      <li>
+        <a href="javascript:void(0);"><i></i><span>快乐水果机</span></a>
+      </li>
+      <li>
+        <a href="javascript:void(0);"><i></i><span>财神</span></a>
+      </li>
+      <li>
+        <a href="javascript:void(0);"><i></i><span>雷神托尔</span></a>
+      </li>
+      <li>
+        <a href="javascript:void(0);"><i></i><span>恶魔侦查</span></a>
+      </li>
+      <li>
+        <a href="javascript:void(0);"><i></i><span></span></a>
+      </li>
+    </ul>
+  </section>
+  <!-- 体育 -->
+  <section class="sport clear">
+    <div class="sport_title">体育游戏</div>
+    <ul class="sport_list">
+      <li><a href="javascript:void(0);"><i></i><span>沙巴</span></a></li>
+      <li><a href="javascript:void(0);"><i></i><span>皇冠</span></a></li>
+      <li><a href="javascript:void(0);"><i></i><span>IM</span></a></li>
+      <li><a href="javascript:void(0);"><i></i><span>UG</span></a></li>
+    </ul>
+  </section>
+  <!-- 真人游戏 -->
+  <section class="egame clear live">
+    <div class="egame_title">真人游戏</div>
+    <ul class="egame_list">
+      <li><a href="javascript:void(0);"><i></i><span>AG国际</span></a></li>
+      <li><a href="javascript:void(0);"><i></i><span>AG旗舰</span></a></li>
+      <li><a href="javascript:void(0);"><i></i><span>BBIN</span></a></li>
+      <li><a href="javascript:void(0);"><i></i><span>MG</span></a></li>
+      <li><a href="javascript:void(0);"><i></i><span>BG</span></a></li>
+      <li><a href="javascript:void(0);"><i></i><span>AG多台</span></a></li>
+      <li><a href="javascript:void(0);"><i></i><span>OG</span></a></li>
+      <li><a href="javascript:void(0);"><i></i><span>TG</span></a></li>
+    </ul>
+  </section>
+  </div>
+  
+  <div class="container hidden" id="wallet-transfer">
+    <div class="text-white bg-dark row">
+      <div class="p-2 col-6 text-center">主要帐户</div>
+      <div class="p-2 col-6 text-center" id="total">0</div>
+    </div>
+    <div class="row text-center"><i class="fas fa-angle-down p-2 flex-fill"></i></div>
+    <div class="text-white bg-dark row" id="wallet">
+      <div class="p-2 col-6 text-center"></div>
+      <div class="p-2 col-6 text-center">0</div>
+    </div>
+    <form id="game-form">
+      <div class="form-group">
+        <input class="form-control my-2 text-center" type="hidden" name="platform" value="0" min="0">
+        <input class="form-control my-2 text-center" type="hidden" name="gameId" value="0" min="0">
+        <input class="form-control my-2 text-center" type="hidden" name="fromWalletId" value="0" min="0">
+        <input class="form-control my-2 text-center" type="hidden" name="toWalletId" value="0" min="0">
+        <input class="form-control my-2 text-center" type="number" name="amount" id="amount" value="0" min="0"
+          pattern="\d*">
+        <div class="justify-content-center row pt-1">
+          <button type="button" class="btn btn-sm btn-outline-danger mr-2" onclick="setAmount(this);">100</button>
+          <button type="button" class="btn btn-sm btn-outline-danger mr-2" onclick="setAmount(this);">500</button>
+          <button type="button" class="btn btn-sm btn-outline-danger mr-2" onclick="setAmount(this);">1000</button>
+          <button type="button" class="btn btn-sm btn-outline-danger mr-2" onclick="setAmount(this);">5000</button>
+          <button type="button" class="btn btn-sm btn-outline-danger" onclick="setAmount(this);">10000</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.6/css/swiper.min.css"> -->
+  <div class="game-hall" id="game-container">
+    <header class="">
+      <div class="go-back-wrap">
+        <a class="go-back" href="javascript:void(0);" onclick="closeElement('.game-hall')"><i
+            class="fas fa-chevron-left" style="margin-right: 3px;"></i>返回</a>
+      </div>
+      <div class="info-wrap">
+        <div><span class="title"></span></div>
+      </div>
+      <div></div>
+    </header>
+    <div class="home">
+      <div class="nav nav-pills nav-justified">
+        <a class="nav-item nav-link active" id="pills-all-tab" data-toggle="pill" href="#pills-all" role="tab"
+          aria-controls="pills-all" aria-selected="true">全部</a>
+        <span class="sep"></span>
+        <a class="nav-item nav-link" id="pills-popular-tab" data-toggle="pill" href="#pills-popular" role="tab"
+          aria-controls="pills-popular" aria-selected="true">热门</a>
+        <span class="sep"></span>
+        <a class="nav-item nav-link" id="pills-recent-tab" data-toggle="pill" href="#pills-recent" role="tab"
+          aria-controls="pills-recent" aria-selected="true">最近</a>
+      </div>
+      <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active games clearfix" id="pills-all" role="tabpanel"
+          aria-labelledby="pills-all-tab"></div>
+        <div class="tab-pane fade games clearfix" id="pills-popular" role="tabpanel"
+          aria-labelledby="pills-popular-tab"></div>
+        <div class="tab-pane fade games clearfix" id="pills-recent" role="tabpanel" aria-labelledby="pills-recent-tab">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="sidebar">
+    <div class="header">
+      <div class="mb-2 show-user flex-column">
+        <img class="rounded-circle" src="../t7m/resource/img/peopleagent/icon-user.jpg">
+        <span>游客</span>
+      </div>
+      <div class="show-coin">余额：<span class="points">0</span>元</div>
+      <div class="justify-content-between">
+        <button type="button" class="btn-icon charge-button" onclick="goDeposit();"></button>
+        <button type="button" class="btn-icon withdraw-button" onclick="goWithdraw();"></button>
+      </div>
+      <div class="justify-content-center">
+        <a class="d-inline-block transfer-button" href="javascript:void(0);" onclick="goTransfer();"></a>
+      </div>
+    </div>
+    <div class="list-menu-wrap" style="height:626.133px;">
+      <ul class="list-menu">
+        <li>
+          <a class="btn-icon" onclick="toggleSubmenu()">
+            <i class="icon icon-account"></i>
+            <span>帐户中心</span>
+            <i class="fas fa-caret-right"></i>
+          </a>
+          <ul>
+            <li><a class="obstruct" href="./mobile/personal/changeLoginPassword.html">修改密码</a></li>
+            <li><a class="obstruct" href="./mobile/personal/changeWithdrawPassword.html">提款密码</a></li>
+            <li><a class="obstruct" href="./mobile/personal/bankCardManagement.html">银行卡管理</a></li>
+            <li><a class="obstruct" href="./mobile/personal/myReward.html">个人总览</a></li>
+          </ul>
+        </li>
+        <li>
+          <a class="btn-icon" onclick="toggleSubmenu()">
+            <i class="icon icon-funds"></i>
+            <span>资金管理</span>
+            <i class="fas fa-caret-right"></i>
+          </a>
+          <ul>
+            <li><a class="obstruct" href="./mobile/personal/deposit.html">充值</a></li>
+            <li><a class="obstruct" href="./mobile/personal/withdraw.html">提款</a></li>
+            <li><a class="obstruct" href="./mobile/personal/transfer.html">钱包转换</a></li>
+            <li><a class="obstruct" href="./mobile/personal/dwRecord.html">充提记录</a></li>
+            <li><a class="obstruct" href="./mobile/personal/acRecord.html">帐变记录</a></li>
+            <li><a class="obstruct" href="./mobile/personal/tRecord.html">转账记录</a></li>
+          </ul>
+        </li>
+        <li>
+          <a class="btn-icon" onclick="toggleSubmenu()">
+            <i class="icon icon-game-record"></i>
+            <span>游戏记录</span>
+            <i class="fas fa-caret-right"></i>
+          </a>
+          <ul>
+            <li><a class="obstruct" href="./mobile/order_list.html">个人投注</a></li>
+            <li><a class="obstruct" href="./mobile/personal/gameWater.html">游戏流水</a></li>
+          </ul>
+        </li>
+        <li><a class="btn-icon" href="javascript:void(0);" onclick="goRule();"><i
+              class="icon icon-game-rule"></i><span>彩票规则</span></a></li>
+        <li><a class="btn-icon" href="javascript:void(0);" onclick="goPromotion();"><i
+              class="icon icon-promotion"></i><span>优惠活动</span></a></li>
+        <li><a class="btn-icon" href="javascript:void(0);" onclick="goCustomerService();"><i
+              class="icon icon-customer-service"></i><span>客服</span></a></li>
+        <li><a class="btn-icon" href="javascript:void(0);" onclick="goLogout();"><i
+              class="icon icon-exit"></i><span>登出</span></a></li>
+      </ul>
+    </div>
+    <div class="d-flex justify-content-around footer">
+      <div class="d-flex align-items-center"><i
+          class="d-inline-block s-icon icon-copyright mr-1"></i><span>版本号：V1.0</span></div>
+      <div class="d-flex align-items-center" onclick="clearCache();"><i
+          class="d-inline-block s-icon icon-clean mr-1"></i><span>清除缓存</span></div>
+    </div>
+  </div>
+  <a class="sidebar-mask" onclick="closeElement('#sidebar')"></a>
+  <!-- message -->
+  <div class="mask" style="display: none;">
+    <div class="message_container flex-column">
+      <div class="message-header text-center"><span class="mt-2">讯息中心</span>
+        <div class="close_icon"><a id="icon_close" href="javascript:void(0);"></a></div>
+      </div>
+      <div class="aside item_2">
+        <div class="message_wrap"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+      resizeSidebar();
+      messageEvent();
+
+      $('ul.list-menu ul li').click(function () {
+        location.href = $(this).find('a').first().attr('href');
+        return false;
+      });
+    });
+
+    function resizeSidebar() {
+      var h = $('#sidebar').outerHeight() - ($('#sidebar .header').outerHeight() + $('#sidebar .footer').outerHeight() + 5);
+      $('#sidebar .list-menu-wrap').attr('style', 'height:' + h + 'px;');
+    }
+
+    function messageEvent() {
+      if ("false" === "true") {
+        getMessageCount();
+      }
+      openMessageBind();
+      closeMessageBind();
+    }
+
+    function getMessageCount() {
+      getJsonData("http://gw.aliapple.net/api/Member/GetUserMessage", null, setMessageCount);
+    }
+
+    function getMessage() {
+      getJsonData("http://gw.aliapple.net/api/Member/GetUserMessage", null, setMessage);
+    }
+
+    function setMessageCount(response) {
+      var count = 0;
+      if (response.data) {
+        $.each(response.data, function (entryIdx, entry) {
+          if (entry['msgStatus'] == 1) count++;
+        });
+      }
+      $('#message_count').text(count);
+    }
+
+    function setMessage(response) {
+      $('.message_wrap').empty();
+      var count = 0;
+      var title = '';
+      var conternt = '尚無訊息';
+      var msgTime = '';
+      if (response.data) {
+        $.each(response.data, function (entryIdx, entry) {
+          title = entry['msgTitle'];
+          conternt = entry['msgContent'];
+          msgTime = entry['msgTime'];
+          var target = $('<div />', { 'class': 'outside' })
+            .append($('<div />', { 'class': 'message_list' })
+              .append($('<div />', { 'class': 'message_title text-truncate' }).text(title))
+              .append($('<div />', { 'class': 'message_content' }).text(conternt))
+              .append($('<div />', { 'class': 'message_date sub-title' }).text(msgTime)));
+          if (entry['msgStatus'] == 1) {
+            target.append($('<div />', { 'class': 'message_status' })
+              .append($('<a />', { 'class': 'unread', 'href': '#', 'onClick': 'readMessage(' + entry['msgID'] + ', this)' }).text('标示为已读')));
+            count++;
+          } else {
+            target.find('.message_list').append($('<div />', { 'class': 'golgol' }));
+          }
+          target.appendTo('.message_wrap');
+        });
+        $('#message_count').text(count);
+      } else {
+        $('.message_count_wrap').remove();
+      }
+      $('.mask').show();
+    }
+
+    function readMessage(id, a) {
+      a.classList.add("marked");
+
+      var map = new Object();
+      map['msgId'] = id;
+      getJsonData("http://gw.aliapple.net/api/Member/UpdateUserMessage", map, updateMessageStatus);
+    }
+
+    function updateMessageStatus() {
+      var mark = document.getElementsByClassName("marked");
+      for (var i = 0; i < mark.length; i++) {
+        $(mark[i]).parents('.outside').find('.message_list').append($('<div />', { 'class': 'golgol' }));
+        mark[i].innerHTML = '';
+        mark[i].classList.remove("unread");
+        mark[i].classList.remove("marked");
+      }
+      $('#message_count').html(document.getElementsByClassName("unread").length);
+    }
+
+    function openMessageBind() {
+      $('.trigger_message').click(function () {
+        if ("false" === "true") {
+          getMessage();
+        } else {
+          layer.open({
+            title: '警告',
+            content: '请先登录',
+            icon: 0,
+            btnAlign: 'c',
+            yes: function (index, layero) {
+              goSignIn(index);
+            }
+          });
+        }
+      });
+    }
+
+    function closeMessageBind() {
+      $('#icon_close').click(function () {
+        $('.mask').hide();
+        $('.member_menu').removeClass('member_menu_reduce');
+      });
+    }
+
+    function refreshPoint() {
+      if ("false" === "true") {
+        getJsonData("http://gw.aliapple.net/api/Member/RefreshUserWallets", null, function (response) {
+          if (response.result) {
+            var w = response.data.find(function (item, index, array) {
+              return item.walletID == 0;
+            });
+            $('.points').html(getCurrency(w.balance));
+          } else {
+            showErrorResult(response.message);
+          }
+        }, null, true);
+      }
+    }
+  </script>
+  <script type="text/javascript" src="../t7m/resource/assets/socket.io-client/socket.io.slim.js"></script>
+  <script type="text/javascript" src="../t7m/resource/js/moment-with-locales.min.js"></script>
+  <script type="text/javascript" src="../t7m/resource/js/swiper.min.js"></script>
+  <script type="text/javascript" src="../t7m/resource/js/peopleagent/custom.js"
+    data-url="https://x20.d7601.com"></script>
+
+  <ul class="bottom-menu">
+      <li class="active"><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-hall"></i><span>首页</span></a></li>
+            <li class=""><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-lottery"></i><span>彩票</span></a></li>
+            <li class=""><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-promotion"></i><span>优惠</span></a></li>
+            <li class=""><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-mine"></i><span>我的</span></a></li>
+    <!-- <li class="active"><a class="btn-icon" href="javascript:void(0);" onclick="goHall();"><i
+          class="icon icon-hall"></i><span>大厅</span></a></li>
+    <li class=""><a class="btn-icon" href="javascript:void(0);" onclick="goCustomerService();"><i
+          class="icon icon-customer-service"></i><span>客服</span></a></li>
+    <li class=""><a class="btn-icon" href="javascript:void(0);" onclick="goCenter();"><i
+          class="icon icon-manage"></i><span>管理中心</span></a></li>
+    <li class=""><a class="btn-icon" href="javascript:void(0);" onclick="goLotteryRecord();"><i
+          class="icon icon-nav-game-result"></i><span>开奖结果</span></a></li>
+    <li class=""><a class="btn-icon " href="javascript:void(0);" onclick="goPromotion();"><i
+          class="icon icon-nav-promotion"></i><span>活动</span></a></li> -->
+  </ul>
+
+  <script>
+    $(function () {
+      wsClient();
+      callFooterTouch();
+    });
+
+    function wsClient() {
+      initialWS();
+
+      var interval = setInterval(function () {
+        if (ws.connected) {
+          clearInterval(interval);
+          if ("false" === "true") {
+            joinWS('23', '', '');
+          } else {
+            joinWS('23');
+          }
+        }
+      }, 1000);
+    }
+
+    function callFooterTouch() {
+      footerTouch();
+    }
+
+    function footerTouch() {
+      $('.bottom-menu li').on('touchstart', function () {
+        $(this).css('background', 'rgba(78, 78, 76, 0.7)');
+        $(this).addClass('active').siblings().removeClass('active');
+      });
+
+      $('.bottom-menu li').on('touchend', function () {
+        $(this).removeAttr("style");
+      });
+    }
+  </script>
+  <script>
+    var dragItem, container;
+    var active = false;
+    var currentX;
+    var currentY;
+    var initialX;
+    var initialY;
+    var xOffset = 0;
+    var yOffset = 0;
+
+    function dragStart(e) {
+      if (e.type === "touchstart") {
+        initialX = e.touches[0].clientX - xOffset;
+        initialY = e.touches[0].clientY - yOffset;
+      } else {
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+      }
+
+      if (e.target === dragItem) {
+        active = true;
+      }
+    }
+
+    function dragEnd(e) {
+      initialX = currentX;
+      initialY = currentY;
+
+      active = false;
+    }
+
+    function drag(e) {
+      if (active) {
+        e.preventDefault();
+
+        if (e.type === "touchmove") {
+          currentX = e.touches[0].clientX - initialX;
+          currentY = e.touches[0].clientY - initialY;
+        } else {
+          currentX = e.clientX - initialX;
+          currentY = e.clientY - initialY;
+        }
+
+        xOffset = currentX;
+        yOffset = currentY;
+
+        console.log(xOffset);
+        console.log(yOffset);
+        setTranslate(currentX, currentY, dragItem);
+        setTranslate(currentX, currentY, $(dragItem).siblings('.btn-list')[0]);
+      }
+    }
+
+    function setTranslate(xPos, yPos, el) {
+      el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+    }
+
+    function resize() {
+      var h = $('.betting_view').outerHeight() - ($('.slideshow-container').outerHeight() + $('.bar-news').outerHeight() + $('.menu-list').outerHeight() + 90);
+      $('.game-container').attr('style', 'height:' + h + 'px;');
+    }
+
+    var sp = {}, wallet, autoTransType, recommend, topG;
+    function getPlatform() {
+      getJsonData2("http://gw.aliapple.net/api/Site/PlatformList", {siteID:'23'}, platformCallBack, null, true);
+    }
+
+    function getGame() {
+      getJsonData2("http://gw.aliapple.net/api/Resource/RecommendGameList", {siteID:'23'}, function (response) {
+        if (response.result) {
+          recommend = response.data.data;
+        }
+      });
+
+      if ("false" === "true") {
+        getJsonData("../t7m/resource/TopGame", null, function (response) {
+          if (response.result) {
+            topG = response.data.data;
+          }
+        });
+      }
+    }
+
+    function getWallet() {
+      if ("false" === "true") {
+        getJsonData("http://gw.aliapple.net/api/Member/GetUserInfo", null, function (response) {
+          if (response.result) {
+            autoTransType = response.data.info.autoTransType;
+          }
+        });
+      }
+    }
+
+    var chess = [13];
+    var game = [1];
+    function platformCallBack(response) {
+      if (response.result) {
+        var data = JSON.parse(response.data);
+        data.forEach(function (element, index) {
+          if (element["status"] === 2) return;
+          if (element["parent"] === 0) {
+            sp[element["spID"]] = element["spNameCN"];
+          } else if (chess.includes(element["gameType"]) && element["spID"] == 55) {
+            //$('#pills-chess').append($('<div />', {'class': 'game-wrap'}).append($('<a />', {'href': 'javascript:void(0);', 'onclick': 'getGameList(' + element["parent"] + ', ' + element["spID"] + ', "' + element["spNameCN"] + '")'}).append($('<div />', {'class': 'game'}).append($('<img />', {'src': '/t7m/resource/img/t3/logo-' + element["parent"] + '.png'})).append($('<div />', {'class': 'title'}).html(element["spNameCN"])))));
+            $('.chess-option a').attr('onclick', 'getGameList(' + element["parent"] + ', ' + element["spID"] + ', "' + element["spNameCN"] + '")');
+          } else if (game.includes(element["gameType"]) && element["spID"] == 44) {
+            $('.games-option a').attr('onclick', 'getGameList(' + element["parent"] + ', ' + element["spID"] + ', "' + element["spNameCN"] + '")');
+          }
+        });
+      }
+    }
+
+    function getGameList(id, spid, name) {
+      $('.game-hall header .title').empty();
+      $('#pills-all').empty();
+      $('#pills-popular').empty();
+      $('#pills-recent').empty();
+
+      $('.game-hall header .title').html(name);
+      $('.game-hall header .title').attr("id", id);
+      $('.game-hall header .title').attr("sp", spid);
+      getJsonData("../t7m/resource/OverviewGameList", { "platform": id }, function (response) {
+        if (response.result) {
+          response.data.data.forEach(function (element) {
+            var spid = $('.game-hall header .title').attr("sp");
+            if (element["spID"] == spid) {
+              if (element["platformType"] === 13) {
+                $('#pills-all').append($('<div />', { 'class': 'game-wrap' }).append($('<a />', { 'href': 'javascript:void(0);', 'onclick': 'enterGame(true, ' + element["platformType"] + ', ' + element["gameID"] + ');' }).append($('<div />', { 'class': 'game' }).append($('<img />', { 'src': 'https://image.jp73888.com/images/games/' + element["platformType"] + '/' + element["gameID"] + '.jpg' })).append($('<div />', { 'class': 'title text-truncate' }).html(element["gameName"])))));
+              } else {
+                $('#pills-all').append($('<div />', { 'class': 'game-wrap' }).append($('<a />', { 'href': 'javascript:void(0);', 'onclick': 'enterGame(true, ' + element["platformType"] + ', ' + element["gameID"] + ');' }).append($('<div />', { 'class': 'game' }).append($('<img />', { 'src': 'https://image.jp73888.com/images/games/' + element["platformType"] + '/' + element["gameID"] + '.png' })).append($('<div />', { 'class': 'title text-truncate' }).html(element["gameName"])))));
+              }
+            }
+          });
+
+          var h = $('.mainer').outerHeight() - $('.game-hall .nav-pills').outerHeight() + 35;
+          $('.game-hall .tab-pane').attr('style', 'height:' + h + 'px;');
+          openElement('.game-hall');
+        } else {
+          showErrorResult(response.message);
+        }
+      }, null, true);
+
+      // recommend
+      var tmp = recommend.filter(function (game) { return game.spID == spid });
+      tmp.forEach(function (element) {
+        if (element["mspID"] === 13) {
+          $('#pills-popular').append($('<div />', { 'class': 'game-wrap' }).append($('<a />', { 'href': 'javascript:void(0);', 'onclick': 'enterGame(true, ' + element["mspID"] + ', ' + element["gameID"] + ');' }).append($('<div />', { 'class': 'game' }).append($('<img />', { 'src': 'https://image.aliapple.net/images/games/' + element["mspID"] + '/' + element["gameID"] + '.jpg' })).append($('<div />', { 'class': 'title text-truncate' }).html(element["gameNameCN"])))));
+        } else {
+          $('#pills-popular').append($('<div />', { 'class': 'game-wrap' }).append($('<a />', { 'href': 'javascript:void(0);', 'onclick': 'enterGame(true, ' + element["mspID"] + ', ' + element["gameID"] + ');' }).append($('<div />', { 'class': 'game' }).append($('<img />', { 'src': 'https://image.aliapple.net/images/games/' + element["mspID"] + '/' + element["gameID"] + '.png' })).append($('<div />', { 'class': 'title text-truncate' }).html(element["gameNameCN"])))));
+        }
+      });
+
+      // top
+      if ("false" === "true") {
+        tmp = topG.filter(function (game) { return game.spID == spid });
+        tmp.forEach(function (element) {
+          if (element["mspID"] === 13) {
+            $('#pills-recent').append($('<div />', { 'class': 'game-wrap' }).append($('<a />', { 'href': 'javascript:void(0);', 'onclick': 'enterGame(true, ' + element["mspID"] + ', ' + element["gameID"] + ');' }).append($('<div />', { 'class': 'game' }).append($('<img />', { 'src': 'https://image.aliapple.net/images/games/' + element["mspID"] + '/' + element["gameID"] + '.jpg' })).append($('<div />', { 'class': 'title text-truncate' }).html(element["gameNameCN"])))));
+          } else {
+            $('#pills-recent').append($('<div />', { 'class': 'game-wrap' }).append($('<a />', { 'href': 'javascript:void(0);', 'onclick': 'enterGame(true, ' + element["mspID"] + ', ' + element["gameID"] + ');' }).append($('<div />', { 'class': 'game' }).append($('<img />', { 'src': 'https://image.aliapple.net/images/games/' + element["mspID"] + '/' + element["gameID"] + '.png' })).append($('<div />', { 'class': 'title text-truncate' }).html(element["gameNameCN"])))));
+          }
+        });
+      }
+    }
+
+    function exitGame() {
+      showWaringResult('是否离开游戏？', function () {
+        if (autoTransType == 2) {
+          getJsonData("http://gw.aliapple.net/api/Member/AllTransferOutWallet", null, refresh, null, true);
+          layer.msg('正在离开游戏', { icon: 16, time: 5000, shade: 0.01 });
+        } else {
+          layer.msg('正在离开游戏', { icon: 16, shade: 0.01 }, refresh);
+        }
+      });
+    }
+
+    function showGame(url) {
+      $('.game-hall').empty();
+      $('.game-hall').append($('<div />', { 'class': 'resp-page' }).append($('<div />', { 'class': 'resp-container' }).append($('<iframe />', { 'class': 'resp-iframe', 'src': url, 'frameborder': '0', 'frameborder': '0', 'sandbox': 'allow-same-origin allow-scripts allow-forms allow-popups', 'scrolling': 'no' }))));
+
+      $('<div />', { 'class': 'float-btn-group' }).append($('<button />', { 'class': 'btn-float btn-triger bg-white d-inline-flex justify-content-center', 'id': 'drag-item' }).append($('<i />', { 'class': 'fas fa-plus' })))
+        .append($('<div />', { 'class': 'btn-list' })
+          .append((autoTransType == 2) ? $('<a />', { 'class': 'btn-float', 'href': 'javascript:void(0)' }) : $('<a />', { 'class': 'btn-float', 'href': 'javascript:void(0)', 'onclick': 'transferInGame();' }).append($('<i />', { 'class': 'fa fa-wallet text-white' })))
+          .append($('<a />', { 'class': 'btn-float', 'href': 'javascript:void(0)', 'onclick': 'exitGame();', 'data-title': '离开游戏' }).append($('<i />', { 'class': 'fa fa-sign-out-alt text-white' })))
+          .append($('<div />', { 'class': 'label-list' })
+            .append((autoTransType == 2) ? $('<div />', { 'class': 'label-container' }) : $('<div />', { 'class': 'label-container' }).append($('<div />', { 'class': 'label-text' }).html('钱包转换')).append($('<i />', { 'class': 'fa fa-play label-arrow' })))
+            .append($('<div />', { 'class': 'label-container' }).append($('<div />', { 'class': 'label-text' }).html('离开游戏')).append($('<i />', { 'class': 'fa fa-play label-arrow' })))
+          )
+        ).appendTo($('.game-hall'));
+
+      $('.btn-triger').click(function () {
+        $(this).closest('.float-btn-group').toggleClass('open');
+      });
+
+      dragItem = document.querySelector("#drag-item");
+      container = document.querySelector("#game-container");
+
+      container.addEventListener("touchstart", dragStart, false);
+      container.addEventListener("touchend", dragEnd, false);
+      container.addEventListener("touchmove", drag, false);
+
+      container.addEventListener("mousedown", dragStart, false);
+      container.addEventListener("mouseup", dragEnd, false);
+      container.addEventListener("mousemove", drag, false);
+    }
+
+    function gameGateway() {
+      getJsonData('http://gw.aliapple.net/api/Resource/GameGateway', $('#game-form').serialize(), function (response) {
+        if (response.result) {
+          showGame(response.data.openGameUrl);
+        } else {
+          showErrorResult(response.message);
+        }
+      }, null, true);
+    }
+
+    function transfer() {
+      getJsonData('http://gw.aliapple.net/api/Member/TransferWallet', $('#game-form').serialize(), function (response) {
+        if (response.result) {
+          showSuccessResult(response.message);
+        } else {
+          showErrorResult(response.message);
+        }
+      }, null, true);
+    }
+
+    function showTransfer(yesCallBack) {
+      layer.open({
+        type: 1,
+        area: '90vw',
+        title: '钱包转换',
+        content: $('#wallet-transfer'),
+        btn: ['确定', '取消'],
+        btnAlign: 'c',
+        yes: function (index, layero) {
+          if (yesCallBack) {
+            layer.close(index);
+            yesCallBack(index);
+          }
+          else layer.close(index);
+        },
+        btn2: function () {
+          layer.closeAll();
+        }
+      });
+    }
+
+    function transferInGame() {
+      getJsonData("http://gw.aliapple.net/api/Member/RefreshUserWallets", null, function (response) {
+        if (response.result) {
+          wallet = response.data;
+          var d = wallet.find(function (item, index, array) {
+            return item.walletID == 0;
+          });
+          $('#total').html(getCurrency(d.balance));
+
+          d = wallet.find(function (item, index, array) {
+            return item.walletID == $('#game-form input[name=platform]').val();
+          });
+          $('#wallet div:nth-child(2)').html(getCurrency(d.balance));
+          $('#game-form input[name=amount]').val(0);
+
+          showTransfer(transfer);
+        } else {
+          showErrorResult(response.message);
+        }
+      }, null, true);
+    }
+
+    function enterGame(trans, id, gid) {
+      if ("false" === "true") {
+        if (trans) {
+          $('#game-form input[name=toWalletId]').val(id);
+          $('#game-form input[name=platform]').val(id);
+          $('#game-form input[name=gameId]').val(gid);
+          $('#game-form input[name=amount]').val(0);
+          $('#wallet div:nth-child(1)').html(sp[id]);
+
+          if (autoTransType == 1) {
+            // refresh wallet
+            getJsonData("http://gw.aliapple.net/api/Member/RefreshUserWallets", null, function (response) {
+              if (response.result) {
+                wallet = response.data;
+
+                var d = wallet.find(function (item, index, array) {
+                  return item.walletID == 0;
+                });
+
+                $('#total').html(getCurrency(d.balance));
+                d = wallet.find(function (item, index, array) {
+                  return item.walletID == id;
+                });
+
+                $('#wallet div:nth-child(2)').html(getCurrency(d.balance));
+
+                showTransfer(gameGateway);
+              } else {
+                showErrorResult(response.message);
+              }
+            }, null, true);
+          } else {
+            var map = new Object();
+            map["platform"] = id;
+            map["gameId"] = gid;
+            getJsonData('http://gw.aliapple.net/api/Resource/GameGateway', map, function (response) {
+              if (response.result) {
+                showGame(response.data.openGameUrl);
+              } else {
+                showErrorResult(response.message);
+              }
+            }, null, true);
+          }
+        } else {
+          var map = new Object();
+          map['platform'] = id;
+          map['gameId'] = gid;
+          getJsonData('http://gw.aliapple.net/api/Resource/GameGateway', map, function (response) {
+            if (response.result) {
+              showGame(response.data.openGameUrl);
+            } else {
+              showErrorResult(response.message, null);
+            }
+          }, null, true);
+        }
+      } else {
+        showErrorResult('进行游戏前，请先登入！', goSignIn, 3);
+      }
+    }
+
+    function setAmount(element) {
+      var v = $(element).parents('.form-group').find('input[name=amount]').val();
+      $(element).parents('.form-group').find('input[name=amount]').val(Number(v) + Number($(element).text()));
+    }
+
+    function refreshGameList() {
+      if ($(".game-hall").hasClass("active")) {
+        $('#pills-all').empty();
+        $('#pills-popular').empty();
+        $('#pills-recent').empty();
+
+        var id = $('.game-hall header .title').attr("id");
+        var spid = $('.game-hall header .title').attr("sp");
+
+        getJsonData("../t7m/resource/OverviewGameList", { "platform": id }, function (response) {
+          if (response.result) {
+            response.data.data.forEach(function (element) {
+              var spid = $('.game-hall header .title').attr("sp");
+              if (element["spID"] == spid) {
+                if (element["platformType"] === 13) {
+                  $('#pills-all').append($('<div />', { 'class': 'game-wrap' }).append($('<a />', { 'href': 'javascript:void(0);', 'onclick': 'enterGame(true, ' + element["platformType"] + ', ' + element["gameID"] + ');' }).append($('<div />', { 'class': 'game' }).append($('<img />', { 'src': 'https://image.aliapple.net/images/games/' + element["platformType"] + '/' + element["gameID"] + '.jpg' })).append($('<div />', { 'class': 'title text-truncate' }).html(element["gameName"])))));
+                } else {
+                  $('#pills-all').append($('<div />', { 'class': 'game-wrap' }).append($('<a />', { 'href': 'javascript:void(0);', 'onclick': 'enterGame(true, ' + element["platformType"] + ', ' + element["gameID"] + ');' }).append($('<div />', { 'class': 'game' }).append($('<img />', { 'src': 'https://image.aliapple.net/images/games/' + element["platformType"] + '/' + element["gameID"] + '.png' })).append($('<div />', { 'class': 'title text-truncate' }).html(element["gameName"])))));
+                }
+              }
+            });
+          } else {
+            showErrorResult(response.message);
+          }
+        }, null, true);
+
+        getJsonData2("http://gw.aliapple.net/api/Resource/RecommendGameList", {siteID:'23'}, function (response) {
+          if (response.result) {
+            recommend = response.data.data;
+            var tmp = recommend.filter(function (game) { return game.spID == spid });
+            tmp.forEach(function (element) {
+              if (element["mspID"] === 13) {
+                $('#pills-popular').append($('<div />', { 'class': 'game-wrap' }).append($('<a />', { 'href': 'javascript:void(0);', 'onclick': 'enterGame(true, ' + element["mspID"] + ', ' + element["gameID"] + ');' }).append($('<div />', { 'class': 'game' }).append($('<img />', { 'src': 'https://image.aliapple.net/images/games/' + element["mspID"] + '/' + element["gameID"] + '.jpg' })).append($('<div />', { 'class': 'title text-truncate' }).html(element["gameNameCN"])))));
+              } else {
+                $('#pills-popular').append($('<div />', { 'class': 'game-wrap' }).append($('<a />', { 'href': 'javascript:void(0);', 'onclick': 'enterGame(true, ' + element["mspID"] + ', ' + element["gameID"] + ');' }).append($('<div />', { 'class': 'game' }).append($('<img />', { 'src': 'https://image.aliapple.net/images/games/' + element["mspID"] + '/' + element["gameID"] + '.png' })).append($('<div />', { 'class': 'title text-truncate' }).html(element["gameNameCN"])))));
+              }
+            });
+          }
+        });
+
+        if ("false" === "true") {
+          getJsonData("../t7m/resource/TopGame", null, function (response) {
+            if (response.result) {
+              topG = response.data.data;
+              tmp = topG.filter(function (game) { return game.spID == spid });
+              tmp.forEach(function (element) {
+                if (element["mspID"] === 13) {
+                  $('#pills-recent').append($('<div />', { 'class': 'game-wrap' }).append($('<a />', { 'href': 'javascript:void(0);', 'onclick': 'enterGame(true, ' + element["mspID"] + ', ' + element["gameID"] + ');' }).append($('<div />', { 'class': 'game' }).append($('<img />', { 'src': 'https://image.aliapple.net/images/games/' + element["mspID"] + '/' + element["gameID"] + '.jpg' })).append($('<div />', { 'class': 'title text-truncate' }).html(element["gameNameCN"])))));
+                } else {
+                  $('#pills-recent').append($('<div />', { 'class': 'game-wrap' }).append($('<a />', { 'href': 'javascript:void(0);', 'onclick': 'enterGame(true, ' + element["mspID"] + ', ' + element["gameID"] + ');' }).append($('<div />', { 'class': 'game' }).append($('<img />', { 'src': 'https://image.aliapple.net/images/games/' + element["mspID"] + '/' + element["gameID"] + '.png' })).append($('<div />', { 'class': 'title text-truncate' }).html(element["gameNameCN"])))));
+                }
+              });
+            }
+          });
+        }
+      }
+    }
+
+    $(function () {
+      resize();
+      getPlatform();
+      getGame();
+      getWallet();
+    });
+  </script>
+
+</body>
+
+</html>

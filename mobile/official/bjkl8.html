@@ -1,0 +1,1944 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>T7传统</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../../t7m/resource/img/peopleagent/favicon.ico">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../../t7m/resource/css/bootstrap.min.css">
+    <link rel="styleSheet" href="../../../t7m/resource/css/peopleagent/style.css">
+    <link rel="stylesheet" href="../../../t7m/resource/css/peopleagent/wonder.css" class="wonder-core">
+    <link rel="stylesheet" href="../../../t7m/resource/css/peopleagent/blue-style.css" class="wonder-style">
+    <link rel="stylesheet" href="../../../t7m/resource/css/peopleagent/red-style.css" class="wonder-style">
+
+    <script type="text/javascript" src="../../../t7m/resource/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../t7m/resource/js/popper.min.js"></script>
+    <script defer="" type="text/javascript" src="../../../t7m/resource/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../t7m/resource/assets/layer/js/layer.js"></script>
+    <link rel="stylesheet" href="http://210.244.18.147/t7m/resource/assets/layer/js/theme/default/layer.css?v=3.1.1" id="layuicss-layer">
+
+    <script type="text/javascript">
+        function iosViewEvent() {
+            document.documentElement.addEventListener('touchstart', function(event) {
+                if (event.touches.length > 1) {
+                    event.preventDefault();
+                }
+            }, false);
+
+            var lastTouchEnd = 0;
+            document.documentElement.addEventListener('touchend', function(event) {
+                var now = Date.now();
+                if (now - lastTouchEnd <= 300) {
+                    event.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
+        }
+
+        window.onload = function() {
+            setTimeout(function() {
+                window.scrollTo(0, 1);
+            }, 100);
+
+            iosViewEvent();
+        }
+    </script>
+</head>
+
+<body class="betting_view">
+    <header class="">
+        <div class="go-back-wrap">
+            <a class="go-back" href="javascript:void(0);" onclick="history.go(-1)">
+                <i class="fas fa-chevron-left" style="margin-right: 3px;"></i>
+                返回
+            </a>
+        </div>
+        <div class="info-wrap">
+            <div>
+                <span class="mode-ico">标</span>
+                <span class="title">PC蛋蛋</span>
+                <span class="game-arrow"></span>
+            </div>
+        </div>
+        <div>
+            <a class="btn-list" onclick="openElement('#sidebar');">
+                <i class="fas fa-bars"></i>
+            </a>
+        </div>
+    </header>
+    <input id="contextPath" type="hidden" value="/t7m">
+    <div class="lds-ring" style="display: none;">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <script>
+        gameCode = 'bjkl8';
+        contextPath = $('#contextPath').val();
+
+        $(function() {
+            //   setStyleFromCookie();
+            callHeaderTouch();
+            /*if ("true" !== "false") {
+              intervalBalance();
+            }*/
+        });
+
+        function callHeaderTouch() {
+            headerTouch();
+        }
+
+        function headerTouch() {
+            $('.account-box').on('touchstart', function() {
+                $(this).css('background', 'rgb(19, 63, 142)');
+            });
+
+            $('.account-box').on('touchend', function() {
+                $(this).removeAttr("style");
+            });
+        }
+
+        function intervalBalance() {
+            var balanceIvl = setInterval(function() {
+                if ("true" !== "true") {
+                    clearInterval(balanceIvl);
+                }
+                getJsonData(document.getElementById("contextPath").value + '/Member/GetBalance', null, changeBalance);
+            }, 60000)
+        }
+
+        function changeBalance(response) {
+            $('header .coin').html('<i class="icon-coin"/>' + getCurrency(response) + '元');
+        }
+
+        function changeAfterBetBalance(response) {
+            $('.balance-bar .coin').html(getCurrency(response));
+        }
+    </script>
+    <div class="issue_wrap">
+        <div class="sc-eHgmQL ffVoSY" id="previous">
+            <div class="previous_result">
+                <div class="draw">
+                    <span>957106</span>
+                </div>
+                <div class="sc-hSdWYo jvuHdM">
+                    <div class="normal_item open_item" style="font-weight:bold">正</div>
+                    <div class="normal_item open_item" style="font-weight:bold">在</div>
+                    <div class="normal_item open_item" style="font-weight:bold">开</div>
+                    <div class="normal_item open_item" style="font-weight:bold">奖</div>
+                    <div class="normal_item open_item" style="font-weight:bold">中</div>
+                </div>
+            </div>
+            <div id="now_issue">
+                <div class="timer_item">
+                    <div id="issueNo">957107</div>
+                </div>
+                <div class="timer_item">
+                    <font>封盘:</font>
+                    <div id="close">00:04:11</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="result_box_container">
+        <div class="result_mask"></div>
+        <div class="result_box">
+            <div class="result_item">
+                <div class="result_issue">
+                    <font>957105</font>
+                </div>
+                <div class="result_number">
+                    <div class="num_group">
+                        <div class="normal_item">2</div><strong>+</strong>
+                        <div class="normal_item">1</div><strong>+</strong>
+                        <div class="normal_item">5</div><strong>=</strong>
+                        <div class="normal_item normal_item_blue">8</div>
+                    </div>
+                </div>
+            </div>
+            <div class="result_item">
+                <div class="result_issue">
+                    <font>957104</font>
+                </div>
+                <div class="result_number">
+                    <div class="num_group">
+                        <div class="normal_item">9</div><strong>+</strong>
+                        <div class="normal_item">4</div><strong>+</strong>
+                        <div class="normal_item">1</div><strong>=</strong>
+                        <div class="normal_item normal_item_gray">14</div>
+                    </div>
+                </div>
+            </div>
+            <div class="result_item">
+                <div class="result_issue">
+                    <font>957103</font>
+                </div>
+                <div class="result_number">
+                    <div class="num_group">
+                        <div class="normal_item">2</div><strong>+</strong>
+                        <div class="normal_item">4</div><strong>+</strong>
+                        <div class="normal_item">7</div><strong>=</strong>
+                        <div class="normal_item normal_item_gray">13</div>
+                    </div>
+                </div>
+            </div>
+            <div class="result_item">
+                <div class="result_issue">
+                    <font>957102</font>
+                </div>
+                <div class="result_number">
+                    <div class="num_group">
+                        <div class="normal_item">6</div><strong>+</strong>
+                        <div class="normal_item">1</div><strong>+</strong>
+                        <div class="normal_item">3</div><strong>=</strong>
+                        <div class="normal_item normal_item_green">10</div>
+                    </div>
+                </div>
+            </div>
+            <div class="result_item">
+                <div class="result_issue">
+                    <font>957101</font>
+                </div>
+                <div class="result_number">
+                    <div class="num_group">
+                        <div class="normal_item">7</div><strong>+</strong>
+                        <div class="normal_item">0</div><strong>+</strong>
+                        <div class="normal_item">3</div><strong>=</strong>
+                        <div class="normal_item normal_item_green">10</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input id="login" type="hidden" value="true">
+    <div id="game-type-modal">
+        <div class="switch">
+            <div class="switch-body">
+                <span class="official active" data-type="0">标准</span>
+                <span class="credit" data-type="1">双面</span>
+            </div>
+        </div>
+        <div class="game-type-container">
+            <div class="official active" data-type="0">
+                <div class="game-cluster" id="709">
+                    <div class="game-title">☼推荐☼</div>
+                    <div class="game-body">
+                        <div class="cqssc">
+                            <a href="javascript:void(0);" onclick="goLottery('official', 'cqssc')">重庆时时彩</a>
+                        </div>
+                        <div class="bjpk10">
+                            <a href="javascript:void(0);" onclick="goLottery('official', 'bjpk10')">北京PK拾</a>
+                        </div>
+                        <div class="mlaft">
+                            <a href="javascript:void(0);" onclick="goLottery('official', 'mlaft')">幸运飞艇</a>
+                        </div>
+                        <div class="hk6">
+                            <a href="javascript:void(0);" onclick="goLottery('official', 'hk6')">香港⑥合彩</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-cluster" id="722">
+                    <div class="game-title">赛车</div>
+                    <div class="game-body">
+                        <div class="bjpk10">
+                            <a href="javascript:void(0);" onclick="goLottery('official', 'bjpk10')">北京PK拾</a>
+                        </div>
+                        <div class="mlaft">
+                            <a href="javascript:void(0);" onclick="goLottery('official', 'mlaft')">幸运飞艇</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-cluster" id="728">
+                    <div class="game-title">时时彩</div>
+                    <div class="game-body">
+                        <div class="cqssc">
+                            <a href="javascript:void(0);" onclick="goLottery('official', 'cqssc')">重庆时时彩</a>
+                        </div>
+                        <div class="xjssc">
+                            <a href="javascript:void(0);" onclick="goLottery('official', 'xjssc')">新疆时时彩</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-cluster" id="735">
+                    <div class="game-title">PC蛋蛋</div>
+                    <div class="game-body">
+                        <div class="bjkl8 active">
+                            <a href="javascript:void(0);" onclick="goLottery('official', 'bjkl8')">北京28</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-cluster" id="737">
+                    <div class="game-title">快三骰宝</div>
+                    <div class="game-body">
+                        <div class="bjk3">
+                            <a href="javascript:void(0);" onclick="goLottery('official', 'bjk3')">北京快三</a>
+                        </div>
+                        <div class="shk3">
+                            <a href="javascript:void(0);" onclick="goLottery('official', 'shk3')">上海快三</a>
+                        </div>
+                        <div class="gxk3">
+                            <a href="javascript:void(0);" onclick="goLottery('official', 'gxk3')">广西快三</a>
+                        </div>
+                        <div class="hubk3">
+                            <a href="javascript:void(0);" onclick="goLottery('official', 'hubk3')">湖北快三</a>
+                        </div>
+                        <div class="jsk3">
+                            <a href="javascript:void(0);" onclick="goLottery('official', 'jsk3')">江苏快三</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-cluster" id="747">
+                    <div class="game-title">11选五</div>
+                    <div class="game-body">
+                        <div class="gd11x5">
+                            <a href="javascript:void(0);" onclick="goLottery('official', 'gd11x5')">广东11选5</a>
+                        </div>
+                        <div class="sh11x5">
+                            <a href="javascript:void(0);" onclick="goLottery('official', 'sh11x5')">上海11选5</a>
+                        </div>
+                        <div class="jx11x5">
+                            <a href="javascript:void(0);" onclick="goLottery('official', 'jx11x5')">江西多乐彩</a>
+                        </div>
+                        <div class="sd11x5">
+                            <a href="javascript:void(0);" onclick="goLottery('official', 'sd11x5')">山东11运夺金</a>
+                        </div>
+                        <div class="ah11x5">
+                            <a href="javascript:void(0);" onclick="goLottery('official', 'ah11x5')">安徽11选5</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-cluster" id="753">
+                    <div class="game-title">低频彩</div>
+                    <div class="game-body">
+                        <div class="hk6">
+                            <a href="javascript:void(0);" onclick="goLottery('official', 'hk6')">香港⑥合彩</a>
+                        </div>
+                        <div class="fc3d">
+                            <a href="javascript:void(0);" onclick="goLottery('official', 'fc3d')">福彩3D</a>
+                        </div>
+                        <div class="pl3">
+                            <a href="javascript:void(0);" onclick="goLottery('official', 'pl3')">排列三</a>
+                        </div>
+                        <div class="shssl">
+                            <a href="javascript:void(0);" onclick="goLottery('official', 'shssl')">上海时时乐</a>
+                        </div>
+                        <div class="qxc">
+                            <a href="javascript:void(0);" onclick="goLottery('official', 'qxc')">海南七星彩</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="credit" data-type="1">
+                <div class="game-cluster" id="709">
+                    <div class="game-title">☼推荐☼</div>
+                    <div class="game-body">
+                        <div class="cqssc">
+                            <a href="javascript:void(0);" onclick="goLottery('credit', 'cqssc')">重庆时时彩</a>
+                        </div>
+                        <div class="bjpk10">
+                            <a href="javascript:void(0);" onclick="goLottery('credit', 'bjpk10')">北京PK拾</a>
+                        </div>
+                        <div class="mlaft">
+                            <a href="javascript:void(0);" onclick="goLottery('credit', 'mlaft')">幸运飞艇</a>
+                        </div>
+                        <div class="hk6">
+                            <a href="javascript:void(0);" onclick="goLottery('credit', 'hk6')">香港⑥合彩</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-cluster" id="722">
+                    <div class="game-title">赛车</div>
+                    <div class="game-body">
+                        <div class="bjpk10">
+                            <a href="javascript:void(0);" onclick="goLottery('credit', 'bjpk10')">北京PK拾</a>
+                        </div>
+                        <div class="mlaft">
+                            <a href="javascript:void(0);" onclick="goLottery('credit', 'mlaft')">幸运飞艇</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-cluster" id="728">
+                    <div class="game-title">时时彩</div>
+                    <div class="game-body">
+                        <div class="cqssc">
+                            <a href="javascript:void(0);" onclick="goLottery('credit', 'cqssc')">重庆时时彩</a>
+                        </div>
+                        <div class="xjssc">
+                            <a href="javascript:void(0);" onclick="goLottery('credit', 'xjssc')">新疆时时彩</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-cluster" id="735">
+                    <div class="game-title">PC蛋蛋</div>
+                    <div class="game-body">
+                        <div class="bjkl8">
+                            <a href="javascript:void(0);" onclick="goLottery('credit', 'bjkl8')">北京28</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-cluster" id="737">
+                    <div class="game-title">快三骰宝</div>
+                    <div class="game-body">
+                        <div class="bjk3">
+                            <a href="javascript:void(0);" onclick="goLottery('credit', 'bjk3')">北京快三</a>
+                        </div>
+                        <div class="shk3">
+                            <a href="javascript:void(0);" onclick="goLottery('credit', 'shk3')">上海快三</a>
+                        </div>
+                        <div class="gxk3">
+                            <a href="javascript:void(0);" onclick="goLottery('credit', 'gxk3')">广西快三</a>
+                        </div>
+                        <div class="hubk3">
+                            <a href="javascript:void(0);" onclick="goLottery('credit', 'hubk3')">湖北快三</a>
+                        </div>
+                        <div class="jsk3">
+                            <a href="javascript:void(0);" onclick="goLottery('credit', 'jsk3')">江苏快三</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-cluster" id="747">
+                    <div class="game-title">11选五</div>
+                    <div class="game-body"></div>
+                </div>
+                <div class="game-cluster" id="753">
+                    <div class="game-title">低频彩</div>
+                    <div class="game-body">
+                        <div class="hk6">
+                            <a href="javascript:void(0);" onclick="goLottery('credit', 'hk6')">香港⑥合彩</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var gameCode = 'bjkl8';
+        var contextPath = $('#contextPath').val();
+        var playMode = 'official';
+        var gameType = '9';
+        var gameData = 'bjkl8';
+        var login = 'true';
+        var gameTypeArray = {};
+        $(function() {
+            toggleResultBox();
+            toggleMenu();
+
+            getJsonData("/t7m/GameInfo/Menu", null, menuCallBack);
+            $('.title').text(gameCode_gameName['bjkl8']);
+        })
+
+        function menuCallBack(response) {
+            if (response.result == true) {
+
+                $.each(response.data, function(entryIdx, entry) {
+                    var element = '';
+                    var playMode = entry.playMode;
+                    if (entry['gameID'] == 0) {
+                        $('<div />', {
+                                'class': 'game-cluster',
+                                'id': entry.id
+                            })
+                            .append($('<div />', {
+                                'class': 'game-title'
+                            }).text(entry.gameName))
+                            .append($('<div />', {
+                                'class': 'game-body'
+                            }))
+                            .appendTo($('.game-type-container > div'));
+                    }
+
+                    if (playMode == 1 || playMode == 3) {
+                        $('<div />', {
+                                'class': entry.gameCode
+                            })
+                            .append($('<a />', {
+                                'href': 'javascript:void(0);',
+                                'onclick': 'goLottery("official", "' + entry.gameCode + '")'
+                            }).text(entry.gameName))
+                            .appendTo($('.official #' + entry.parent + ' .game-body'));
+                    }
+
+                    if (playMode == 2 || playMode == 3) {
+                        $('<div />', {
+                                'class': entry.gameCode
+                            })
+                            .append($('<a />', {
+                                'href': 'javascript:void(0);',
+                                'onclick': 'goLottery("credit", "' + entry.gameCode + '")'
+                            }).text(entry.gameName))
+                            .appendTo($('.credit #' + entry.parent + ' .game-body'));
+                    }
+                });
+
+                menuBindActive();
+
+            }
+
+            $('.switch-body > span').click(function() {
+                $('.switch-body > span').removeClass('active');
+                $(this).addClass('active');
+                $('.game-type-container > div').removeClass('active');
+                $('.game-type-container [data-type=' + $(this).data('type') + ']').addClass('active');
+            });
+
+            activeMode();
+        }
+
+        function toggleResultBox() {
+            $('.previous_result').add('.result_mask').click(function() {
+                $('.result_box_container').toggle();
+            })
+        }
+
+        function toggleMenu() {
+            $('header .info-wrap > div').on('click', function() {
+                layer.open({
+                    type: 1,
+                    title: false,
+                    shade: 0.8,
+                    area: ['90vw', '70vh'],
+                    shadeClose: true,
+                    id: 'LAY_layuipro', //设定一个id，防止重复弹出
+                    content: $('#game-type-modal')
+                });
+            })
+        }
+
+        function menuBindActive() {
+            $('#game-type-modal .' + playMode + ' .game-cluster > .game-body .' + gameCode).addClass('active');
+        }
+
+        function activeMode() {
+            $('.switch-body').find('.' + playMode).click();
+        }
+
+        function refreshRecord() {
+            var pos = $('.swiper-slide.swiper-slide-active').data('pos_value');
+            changeSelect(pos);
+            changeHeader(pos);
+            changeTrendList(pos);
+        }
+    </script>
+    <script type="text/javascript" src="../../../t7m/resource/js/peopleagent-lottery/game-info.js"></script>
+    <div id="sidebar">
+        <div class="header">
+            <div class="mb-2 show-user flex-column">
+                <img class="rounded-circle" src="../../../t7m/resource/img/peopleagent/icon-user.jpg">
+                <span>test23</span>
+            </div>
+            <div class="show-coin">
+                余额：<span class="points">28,901.445</span>元
+            </div>
+            <div class="justify-content-between">
+                <button type="button" class="btn-icon charge-button" onclick="goDeposit();"></button>
+                <button type="button" class="btn-icon withdraw-button" onclick="goWithdraw();"></button>
+            </div>
+            <div class="justify-content-center">
+                <a class="d-inline-block transfer-button" href="javascript:void(0);" onclick="goTransfer();"></a>
+            </div>
+        </div>
+        <div class="list-menu-wrap" style="height:577.344px;">
+            <ul class="list-menu">
+                <li> 
+                    <a class="btn-icon" onclick="toggleSubmenu()">
+                        <i class="icon icon-account"></i>
+                        <span>帐户中心</span>
+                        <i class="fas fa-caret-right"></i>
+                    </a>
+                    <ul>
+                        <li>
+                            <a class="obstruct" href="/t7m/mobile/personal/changeLoginPassword">修改密码</a>
+                        </li>
+                        <li>
+                            <a class="obstruct" href="/t7m/mobile/personal/changeWithdrawPassword">提款密码</a>
+                        </li>
+                        <li>
+                            <a class="obstruct" href="/t7m/mobile/personal/bankCardManagement">银行卡管理</a>
+                        </li>
+                        <li>
+                            <a class="obstruct" href="/t7m/mobile/personal/myReward">个人总览</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="btn-icon" onclick="toggleSubmenu()">
+                        <i class="icon icon-funds"></i>
+                        <span>资金管理</span>
+                        <i class="fas fa-caret-right"></i>
+                    </a>
+                    <ul>
+                        <li>
+                            <a class="obstruct" href="/t7m/mobile/personal/deposit">充值</a>
+                        </li>
+                        <li>
+                            <a class="obstruct" href="/t7m/mobile/personal/withdraw">提款</a>
+                        </li>
+                        <li>
+                            <a class="obstruct" href="/t7m/mobile/personal/transfer">钱包转换</a>
+                        </li>
+                        <li>
+                            <a class="obstruct" href="/t7m/mobile/personal/dwRecord">充提记录</a>
+                        </li>
+                        <li>
+                            <a class="obstruct" href="/t7m/mobile/personal/acRecord">帐变记录</a>
+                        </li>
+                        <li>
+                            <a class="obstruct" href="/t7m/mobile/personal/tRecord">转账记录</a>
+                        </li>
+                    </ul>
+                </li>
+                <li> 
+                    <a class="btn-icon" onclick="toggleSubmenu()">
+                        <i class="icon icon-game-record"></i>
+                        <span>游戏记录</span>
+                        <i class="fas fa-caret-right"></i>
+                    </a>
+                    <ul>
+                        <li>
+                            <a class="obstruct" href="/t7m/mobile/order_list">个人投注</a>
+                        </li>
+                        <li>
+                            <a class="obstruct" href="/t7m/mobile/personal/gameWater">游戏流水</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="btn-icon" onclick="toggleSubmenu()">
+                        <i class="icon icon-agent-center"></i>
+                        <span>代理中心</span>
+                        <i class="fas fa-caret-right"></i>
+                    </a>
+                    <ul>
+                        <li>
+                            <a class="obstruct" href="/t7m/mobile/personal/agentMember">团队管理</a>
+                        </li>
+                        <li>
+                            <a class="obstruct" href="/t7m/mobile/personal/teamReport">团队报表</a>
+                        </li>
+                        <li>
+                            <a class="obstruct" href="/t7m/mobile/personal/teamReward">团队总览</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="btn-icon" href="javascript:void(0);" onclick="goRule();">
+                        <i class="icon icon-game-rule"></i>
+                        <span>彩票规则</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="btn-icon" href="javascript:void(0);" onclick="goPromotion();">
+                        <i class="icon icon-promotion"></i>
+                        <span>优惠活动</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="btn-icon" href="javascript:void(0);" onclick="goCustomerService();">
+                        <i class="icon icon-customer-service"></i>
+                        <span>客服</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="btn-icon" href="javascript:void(0);" onclick="goLogout();">
+                        <i class="icon icon-exit"></i>
+                        <span>登出</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="d-flex justify-content-around footer">
+            <div class="d-flex align-items-center">
+                <i class="d-inline-block s-icon icon-copyright mr-1"></i>
+                <span>版本号：V1.0</span>
+            </div>
+            <div class="d-flex align-items-center" onclick="clearCache();">
+                <i class="d-inline-block s-icon icon-clean mr-1"></i>
+                <span>清除缓存</span>
+            </div>
+        </div>
+    </div>
+    <a class="sidebar-mask" onclick="closeElement('#sidebar')"></a>
+    <!-- message -->
+    <div class="mask" style="display: none;">
+        <div class="message_container flex-column">
+            <div class="message-header text-center"><span class="mt-2">讯息中心</span>
+                <div class="close_icon">
+                    <a id="icon_close" href="javascript:void(0);"></a>
+                </div>
+            </div>
+            <div class="aside item_2">
+                <div class="message_wrap"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function() {
+            resizeSidebar();
+            messageEvent();
+
+            $('ul.list-menu ul li').click(function() {
+                location.href = $(this).find('a').first().attr('href');
+                return false;
+            });
+        });
+
+        function resizeSidebar() {
+            var h = $('#sidebar').outerHeight() - ($('#sidebar .header').outerHeight() + $('#sidebar .footer').outerHeight() + 5);
+            $('#sidebar .list-menu-wrap').attr('style', 'height:' + h + 'px;');
+        }
+
+        function messageEvent() {
+            if ("true" === "true") {
+                getMessageCount();
+            }
+            openMessageBind();
+            closeMessageBind();
+        }
+
+        function getMessageCount() {
+            getJsonData("/t7m/Member/GetUserMessage", null, setMessageCount);
+        }
+
+        function getMessage() {
+            getJsonData("/t7m/Member/GetUserMessage", null, setMessage);
+        }
+
+        function setMessageCount(response) {
+            var count = 0;
+            if (response.data) {
+                $.each(response.data, function(entryIdx, entry) {
+                    if (entry['msgStatus'] == 1) count++;
+                });
+            }
+            $('#message_count').text(count);
+        }
+
+        function setMessage(response) {
+            $('.message_wrap').empty();
+            var count = 0;
+            var title = '';
+            var conternt = '尚無訊息';
+            var msgTime = '';
+            if (response.data) {
+                $.each(response.data, function(entryIdx, entry) {
+                    title = entry['msgTitle'];
+                    conternt = entry['msgContent'];
+                    msgTime = entry['msgTime'];
+                    var target = $('<div />', {
+                            'class': 'outside'
+                        })
+                        .append($('<div />', {
+                                'class': 'message_list'
+                            })
+                            .append($('<div />', {
+                                'class': 'message_title text-truncate'
+                            }).text(title))
+                            .append($('<div />', {
+                                'class': 'message_content'
+                            }).text(conternt))
+                            .append($('<div />', {
+                                'class': 'message_date sub-title'
+                            }).text(msgTime)));
+                    if (entry['msgStatus'] == 1) {
+                        target.append($('<div />', {
+                                'class': 'message_status'
+                            })
+                            .append($('<a />', {
+                                'class': 'unread',
+                                'href': '#',
+                                'onClick': 'readMessage(' + entry['msgID'] + ', this)'
+                            }).text('标示为已读')));
+                        count++;
+                    } else {
+                        target.find('.message_list').append($('<div />', {
+                            'class': 'golgol'
+                        }));
+                    }
+                    target.appendTo('.message_wrap');
+                });
+                $('#message_count').text(count);
+            } else {
+                $('.message_count_wrap').remove();
+            }
+            $('.mask').show();
+        }
+
+        function readMessage(id, a) {
+            a.classList.add("marked");
+
+            var map = new Object();
+            map['msgId'] = id;
+            getJsonData("/t7m/Member/UpdateUserMessage", map, updateMessageStatus);
+        }
+
+        function updateMessageStatus() {
+            var mark = document.getElementsByClassName("marked");
+            for (var i = 0; i < mark.length; i++) {
+                $(mark[i]).parents('.outside').find('.message_list').append($('<div />', {
+                    'class': 'golgol'
+                }));
+                mark[i].innerHTML = '';
+                mark[i].classList.remove("unread");
+                mark[i].classList.remove("marked");
+            }
+            $('#message_count').html(document.getElementsByClassName("unread").length);
+        }
+
+        function openMessageBind() {
+            $('.trigger_message').click(function() {
+                if ("true" === "true") {
+                    getMessage();
+                } else {
+                    layer.open({
+                        title: '警告',
+                        content: '请先登录',
+                        icon: 0,
+                        btnAlign: 'c',
+                        yes: function(index, layero) {
+                            goSignIn(index);
+                        }
+                    });
+                }
+            });
+        }
+
+        function closeMessageBind() {
+            $('#icon_close').click(function() {
+                $('.mask').hide();
+                $('.member_menu').removeClass('member_menu_reduce');
+            });
+        }
+
+        function refreshPoint() {
+            if ("true" === "true") {
+                getJsonData("/t7m/Member/RefreshUserWallets", null, function(response) {
+                    if (response.result) {
+                        var w = response.data.find(function(item, index, array) {
+                            return item.walletID == 0;
+                        });
+                        $('.points').html(getCurrency(w.balance));
+                    } else {
+                        showErrorResult(response.message);
+                    }
+                }, null, true);
+            }
+        }
+    </script>
+
+    <div class="section">
+        <!-- 		<div class="slide_left play_type_container"> -->
+        <!-- 			<div class="slide_left_list swiper-wrapper"> -->
+        <!-- 			</div> -->
+        <!-- 		</div> -->
+        <div class="playtype-list">
+            <div>
+                <span>玩法选择:</span>
+                <span class="m-name">混合</span>
+                <span class="s-name">混合</span>
+                <span></span>
+            </div>
+        </div>
+        <div class="list-content game">
+            <div class="swiper-container Mix-B" style="display: block;">
+                <div class="swiper-wrapper game-body">
+                    <div class="info-row" id="Mix-B-info">
+                        <div class="game-rule"><span class="ico"><i class="fas fa-question"></i></span><span>玩法说明</span><span class="pop">选择一个号码型态。</span></div>
+                    </div>
+                    <div class="bet_panel_wrapper Mix" id="Mix" data-play_type_m="35" data-check_pos="N" data-entry_id="573">
+                        <div class="bet_panel_content bet_panel_content_official Mix-B">
+                            <div class="panel_wrap m-0">
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall" onclick="CheckNumThis(this)" data-play_type_s="189">
+                                        <div>大</div>
+                                        <div class="SUM_payRate">1.95</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall" onclick="CheckNumThis(this)" data-play_type_s="190">
+                                        <div>小</div>
+                                        <div class="SUM_payRate">1.95</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall" onclick="CheckNumThis(this)" data-play_type_s="191">
+                                        <div>单</div>
+                                        <div class="SUM_payRate">1.95</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall" onclick="CheckNumThis(this)" data-play_type_s="192">
+                                        <div>双</div>
+                                        <div class="SUM_payRate">1.95</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_blue_color" onclick="CheckNumThis(this)" data-play_type_s="193">
+                                        <div>大单</div>
+                                        <div class="SUM_payRate">3.6358</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_blue_color" onclick="CheckNumThis(this)" data-play_type_s="194">
+                                        <div>小单</div>
+                                        <div class="SUM_payRate">4.2532</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_blue_color" onclick="CheckNumThis(this)" data-play_type_s="195">
+                                        <div>大双</div>
+                                        <div class="SUM_payRate">4.2532</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_blue_color" onclick="CheckNumThis(this)" data-play_type_s="196">
+                                        <div>小双</div>
+                                        <div class="SUM_payRate">3.6358</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_green_color" onclick="CheckNumThis(this)" data-play_type_s="197">
+                                        <div>极大</div>
+                                        <div class="SUM_payRate">16.2</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_green_color" onclick="CheckNumThis(this)" data-play_type_s="198">
+                                        <div>极小</div>
+                                        <div class="SUM_payRate">16.2</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-container Mix-S" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Mix-O" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Mix-E" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Mix-BO" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Mix-SO" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Mix-BE" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Mix-SE" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Mix-BB" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Mix-SS" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Color-Red" style="display: none;">
+                <div class="swiper-wrapper game-body">
+                    <div class="info-row" id="Color-Red-info">
+                        <div class="game-rule"><span class="ico"><i class="fas fa-question"></i></span><span>玩法说明</span><span class="pop">选择一个号码型态。</span></div>
+                    </div>
+                    <div class="bet_panel_wrapper Color" id="Color" data-play_type_m="36" data-check_pos="N" data-entry_id="583">
+                        <div class="bet_panel_content bet_panel_content_official Color-Red">
+                            <div class="panel_wrap m-0">
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_red_color" onclick="CheckNumThis(this)" data-play_type_s="199">
+                                        <div>红波</div>
+                                        <div class="SUM_payRate">2.4892</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_green_color" onclick="CheckNumThis(this)" data-play_type_s="200">
+                                        <div>绿波</div>
+                                        <div class="SUM_payRate">3.2183</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_blue_color" onclick="CheckNumThis(this)" data-play_type_s="201">
+                                        <div>蓝波</div>
+                                        <div class="SUM_payRate">3.2183</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-container Color-Green" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Color-Blue" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Triple-All" style="display: none;">
+                <div class="swiper-wrapper game-body">
+                    <div class="info-row" id="Triple-All-info">
+                        <div class="game-rule"><span class="ico"><i class="fas fa-question"></i></span><span>玩法说明</span><span class="pop">选择一个号码型态。</span></div>
+                    </div>
+                    <div class="bet_panel_wrapper Triple" id="Triple" data-play_type_m="37" data-check_pos="N" data-entry_id="586">
+                        <div class="bet_panel_content bet_panel_content_official Triple-All">
+                            <div class="panel_wrap m-0">
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall" onclick="CheckNumThis(this)" data-play_type_s="202">
+                                        <div>豹子</div>
+                                        <div class="SUM_payRate">50</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-container Specific-N0" style="display: none;">
+                <div class="swiper-wrapper game-body">
+                    <div class="info-row" id="Specific-N0-info">
+                        <div class="game-rule"><span class="ico"><i class="fas fa-question"></i></span><span>玩法说明</span><span class="pop">从 0-27 中任意选择 1 个或 1 个以上号码。</span></div>
+                    </div>
+                    <div class="bet_panel_wrapper Specific" id="Specific" data-play_type_m="38" data-check_pos="N" data-entry_id="587">
+                        <div class="bet_panel_content bet_panel_content_official Specific-N0">
+                            <div class="panel_wrap m-0">
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall" onclick="CheckNumThis(this)" data-play_type_s="203">
+                                        <div>0</div>
+                                        <div class="SUM_payRate">720</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_green_color" onclick="CheckNumThis(this)" data-play_type_s="204">
+                                        <div>1</div>
+                                        <div class="SUM_payRate">266</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_blue_color" onclick="CheckNumThis(this)" data-play_type_s="205">
+                                        <div>2</div>
+                                        <div class="SUM_payRate">133</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_red_color" onclick="CheckNumThis(this)" data-play_type_s="206">
+                                        <div>3</div>
+                                        <div class="SUM_payRate">85</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_green_color" onclick="CheckNumThis(this)" data-play_type_s="207">
+                                        <div>4</div>
+                                        <div class="SUM_payRate">56</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_blue_color" onclick="CheckNumThis(this)" data-play_type_s="208">
+                                        <div>5</div>
+                                        <div class="SUM_payRate">41.9</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_red_color" onclick="CheckNumThis(this)" data-play_type_s="209">
+                                        <div>6</div>
+                                        <div class="SUM_payRate">31.4</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_green_color" onclick="CheckNumThis(this)" data-play_type_s="210">
+                                        <div>7</div>
+                                        <div class="SUM_payRate">25</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_blue_color" onclick="CheckNumThis(this)" data-play_type_s="211">
+                                        <div>8</div>
+                                        <div class="SUM_payRate">20.4</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_red_color" onclick="CheckNumThis(this)" data-play_type_s="212">
+                                        <div>9</div>
+                                        <div class="SUM_payRate">16.35</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_green_color" onclick="CheckNumThis(this)" data-play_type_s="213">
+                                        <div>10</div>
+                                        <div class="SUM_payRate">14.27</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_blue_color" onclick="CheckNumThis(this)" data-play_type_s="214">
+                                        <div>11</div>
+                                        <div class="SUM_payRate">13</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_red_color" onclick="CheckNumThis(this)" data-play_type_s="215">
+                                        <div>12</div>
+                                        <div class="SUM_payRate">12.32</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall" onclick="CheckNumThis(this)" data-play_type_s="216">
+                                        <div>13</div>
+                                        <div class="SUM_payRate">12</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall" onclick="CheckNumThis(this)" data-play_type_s="217">
+                                        <div>14</div>
+                                        <div class="SUM_payRate">12</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_red_color" onclick="CheckNumThis(this)" data-play_type_s="218">
+                                        <div>15</div>
+                                        <div class="SUM_payRate">12.32</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_green_color" onclick="CheckNumThis(this)" data-play_type_s="219">
+                                        <div>16</div>
+                                        <div class="SUM_payRate">13</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_blue_color" onclick="CheckNumThis(this)" data-play_type_s="220">
+                                        <div>17</div>
+                                        <div class="SUM_payRate">14.27</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_red_color" onclick="CheckNumThis(this)" data-play_type_s="221">
+                                        <div>18</div>
+                                        <div class="SUM_payRate">16.35</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_green_color" onclick="CheckNumThis(this)" data-play_type_s="222">
+                                        <div>19</div>
+                                        <div class="SUM_payRate">20.4</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_blue_color" onclick="CheckNumThis(this)" data-play_type_s="223">
+                                        <div>20</div>
+                                        <div class="SUM_payRate">25</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_red_color" onclick="CheckNumThis(this)" data-play_type_s="224">
+                                        <div>21</div>
+                                        <div class="SUM_payRate">31.4</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_green_color" onclick="CheckNumThis(this)" data-play_type_s="225">
+                                        <div>22</div>
+                                        <div class="SUM_payRate">41.9</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_blue_color" onclick="CheckNumThis(this)" data-play_type_s="226">
+                                        <div>23</div>
+                                        <div class="SUM_payRate">56</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_red_color" onclick="CheckNumThis(this)" data-play_type_s="227">
+                                        <div>24</div>
+                                        <div class="SUM_payRate">85</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_green_color" onclick="CheckNumThis(this)" data-play_type_s="228">
+                                        <div>25</div>
+                                        <div class="SUM_payRate">133</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_blue_color" onclick="CheckNumThis(this)" data-play_type_s="229">
+                                        <div>26</div>
+                                        <div class="SUM_payRate">266</div>
+                                    </div>
+                                </div>
+                                <div class="res-wrap">
+                                    <div class="bet_panel_content_item_official payrateBall b_light_red_color" onclick="CheckNumThis(this)" data-play_type_s="230">
+                                        <div>27</div>
+                                        <div class="SUM_payRate">720</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-container Specific-N1" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N2" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N3" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N4" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N5" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N6" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N7" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N8" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N9" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N10" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N11" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N12" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N13" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N14" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N15" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N16" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N17" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N18" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N19" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N20" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N21" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N22" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N23" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N24" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N25" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N26" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-N27" style="display: none;">
+                <div class="swiper-wrapper game-body"></div>
+            </div>
+            <div class="swiper-container Specific-NNN" style="display: none;">
+                <div class="swiper-wrapper game-body">
+                    <div class="info-row" id="Specific-NNN-info">
+                        <div class="game-rule"><span class="ico"><i class="fas fa-question"></i></span><span>玩法说明</span><span class="pop">从 0-27 中任意选择3个号码组成一注。</span></div>
+                        <div class="pay_rate" data-pay_rate_max="3.496" data-pay_rate="3.496"></div>
+                    </div>
+                    <div class="bet_panel_wrapper Specific-NNN" id="Specific-NNN" data-play_type_m="38" data-check_pos="Y" data-entry_id="615" data-play_type_s="231">
+                        <div class="bet_panel_content bet_panel_content_official Specific-NNN-0">
+                            <div class="classification"><span>特码包三</span></div>
+                            <div class="panel_wrap">
+                                <div class="bet_panel_content_item_official b_light_init_color" onclick="CheckNumThis(this)" data-pos_data="0">
+                                    <div class="normal-ball">0</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_green_color" onclick="CheckNumThis(this)" data-pos_data="1">
+                                    <div class="normal-ball">1</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_blue_color" onclick="CheckNumThis(this)" data-pos_data="2">
+                                    <div class="normal-ball">2</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_red_color" onclick="CheckNumThis(this)" data-pos_data="3">
+                                    <div class="normal-ball">3</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_green_color" onclick="CheckNumThis(this)" data-pos_data="4">
+                                    <div class="normal-ball">4</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_blue_color" onclick="CheckNumThis(this)" data-pos_data="5">
+                                    <div class="normal-ball">5</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_red_color" onclick="CheckNumThis(this)" data-pos_data="6">
+                                    <div class="normal-ball">6</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_green_color" onclick="CheckNumThis(this)" data-pos_data="7">
+                                    <div class="normal-ball">7</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_blue_color" onclick="CheckNumThis(this)" data-pos_data="8">
+                                    <div class="normal-ball">8</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_red_color" onclick="CheckNumThis(this)" data-pos_data="9">
+                                    <div class="normal-ball">9</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_green_color" onclick="CheckNumThis(this)" data-pos_data="10">
+                                    <div class="normal-ball">10</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_blue_color" onclick="CheckNumThis(this)" data-pos_data="11">
+                                    <div class="normal-ball">11</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_init_color" onclick="CheckNumThis(this)" data-pos_data="12">
+                                    <div class="normal-ball">12</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_init_color" onclick="CheckNumThis(this)" data-pos_data="13">
+                                    <div class="normal-ball">13</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_init_color" onclick="CheckNumThis(this)" data-pos_data="14">
+                                    <div class="normal-ball">14</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_red_color" onclick="CheckNumThis(this)" data-pos_data="15">
+                                    <div class="normal-ball">15</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_green_color" onclick="CheckNumThis(this)" data-pos_data="16">
+                                    <div class="normal-ball">16</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_blue_color" onclick="CheckNumThis(this)" data-pos_data="17">
+                                    <div class="normal-ball">17</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_red_color" onclick="CheckNumThis(this)" data-pos_data="18">
+                                    <div class="normal-ball">18</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_green_color" onclick="CheckNumThis(this)" data-pos_data="19">
+                                    <div class="normal-ball">19</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_blue_color" onclick="CheckNumThis(this)" data-pos_data="20">
+                                    <div class="normal-ball">20</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_red_color" onclick="CheckNumThis(this)" data-pos_data="21">
+                                    <div class="normal-ball">21</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_green_color" onclick="CheckNumThis(this)" data-pos_data="22">
+                                    <div class="normal-ball">22</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_blue_color" onclick="CheckNumThis(this)" data-pos_data="23">
+                                    <div class="normal-ball">23</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_red_color" onclick="CheckNumThis(this)" data-pos_data="24">
+                                    <div class="normal-ball">24</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_green_color" onclick="CheckNumThis(this)" data-pos_data="25">
+                                    <div class="normal-ball">25</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_blue_color" onclick="CheckNumThis(this)" data-pos_data="26">
+                                    <div class="normal-ball">26</div>
+                                </div>
+                                <div class="bet_panel_content_item_official b_light_red_color" onclick="CheckNumThis(this)" data-pos_data="27">
+                                    <div class="normal-ball">27</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="balance-bar">
+        <div>
+            <div class="range-slide-left">
+                <span>2000</span>
+                <span><font>0</font>%</span>
+            </div>
+            <div class="range-slider">
+                <input class="range-slider-range" type="range" step="2" min="1800" max="2000">
+            </div>
+            <div class="range-slide-right"></div>
+        </div>
+        <div class="ml-1 text-nowrap">
+            <span>余额:</span>
+            <font class="coin points">28,884.545</font>
+            <font>元</font>
+        </div>
+    </div>
+    <script>
+        $(function() {
+            /*if ("true" !== "false") {
+              intervalBarBalance();
+            }*/
+        });
+
+        function intervalBarBalance() {
+            var balanceIvl = setInterval(function() {
+                getJsonData(document.getElementById("contextPath").value + '/Member/GetBalance', null, changeBarBalance);
+            }, 60000)
+        }
+
+        function changeBarBalance(response) {
+            $('.balance-bar .coin').html(getCurrency(response));
+        }
+    </script>
+
+    <div class="bet_wrap">
+        <div class="fast_order reset">
+            <span class="trash"></span>
+            <div class="bet_box">
+                <span>
+				<label class="bet_count bet-quantity">1</label><font>注</font><font class="multiply">x</font>
+				<input class="bet_value" type="number" value="2"><font>元</font>
+			</span>
+            </div>
+        </div>
+        <div class="bet_btn">
+            <div>
+                <font class="now submit" data-submit="now">立即下注</font>
+                <font class="detail">详细下注</font>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function() {
+            $('.bet_value').on('keyup paste', function() {
+                if ($(this).val().length == 1) {
+                    $(this).val($(this).val().replace(/[^1-9]/g, ''));
+                } else {
+                    $(this).val($(this).val().replace(/\D/g, ''));
+                }
+
+            })
+
+            $('.bet_value').on('change', function() {
+                if ($(this).val() == '' || isNaN($(this).val())) {
+                    $(this).val(2);
+                }
+            })
+
+        })
+    </script>
+
+    <div class="bet_page bet_page_transform">
+        <div class="order_row">
+            <div class="arrow_back">
+            </div>
+            <div class="order_title">PC蛋蛋</div>
+        </div>
+        <div class="bet_page_section_official">
+            <div class="order_view_bet_data">
+                <div class="order_view_bet_data_item lottery_type">
+                    <div class="lottery_type_title">彩种</div>
+                    <div class="lottery_type_content">PC蛋蛋</div>
+                </div>
+                <div class="order_view_bet_data_item play_type">
+                    <div class="play_type_title">玩法</div>
+                    <div class="play_type_content">5星</div>
+                </div>
+                <div class="order_view_bet_data_item now_issue">
+                    <div class="now_issue_title">当前期号</div>
+                    <div class="now_issue_content"></div>
+                </div>
+                <div class="order_data_wrap">
+                    <div class="order_data">
+                        <div class="order_data_title">注单内容</div>
+                    </div>
+                </div>
+                <div class="order_view_bet_data_item preorder">
+                    <div class="preorder_title">是否追单</div>
+                    <div class="preorder_content">
+                        <input type="checkbox" id="chase-radio">
+                    </div>
+                </div>
+                <div class="disable_ui_switch" style="display: none;">
+                    <div class="order_view_bet_data_item ui_switch">
+                        <div class="ui_switch_title">中奖停止</div>
+                        <div class="ui_switch_content">
+                            <input type="checkbox" id="trace_order">
+                        </div>
+                    </div>
+                    <div class="order_view_bet_data_item ui_switch">
+                        <div class="ui_switch_title">条件追号</div>
+                        <div class="ui_switch_content">
+                            <input type="checkbox" id="condition-trace">
+                        </div>
+                    </div>
+                    <div class="order_view_bet_data_item ui_switch disable condition" style="display: none;">
+                        <div class="ui_switch_title">
+                            <div class="conswitch">
+                                <input type="checkbox" name="aclSign" class="conswitch-checkbox" id="myconswitch" checked="">
+                                <label class="conswitch-label" for="myconswitch">
+                                    <span class="conswitch-inner"></span>
+                                    <span class="conswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="ui_switch_content">
+                            <input type="number" value="0" id="acLimit" name="acLimit" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" pattern="\d*">元
+                        </div>
+                    </div>
+                    <div class="order_view_bet_data_item ui_switch">
+                        <div class="ui_switch_title">追号期数</div>
+                        <div class="ui_switch_content">
+                            <span class="mark numDecX">-</span>
+                            <span>
+								<input type="number" id="trace" style="color:#ef4f4f" min="1" max="49" value="5">
+							</span>
+                            <span class="mark numAddX">+</span>
+                        </div>
+                    </div>
+                    <div class="order_view_bet_data_item ui_switch order-start">
+                        <div class="ui_switch_title">翻倍倍率</div>
+                        <div class="ui_switch_content">
+                            <span class="mark numDecY">-</span>
+                            <span>
+								<input type="number" id="multiple" style="color:#ef4f4f" min="1" value="1" placeholder="1">
+							</span>
+                            <span class="mark numAddY">+</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bet_page_footer">
+            <div class="bet_page_footer_item bet_page_footer_item_official">
+                <div class="top_item_div">
+                    <label>单注金额 : </label>
+                </div>
+                <div class="top_item_div">
+                    <input id="bet_input" type="number" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" pattern="\d*">
+                </div>
+            </div>
+            <div class="bet_page_footer_item bet_page_footer_item_official">
+                <div class="mid_item_div">
+                    <label>总计注数:</label>
+                    <span class="order-qu number" id="bet">0</span>
+                </div>
+                <div class="mid_item_div">
+                    <label>总计投注:</label>
+                    <span class="c_ff80101 bet-total-amount number" id="bet-total-amount"></span>
+                </div>
+            </div>
+            <div class="bet_page_footer_item bet_page_footer_item_official">
+                <button class="submit" id="submit" data-submit="detail">投注</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../../t7m/resource/js/peopleagent-lottery/lottery-order.js"></script>
+    <script type="text/javascript" src="../../../t7m/resource/assets/socket.io-client/socket.io.slim.js"></script>
+    <script type="text/javascript" src="../../../t7m/resource/js/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="../../../t7m/resource/js/swiper.min.js"></script>
+    <script type="text/javascript" src="../../../t7m/resource/js/peopleagent/custom.js" data-url="https://x20.d7601.com"></script>
+
+    <ul class="bottom-menu">
+            <li class="active"><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-hall"></i><span>首页</span></a></li>
+            <li class=""><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-lottery"></i><span>彩票</span></a></li>
+            <li class=""><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-promotion"></i><span>优惠</span></a></li>
+            <li class=""><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-mine"></i><span>我的</span></a></li>
+        <!-- <li class="">
+            <a class="btn-icon" href="javascript:void(0);" onclick="goHall();">
+                <i class="icon icon-hall"></i>
+                <span>大厅</span>
+            </a>
+        </li>
+        <li class="">
+            <a class="btn-icon" href="javascript:void(0);" onclick="goCustomerService();">
+                <i class="icon icon-customer-service"></i>
+                <span>客服</span>
+            </a>
+        </li>
+        <li class="">
+            <a class="btn-icon" href="javascript:void(0);" onclick="goCenter();">
+                <i class="icon icon-manage"></i>
+                <span>管理中心</span>
+            </a>
+        </li>
+        <li class="">
+            <a class="btn-icon" href="javascript:void(0);" onclick="goLotteryRecord();">
+                <i class="icon icon-nav-game-result"></i>
+                <span>开奖结果</span>
+            </a>
+        </li>
+        <li class="">
+            <a class="btn-icon " href="javascript:void(0);" onclick="goPromotion();">
+                <i class="icon icon-nav-promotion"></i>
+                <span>活动</span>
+            </a>
+        </li> -->
+    </ul>
+
+    <script>
+        $(function() {
+            wsClient();
+            callFooterTouch();
+        });
+
+        function wsClient() {
+            initialWS();
+
+            var interval = setInterval(function() {
+                if (ws.connected) {
+                    clearInterval(interval);
+                    if ("true" === "true") {
+                        joinWS('23', 'test23', 'czlqb99325311a06d45f18221d852b316860fczlqb');
+                    } else {
+                        joinWS('23');
+                    }
+                }
+            }, 1000);
+        }
+
+        function callFooterTouch() {
+            footerTouch();
+        }
+
+        function footerTouch() {
+            $('.bottom-menu li').on('touchstart', function() {
+                $(this).css('background', 'rgba(78, 78, 76, 0.7)');
+                $(this).addClass('active').siblings().removeClass('active');
+            });
+
+            $('.bottom-menu li').on('touchend', function() {
+                $(this).removeAttr("style");
+            });
+        }
+    </script>
+
+    <style>
+        .modal.fade {
+            position: absolute;
+            left: 0px;
+            right: 0px;
+            top: 30%;
+        }
+        
+        .modal-content {
+            width: 75%;
+            background: #bc1015;
+            margin: 5vh auto;
+            border: 0;
+            border-radius: 0;
+        }
+        
+        .modal-header {
+            border: 0;
+            padding: 0 15px;
+            height: 50px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+        }
+        
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            border: 0;
+            padding: 5px;
+            background: #ffffff;
+            min-height: 6rem;
+            justify-content: center;
+        }
+        
+        .modal .issue {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 650;
+            color: #ffffff;
+        }
+        
+        .modal .issue font {
+            margin: 0 5px;
+            color: red;
+        }
+        
+        .modal-body .message {
+            display: flex;
+            padding: 15px 0px;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-body .message.warning .text_ico {
+            flex: 0 0 30px;
+            height: 30px;
+            border: 2px solid #c77500;
+            border-radius: 50%;
+            position: relative;
+            margin: 0 10px;
+        }
+        
+        .modal-body .message.warning .text_ico div:nth-child(1) {
+            width: 3px;
+            height: 10px;
+            background: #c77500;
+            position: absolute;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            top: 4px;
+        }
+        
+        .modal-body .message.warning .text_ico div:nth-child(2) {
+            width: 3px;
+            height: 4px;
+            background: #c77500;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 4px;
+            margin: 0 auto;
+        }
+        
+        .modal-body .message.warning #modal_text {
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #080808;
+        }
+        
+        .modal-body .message.success .text_ico {
+            background: url(/t7m/resource/img/peopleagent/uq_icon.png) no-repeat center center;
+            flex: 0 0 30px;
+            height: 30px;
+            margin: 0 10px;
+            border-radius: 50%;
+            position: relative;
+            background-size: 220px 70px;
+            background-position: -148px -32px;
+        }
+        
+        .modal-body .message.success #modal_text {
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #080808;
+        }
+        
+        .modal-body .message.fail .text_ico {
+            background: url(/t7m/resource/img/peopleagent/uq_icon.png) no-repeat center center;
+            flex: 0 0 30px;
+            height: 30px;
+            margin: 0 10px;
+            border-radius: 50%;
+            position: relative;
+            background-size: 220px 70px;
+            background-position: -187px -32px;
+        }
+        
+        .modal-body .message.fail #modal_text {
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #080808;
+        }
+        
+        .modal-footer {
+            padding: 0.6rem;
+        }
+        
+        .modal-footer button {
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 3px 30px;
+            font-size: 0.75rem;
+            background: background: linear-gradient(to bottom, #af5b1deb 50%, #b75909f5 50%);
+            border-radius: 3px;
+        }
+    </style>
+
+    <div class="modal fade" data-easein="slideUpBigIn" data-backdrop="static" style="position: absolute; left: 0px; right: 0px; top: 30%; display: none;" id="bet_btn" tabindex="-1" role="dialog" aria-labelledby="bet_btn" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <font class="game-name"></font>
+                </div>
+                <div class="modal-body">
+                    <div class="message warning">
+                        <div class="text_ico">
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <p id="modal_text" style="text-align: center;">已封盘</p>
+                    </div>
+                </div>
+                <div class="modal-footer" style="border:0; display: flex; justify-content:center;">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function() {
+
+            $('.modal_trans_btn').click(function() {
+                if (typeof modalInterval !== 'undefined') clearInterval(modalInterval);
+                if (!$('.bet_btn').hasClass("bet_page_transform")) {
+                    transBetPage();
+                }
+            })
+            $('.modal').off();
+        })
+
+        function countdownModal(time, callModal, title, issueNo, content, callback) {
+            var seconds = time;
+            var target = $('#bet_btn');
+            if (typeof modalInterval !== 'undefined') clearInterval(modalInterval);
+            target.find('button').text("确认 (" + (seconds / 1000) + ")");
+
+            callModal(title, issueNo, content, callback); //open modal
+            modalInterval = setInterval(function() {
+                seconds -= 1000;
+
+                target.find('button').text("确认 (" + (seconds / 1000) + ")");
+
+                if (seconds <= 0) {
+                    //initial
+                    clearInterval(modalInterval);
+                    target.find('button').text("确认");
+
+                    if (!$('.bet_page').hasClass("bet_page_transform")) {
+                        target.modal('hide'); //close modal
+                        transBetPage();
+                    } else {
+                        target.modal('hide');
+                    }
+                }
+            }, 1000);
+        }
+
+        function normalModal(callModal, title, issueNo, content, callback) {
+            var target = $('#bet_btn');
+            if (typeof modalInterval !== 'undefined') clearInterval(modalInterval);
+            target.find('button').text("确认 ");
+            callModal(title, issueNo, content, callback);
+        }
+
+        function successModal(title, issueNo, content, callback) {
+            $('.modal-header .game-name').text(title);
+            $('.modal-body .issue font').text(issueNo);
+            $('#modal_text').text(content)
+
+            $('.modal-body .message').removeClass().addClass('message success');
+            $('.modal-footer button').removeClass().addClass('btn btn-secondary modal_trans_btn');
+
+            $('#bet_btn').modal('show');
+            $('.modal button').unbind().click(callback);
+            $('.modal_trans_btn').click(function() {
+                if (typeof modalInterval !== 'undefined') clearInterval(modalInterval);
+                if (!$('.bet_btn').hasClass("bet_page_transform")) {
+                    transBetPage();
+                }
+            })
+        }
+
+        function failModal(title, issueNo, content, callback) {
+            $('.modal-header .game-name').text(title);
+            $('.modal-body .issue font').text(issueNo);
+            $('#modal_text').text(content)
+
+            $('.modal-body .message').removeClass().addClass('message fail');
+            $('.modal-footer button').removeClass().addClass('btn btn-secondary modal_trans_btn');
+
+            $('#bet_btn').modal('show');
+            $('.modal button').unbind().click(callback);
+            $('.modal_trans_btn').click(function() {
+                if (typeof modalInterval !== 'undefined') clearInterval(modalInterval);
+                if (!$('.bet_btn').hasClass("bet_page_transform")) {
+                    transBetPage();
+                }
+            })
+        }
+
+        function warningModal(title, issueNo, content, callback) {
+            $('.modal-header .game-name').text(title);
+            $('.modal-body .issue font').text(issueNo);
+            $('#modal_text').text(content)
+
+            $('.modal-body .message').removeClass().addClass('message warning');
+            $('.modal-footer button').removeClass().addClass('btn btn-secondary');
+
+            $('#bet_btn').modal('show');
+            $('.modal button').unbind().click(callback);
+            $('.modal_trans_btn').click(function() {
+                if (typeof modalInterval !== 'undefined') clearInterval(modalInterval);
+                if (!$('.bet_btn').hasClass("bet_page_transform")) {
+                    transBetPage();
+                }
+            })
+        }
+
+        function toggleLoader() {
+            $('.loader').toggle();
+        }
+
+        function goLogin() {
+            var path = document.getElementById("contextPath").value + '/mobile/signIn';
+            window.location.href = path;
+        }
+    </script>
+    <div id="play-type-modal" class="" style="display: none;">
+        <div class="play-type-content">
+            <div class="play-type-m Mix active" data-play_code_m="Mix"><span>混合</span></div>
+            <div class="play-type-s">
+                <div class="Mix-B active" data-entry_id="573"><span>混合</span></div>
+            </div>
+        </div>
+        <div class="play-type-content">
+            <div class="play-type-m Color" data-play_code_m="Color"><span>波色</span></div>
+            <div class="play-type-s">
+                <div class="Color-Red" data-entry_id="583"><span>波色</span></div>
+            </div>
+        </div>
+        <div class="play-type-content">
+            <div class="play-type-m Triple" data-play_code_m="Triple"><span>豹子</span></div>
+            <div class="play-type-s">
+                <div class="Triple-All" data-entry_id="586"><span>豹子</span></div>
+            </div>
+        </div>
+        <div class="play-type-content">
+            <div class="play-type-m Specific" data-play_code_m="Specific"><span>特码</span></div>
+            <div class="play-type-s">
+                <div class="Specific-N0" data-entry_id="587"><span>特码</span></div>
+                <div class="Specific-NNN" data-entry_id="615"><span>特码包三</span></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../../t7m/resource/js/peopleagent-lottery/bet/bjkl8.js"></script>
+    <script type="text/javascript" src="../../../t7m/resource/js/peopleagent-lottery/bet/bet.js"></script>
+    <script type="text/javascript" src="../../../t7m/resource/js/peopleagent-lottery/game-custom.js"></script>
+    <script type="text/javascript" src="../../../t7m/resource/json/appendJson/offi_bjkl8.js"></script>
+    <script type="text/javascript" src="../../../t7m/resource/json/officialLimitJson/bjkl8.js"></script>
+    <script type="text/javascript" src="../../../t7m/resource/json/styleJson/bjkl8.js"></script>
+    <script type="text/javascript" src="../../../t7m/resource/js/peopleagent-lottery/generate-official-spec.js"></script>
+    <script type="text/javascript" src="../../../t7m/resource/js/peopleagent-lottery/game-page.js"></script>
+
+    <div class="layui-layer-move"></div>
+</body>
+
+</html>
