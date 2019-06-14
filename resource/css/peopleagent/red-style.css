@@ -600,7 +600,7 @@ ul.bottom-menu li .icon-share + span {
 }
 
 marquee {
-    color: #4C4C4C;
+    color: #b2b2b2;
 }
 
 .menu-list {
@@ -3770,6 +3770,20 @@ table.dataTable tbody td.odds {
     border: 1px solid #C98B20;
     background: #C98B20;
 }
+/* promotion start*/
+.promotion-box {
+    width: 95%;
+    margin: 0 auto 2vh;
+    color: #eeb449;
+    background: #404040;
+}
+.promotion-box .img-fluid {
+    max-height: 18vh !important;
+}
+.promotion-box .collapse {
+    padding: 1%;
+}
+/*  */
 /* end */
 .layui-layer-shade,.layui-layer-loading2 {
     display: none !important;

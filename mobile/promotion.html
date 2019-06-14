@@ -119,37 +119,41 @@
   
   </script>
   <div class="mainer">
-              <div class="promotion-box">
-                            <a href="javascript: void(0);" onclick="showPromotionDetails(35);">
-                                <img class="img-fluid" src="http://ag.d7601.com/Data/image/1556534057012.jpg">
-                            </a>
-                            <div class="collapse" id="promotion-35">
-                                <div class="card-title">Testing</div>
-                                <div class="card-text"><p>
-    <a href="https://google.com" target="_blank"><span style="background-color:#E53333;">Click ME</span></a> 
-  </p>
-  <p>
-    This is testing via KC
-  </p>
-  <p>
-    <br>
-  </p>
-  <p>
-    <img src="https://screenshot.net/tw/d0xqkhl" alt=""> 
-  </p></div>
-                            </div>
-                        </div>
+    <div class="promotion-box">
+      <a href="javascript: void(0);" onclick="showPromotion(35)">
+        <img class="img-fluid" src="http://ag.d7601.com/Data/image/1556534057012.jpg">
+        <div class="collapse" id="promotion-35">
+            <div class="card-title">Testing</div>
+            <div class="card-text">
+              <p>
+                <a href="https://google.com" target="_blank"><span style="background-color:#E53333;">Click ME</span></a> 
+              </p>
+              <p>
+                This is testing via KC
+              </p>
+              <p>
+                <br>
+              </p>
+              <p>
+                <img src="https://screenshot.net/tw/d0xqkhl" alt=""> 
+              </p>
+            </div>  
+          </div>
+      </a>
+      
+    </div>
                     <div class="promotion-box">
-                            <a href="javascript: void(0);" onclick="showPromotionDetails(39);">
+                            <a href="javascript: void(0);" onclick="showPromotion(39);">
                                 <img class="img-fluid" src="http://ag.d7601.com/Data/image/1558406070608.jpeg">
+                                <div class="collapse" id="promotion-39">
+                                    <div class="card-title">專屬專屬 VIP活動</div>
+                                    <div class="card-text"><span style="color:#E53333;">送</span><span style="font-size:16px;color:#9933E5;">送</span><span style="font-size:24px;color:#00D5FF;">送</span></div>
+                                </div>
                             </a>
-                            <div class="collapse" id="promotion-39">
-                                <div class="card-title">專屬專屬 VIP活動</div>
-                                <div class="card-text"><span style="color:#E53333;">送</span><span style="font-size:16px;color:#9933E5;">送</span><span style="font-size:24px;color:#00D5FF;">送</span></div>
-                            </div>
+                            
                         </div>
                     </div>
-          <div id="sidebar">
+    <div id="sidebar">
       <div class="header">
           <div class="mb-2 show-user flex-column">
               <img class="rounded-circle" src="../../t7m/resource/img/peopleagent/icon-user.jpg">
@@ -374,9 +378,10 @@
   <script type="text/javascript" src="../../t7m/resource/js/peopleagent/custom.js" data-url="https://x20.d7601.com"></script>
   
   <ul class="bottom-menu">
-      <li class="active"><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-hall"></i><span>首页</span></a></li>
+      <li class=""><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-hall"></i><span>首页</span></a></li>
       <li class=""><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-lottery"></i><span>彩票</span></a></li>
-      <li class=""><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-promotion"></i><span>优惠</span></a></li>
+      <li class="active"><a class="btn-icon" href="javascript:void(0);" onclick="goPromotion();"><i
+              class="icon icon-promotion"></i><span>优惠</span></a></li>
       <li class=""><a class="btn-icon" href="javascript:void(0);"><i class="icon icon-mine"></i><span>我的</span></a></li>
       <!-- <li class=""><a class="btn-icon" href="javascript:void(0);" onclick="goHall();"><i class="icon icon-hall"></i><span>大厅</span></a></li>
       <li class=""><a class="btn-icon" href="javascript:void(0);" onclick="goCustomerService();"><i class="icon icon-customer-service"></i><span>客服</span></a></li>
@@ -422,6 +427,11 @@
     }
   </script></div>
       <script>
+        function showPromotion(id) {
+          $('.promotion-box .collapse').removeClass('show');
+          $('#promotion-' + id).toggleClass('show');
+          // $(this).find('.collapse').addClass('show');
+        }
         function showPromotionDetails(id) {
           var index = layer.open({
             type: 1,
